@@ -8,6 +8,8 @@ height = 48.0
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+walk_speed = 400
+run_speed = 700
 jump_speed = -800
 gravity = 2000
 acceleration = 0.3
