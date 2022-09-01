@@ -17,11 +17,12 @@ func _physics_process(delta):
 	for i in overlapping_bodies:
 		if i.is_in_group("Player"):
 			player = i
+	
+	velocity.x = 0
+	if player != null:
+		velocity.x = position.direction_to(player.position).x * run_speed
 	velocity.y += gravity * delta
 	
-	velocity = Vector2.ZERO
-	if player != null:
-		velocity = position.direction_to(player.position) * run_speed
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	
