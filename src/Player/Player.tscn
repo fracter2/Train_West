@@ -6,7 +6,7 @@
 radius = 32.0
 height = 48.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 1 )
 walk_speed = 400
 run_speed = 700

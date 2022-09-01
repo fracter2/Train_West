@@ -12,7 +12,14 @@ func _on_Area2D_body_exited(body):
 	player = null
 
 func _physics_process(delta):
+	var overlapping_bodies: Array= $Area2D.get_overlapping_bodies()
+	for i in overlapping_bodies:
+		if i.is_in_group("Player"):
+			player = i
+	
 	velocity = Vector2.ZERO
 	if player != null:
 		velocity = position.direction_to(player.position) * run_speed
 	velocity = move_and_slide(velocity)
+	
+	
