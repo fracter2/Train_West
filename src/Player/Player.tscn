@@ -8,9 +8,9 @@ radius = 32.0
 height = 48.0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 12, 52 )
+extents = Vector2( 40, 60 )
 
-[node name="Player" type="KinematicBody2D" groups=["Player"]]
+[node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource( 1 )
@@ -41,6 +41,7 @@ collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Push Area"]
+position = Vector2( -48, 4 )
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="Push Area" to="Push Area" method="_on_Push_Area_body_entered"]

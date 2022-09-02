@@ -1,10 +1,6 @@
 extends Area2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+export var knockback:int = 1000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,4 +13,9 @@ func _ready():
 
 
 func _on_Push_Area_body_entered(body):
+	if body.is_in_group("Entity"):
+		body.velocity.x += knockback
+		
+
+func get_entity_list():
 	pass

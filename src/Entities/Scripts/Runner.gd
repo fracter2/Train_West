@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 
+
 export (int) var run_speed = 1000
 export (int) var gravity = 3500
 var velocity = Vector2.ZERO

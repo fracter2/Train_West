@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Entity
 
 export (int) var walk_speed = 600
 export (int) var run_speed = 1000
@@ -27,7 +27,7 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	velocity.y += gravity * delta
-	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity = .move_and_slide(velocity, Vector2.UP)
 	if Input.is_action_just_pressed("move_jump"):
-		if is_on_floor():
+		if .is_on_floor():
 			velocity.y = jump_speed

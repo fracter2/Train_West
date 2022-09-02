@@ -6,9 +6,10 @@
 radius = 24.0
 height = 36.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 51.2668, 10 )
 
-[node name="Runner" type="KinematicBody2D"]
+[node name="Runner" type="KinematicBody2D" groups=["Entity"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 1 )
@@ -30,7 +31,9 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 modulate = Color( 0.635294, 0.156863, 0.156863, 1 )
-scale = Vector2( -1.08594, 30.4518 )
+position = Vector2( 5.87093e-06, -5.44506e-07 )
+rotation = 3.14159
+scale = Vector2( 1.08594, -30.4518 )
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
