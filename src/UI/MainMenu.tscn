@@ -9,5 +9,14 @@ margin_right = 1004.0
 margin_bottom = 580.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_right = 984.0
+margin_right = 980.0
+margin_bottom = 560.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/HBoxContainer"]
+margin_right = 465.0
+margin_bottom = 560.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 465.0
+margin_right = 980.0
 margin_bottom = 560.0
