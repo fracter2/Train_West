@@ -3,7 +3,7 @@ extends CanvasLayer
 onready var tween = $Tween
 
 func appear():
-	tween.interpolate_property(self, "offset:x", 500, 0,
+	tween.interpolate_property(self, "offset:x", 2000, 0,
 					0.5, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	tween.start()
 
