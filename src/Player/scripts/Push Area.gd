@@ -1,21 +1,24 @@
 extends Area2D
 
-export var knockback:int = 1000
+export var knockback:int = 100
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
+func _physics_process(delta):
+	var entity_list:Array = get_entity_list()
+	if entity_list.size()!= 0:
+		
+		for i in entity_list:
+			var dir:Vector2 = i.position - position
+			dir = dir.normalized()
+			i.velocity += dir * knockback
+			
+	
 func _on_Push_Area_body_entered(body):
-	if body.is_in_group("Entity"):
-		body.velocity.x += knockback
+	pass
+#	if body.is_in_group("Entity"):
+#		body.velocity.x += knockback
 		
 
-func get_entity_list():
-	pass
+func get_entity_list() -> Array:
+	return get_overlapping_bodies()
