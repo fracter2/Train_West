@@ -91,6 +91,19 @@ run={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Map - Static env"
+2d_physics/layer_2="Entity Player"
+2d_physics/layer_3="Entity Enemy"
+2d_physics/layer_4="Entity Misc"
+2d_physics/layer_5="Phys Objects"
+2d_physics/layer_6="Proj Players"
+2d_physics/layer_7="Proj Enemies"
+2d_physics/layer_8="Gabriels Private Layer"
+2d_physics/layer_9=false
+2d_physics/layer_420=false
+
 [physics]
 
 common/enable_pause_aware_picking=true
