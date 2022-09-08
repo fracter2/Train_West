@@ -6,11 +6,10 @@
 radius = 24.0
 height = 36.0
 
-
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 51.2668, 10 )
 
-[node name="Runner" type="KinematicBody2D" groups=["Entity"]]
+[node name="Enemy_Runner" type="KinematicBody2D" groups=["Entity"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 1 )
