@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Train West"
-run/main_scene="res://src/Level/World.tscn"
+run/main_scene="res://src/UI/Main_Menu.tscn"
 config/icon="res://icon.png"
 
 [display]
