@@ -6,11 +6,14 @@
 
 [node name="World" type="Node2D"]
 
+[node name="Wagon_Basic2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1452, 0 )
+
 [node name="Runner" parent="." instance=ExtResource( 3 )]
-position = Vector2( 120, -184 )
+position = Vector2( 516, -57 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -272, -88 )
+position = Vector2( -272, -79 )
 
 [node name="Wagon_Basic" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1, 1 )
