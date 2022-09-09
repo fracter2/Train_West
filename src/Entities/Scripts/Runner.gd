@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Entity
 
 
 export (int) var run_speed = 1000
