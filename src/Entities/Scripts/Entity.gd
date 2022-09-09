@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 class_name Entity
 
-var hp: int
+export var hp: int
 
 func take_damage(var dmg:int):
 	hp -= dmg;

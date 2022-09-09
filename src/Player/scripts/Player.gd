@@ -5,6 +5,7 @@ export (int) var run_speed = 1000
 export (int) var jump_speed = -1800
 export (int) var gravity = 4000
 
+
 var velocity = Vector2.ZERO
 
 export (float, 0, 1.0) var friction = 0.1
@@ -23,6 +24,9 @@ func get_input():
 		
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
+
+func _ready():
+	hp = 100
 
 func _physics_process(delta):
 	get_input()
