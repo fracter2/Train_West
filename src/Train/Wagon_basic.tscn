@@ -31,3 +31,39 @@ position = Vector2( 456, 0 )
 
 [node name="Wagon_Segment9" parent="Floor" instance=ExtResource( 1 )]
 position = Vector2( 608, 0 )
+
+[node name="Floor2" type="YSort" parent="."]
+position = Vector2( 0, -320 )
+
+[node name="Wagon_Segment2" parent="Floor2" instance=ExtResource( 1 )]
+position = Vector2( -152, 0 )
+
+[node name="Wagon_Segment" parent="Floor2" instance=ExtResource( 1 )]
+
+[node name="Wagon_Segment3" parent="Floor2" instance=ExtResource( 1 )]
+position = Vector2( 152, 0 )
+
+[node name="Wagon_Segment4" parent="Floor2" instance=ExtResource( 1 )]
+position = Vector2( -304, 0 )
+
+[node name="Wagon_Segment5" parent="Floor2" instance=ExtResource( 1 )]
+position = Vector2( 304, 0 )
+
+[node name="Wagon_Segment6" parent="Floor2" instance=ExtResource( 1 )]
+position = Vector2( -456, 0 )
+
+[node name="Wagon_Segment7" parent="Floor2" instance=ExtResource( 1 )]
+position = Vector2( -608, 0 )
+
+[node name="Wagon_Segment8" parent="Floor2" instance=ExtResource( 1 )]
+position = Vector2( 456, 0 )
+
+[node name="Wagon_Segment9" parent="Floor2" instance=ExtResource( 1 )]
+position = Vector2( 608, 0 )
+
+[node name="Wall_Left" type="YSort" parent="."]
+position = Vector2( -680, -160 )
+
+[node name="Wagon_Segment" parent="Wall_Left" instance=ExtResource( 1 )]
+position = Vector2( 8, 96 )
+rotation = 1.5708
