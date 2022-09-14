@@ -4,14 +4,30 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="UI" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Bars" type="VBoxContainer" parent="UI"]
+[node name="UI" type="HBoxContainer" parent="MarginContainer"]
+margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+[node name="Bars" type="VBoxContainer" parent="MarginContainer/UI"]
+margin_bottom = 40.0
+
+[node name="Bar" type="HBoxContainer" parent="MarginContainer/UI/Bars"]
+
+[node name="Backround" type="NinePatchRect" parent="MarginContainer/UI/Bars/Bar"]
+
+[node name="HP" type="TextureRect" parent="MarginContainer/UI/Bars/Bar/Backround"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Number" type="Label" parent="MarginContainer/UI/Bars/Bar/Backround"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/UI"]
 margin_left = 4.0
 margin_right = 4.0
 margin_bottom = 40.0
