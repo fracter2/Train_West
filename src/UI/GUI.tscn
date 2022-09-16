@@ -1,6 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
 
-[node name="Control" type="Control"]
+[ext_resource path="res://src/UI/UI components/EnergyBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UI/UI components/Lifebar.tscn" type="PackedScene" id=2]
+
+[node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -9,25 +12,20 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="UI" type="HBoxContainer" parent="MarginContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 504.0
+margin_bottom = 97.0
 
 [node name="Bars" type="VBoxContainer" parent="MarginContainer/UI"]
-margin_bottom = 40.0
+margin_right = 500.0
+margin_bottom = 97.0
 
-[node name="Bar" type="HBoxContainer" parent="MarginContainer/UI/Bars"]
+[node name="Lifebar" parent="MarginContainer/UI/Bars" instance=ExtResource( 2 )]
 
-[node name="Backround" type="NinePatchRect" parent="MarginContainer/UI/Bars/Bar"]
-
-[node name="HP" type="TextureRect" parent="MarginContainer/UI/Bars/Bar/Backround"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Number" type="Label" parent="MarginContainer/UI/Bars/Bar/Backround"]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="EnergyBar" parent="MarginContainer/UI/Bars" instance=ExtResource( 1 )]
+margin_top = 57.0
+margin_bottom = 97.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/UI"]
-margin_left = 4.0
-margin_right = 4.0
-margin_bottom = 40.0
+margin_left = 504.0
+margin_right = 504.0
+margin_bottom = 97.0
