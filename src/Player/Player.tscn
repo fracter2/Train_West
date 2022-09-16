@@ -10,8 +10,8 @@ extents = Vector2( 31, 56 )
 extents = Vector2( 40, 60 )
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 24.0
-height = 48.0
+radius = 27.0
+height = 62.0
 
 [node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
 collision_layer = 2
@@ -37,18 +37,18 @@ zoom = Vector2( 2, 2 )
 smoothing_enabled = true
 
 [node name="Push Area" type="Area2D" parent="."]
-position = Vector2( 48, 0 )
 collision_layer = 0
 collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Push Area"]
-position = Vector2( -48, 4 )
+position = Vector2( 0, 3 )
 shape = SubResource( 2 )
 
 [node name="HurtArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+position = Vector2( 0, 5 )
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="Push Area" to="Push Area" method="_on_Push_Area_body_entered"]
