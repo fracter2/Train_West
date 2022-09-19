@@ -31,7 +31,7 @@ position = Vector2( -2700, 0 )
 [node name="Wagon_Water" parent="Train" instance=ExtResource( 4 )]
 position = Vector2( -3900, 0 )
 
-[node name="Entities" type="YSort" parent="."]
+[node name="Entities" type="Node2D" parent="."]
 position = Vector2( -27, 5 )
 
 [node name="Player" parent="Entities" instance=ExtResource( 1 )]
