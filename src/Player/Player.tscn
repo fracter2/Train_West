@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Player/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/scripts/Push Area.gd" type="Script" id=2]
@@ -8,10 +8,6 @@ extents = Vector2( 31, 56 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 40, 60 )
-
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 27.0
-height = 62.0
 
 [node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
 collision_layer = 2
@@ -45,10 +41,10 @@ script = ExtResource( 2 )
 position = Vector2( 0, 3 )
 shape = SubResource( 2 )
 
-[node name="HurtArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
-position = Vector2( 0, 5 )
-shape = SubResource( 3 )
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+autostart = true
 
 [connection signal="body_entered" from="Push Area" to="Push Area" method="_on_Push_Area_body_entered"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
