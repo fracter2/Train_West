@@ -23,7 +23,6 @@ func get_input():
 			speed = walk_speed
 		velocity.x = lerp(velocity.x, dir * speed, acceleration)
 		
-		
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
 
