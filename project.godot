@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Entities/Scripts/Entity.gd"
 }, {
-"base": "",
+"base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
@@ -28,7 +28,7 @@ _global_script_class_icons={
 
 config/name="Train West"
 run/main_scene="res://src/UI/Main_Menu.tscn"
-config/icon="res://icon.png"
+config/icon="res://Icons/icon.png"
 
 [display]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Temp_Train.jpg-fc99c9160316b82fcc3e03285d627fb6.stex"
+path="res://.import/Temp_Train.jpg-d0bd578575b748d522a7ce259c3fe25a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Temp_Train.jpg"
-dest_files=[ "res://.import/Temp_Train.jpg-fc99c9160316b82fcc3e03285d627fb6.stex" ]
+source_file="res://Icons/Temp_Train.jpg"
+dest_files=[ "res://.import/Temp_Train.jpg-d0bd578575b748d522a7ce259c3fe25a.stex" ]
 
 [params]
 
