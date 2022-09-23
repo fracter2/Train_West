@@ -37,13 +37,17 @@ func _physics_process(delta):
 
 func die():
 	var dead_msg = load("res://src/Player/Dead_Message.tscn")
-	add_child(dead_msg)
+	#add_child(dead_msg)
 
 
 func take_damage(var dmg:int):
 	if invincible:
 		return
 	hp -= dmg;
+	print("player owwie:" + String(dmg) + "dmg")
+	invincible = true
+	$InvincibilityTimer.start()
+	
 	if hp < 0:
 		die()
 
