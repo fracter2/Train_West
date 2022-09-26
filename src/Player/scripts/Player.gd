@@ -11,7 +11,7 @@ var velocity = Vector2.ZERO
 export (float, 0, 1.0) var friction = 0.1
 export (float, 0, 1.0) var acceleration = 0.25
 
-<<<<<<< HEAD
+
 # Health and state
 signal health_changed
 signal died
@@ -39,9 +39,7 @@ func take_damage(count):
 		die()
 	
 	emit_signal("health_changed", health)
-=======
-var invincible:bool = true
->>>>>>> parent of 97f835b (Merge branch 'Player-UI')
+
 
 func get_input():
 	var dir = 0
@@ -57,8 +55,6 @@ func get_input():
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
 
-func _ready():
-	hp = 100
 
 func _physics_process(delta):
 	get_input()
