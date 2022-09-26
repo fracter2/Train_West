@@ -8,7 +8,7 @@ var animated_health = 0
 
 
 func _ready():
-	var player_max_health = $"../entites/player".max_health
+	var player_max_health = get_parent().get_parent().get_parent().max_health
 	bar.max_value = player_max_health
 	update_health(player_max_health)
 
