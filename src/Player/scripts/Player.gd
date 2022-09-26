@@ -11,7 +11,27 @@ var velocity = Vector2.ZERO
 export (float, 0, 1.0) var friction = 0.1
 export (float, 0, 1.0) var acceleration = 0.25
 
-var invincible:bool = true
+signal health_changed
+signal died
+
+export var max_health = 18
+var health = max_health
+
+# When the character dies, we fade the UI
+enum STATES {ALIVE, DEAD}
+var state = STATES.ALIVE
+
+func take_damage(count):
+	if state == STATES.DEAD:
+		return
+
+	health -= count
+	if health <= 0:
+		health = 0
+		state = STATES.DEAD
+		emit_signal("died")
+
+	emit_signal("health_changed", health)
 
 func get_input():
 	var dir = 0
@@ -26,9 +46,6 @@ func get_input():
 		
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
-
-func _ready():
-	hp = 100
 
 func _physics_process(delta):
 	get_input()
