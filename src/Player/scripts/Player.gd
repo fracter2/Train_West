@@ -1,21 +1,23 @@
-extends Entity
+extends KinematicBody2D
 
+# Movement variables
 export (int) var walk_speed = 600
 export (int) var run_speed = 1000
 export (int) var jump_speed = -1800
 export (int) var gravity = 4000
-
 
 var velocity = Vector2.ZERO
 
 export (float, 0, 1.0) var friction = 0.1
 export (float, 0, 1.0) var acceleration = 0.25
 
+# Health and state
 signal health_changed
 signal died
 
 export var max_health = 18
 var health = max_health
+var invincible: bool = false
 
 # When the character dies, we fade the UI
 enum STATES {ALIVE, DEAD}
@@ -24,13 +26,17 @@ var state = STATES.ALIVE
 func take_damage(count):
 	if state == STATES.DEAD:
 		return
-
+	
 	health -= count
+	invincible = true
+	$InvincibilityTimer.start()
+	
 	if health <= 0:
 		health = 0
 		state = STATES.DEAD
 		emit_signal("died")
-
+		die()
+	
 	emit_signal("health_changed", health)
 
 func get_input():
@@ -54,23 +60,12 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("move_up"):
 		if .is_on_floor():
 			velocity.y = jump_speed
-	
 
+
+# Unsure what this will be used for, but it excists for now, remove later if redundant
 func die():
 	var dead_msg = load("res://src/Player/Dead_Message.tscn")
 	#add_child(dead_msg)
-
-
-func take_damage(var dmg:int):
-	if invincible:
-		return
-	hp -= dmg;
-	print("player owwie:" + String(dmg) + "dmg")
-	invincible = true
-	$InvincibilityTimer.start()
-	
-	if hp < 0:
-		die()
 
 
 func _on_InvincibilityTimer_timeout():

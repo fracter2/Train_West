@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Player/scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://src/Player/scripts/Push Area.gd" type="Script" id=2]
+[ext_resource path="res://src/UI/GUI.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 31, 56 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 40, 60 )
+
+[node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
+collision_layer = 2
+script = ExtResource( 1 )
+walk_speed = 400
+run_speed = 700
+jump_speed = -800
+gravity = 2000
+acceleration = 0.3
+
+[node name="GUI" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="TempGun" type="Node2D" parent="."]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
+shape = SubResource( 4 )
+
+[node name="TempPlayerModel" type="Polygon2D" parent="."]
+color = Color( 0.156863, 0.772549, 0.87451, 1 )
+polygon = PoolVector2Array( 24, 64, -24, 64, -32, 56, -32, -48, -24, -56, 24, -56, 32, -48, 32, 56 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 0, -100 )
+current = true
+zoom = Vector2( 2, 2 )
+smoothing_enabled = true
+
+[node name="Push Area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Push Area"]
+position = Vector2( 0, 3 )
+shape = SubResource( 2 )
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Push Area" to="Push Area" method="_on_Push_Area_body_entered"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

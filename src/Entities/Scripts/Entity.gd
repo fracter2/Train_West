@@ -16,7 +16,7 @@ func take_damage(var dmg:int):
 	if hp < 0:
 		die()
 		
-    
+	
 # This function is intented to maybe be overriden when creating new script
 func die():
 	queue_free()
