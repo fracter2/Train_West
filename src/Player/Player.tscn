@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Player/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/scripts/Push Area.gd" type="Script" id=2]
+[ext_resource path="res://src/UI/GUI.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 31, 56 )
@@ -49,6 +50,8 @@ shape = SubResource( 2 )
 wait_time = 0.7
 one_shot = true
 autostart = true
+
+[node name="GUI" parent="." instance=ExtResource( 3 )]
 
 [connection signal="body_entered" from="Push Area" to="Push Area" method="_on_Push_Area_body_entered"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

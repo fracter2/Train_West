@@ -1,7 +1,7 @@
 extends MarginContainer
 
-onready var number_label = $Bars/LifeBar/Count/Background/Number
-onready var bar = $Bars/LifeBar/TextureProgress
+onready var number_label = $Bars/Lifebar/Backround/Number # $Bars/LifeBar/Count/Background/Number
+onready var bar = $Bars/Lifebar/Gauge
 onready var tween = $Tween
 
 var animated_health = 0
