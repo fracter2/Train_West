@@ -17,7 +17,7 @@ func _process(delta):
 
 
 func update_health(new_value):
-	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.8, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	if not tween.is_active():
 		tween.start()
 
