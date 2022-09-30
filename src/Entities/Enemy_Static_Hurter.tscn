@@ -8,12 +8,9 @@ radius = 18.0278
 [sub_resource type="CircleShape2D" id=2]
 radius = 23.0217
 
-[node name="Static_Hurter" type="StaticBody2D"]
+[node name="Static_Hurter" type="KinematicBody2D" groups=["Enemy", "Non-pushable"]]
+collision_layer = 4
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-hp_max = null
 
 [node name="Cage" type="Polygon2D" parent="."]
 color = Color( 0.807843, 0.807843, 0.807843, 1 )
@@ -29,9 +26,10 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="AttackBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
-visible = false
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="AttackBox" to="." method="_on_AttackBox_body_entered"]

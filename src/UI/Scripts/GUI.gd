@@ -1,20 +1,19 @@
-extends MarginContainer
+extends Control
 
-onready var number_label = $Bars/Lifebar/Backround/Number # $Bars/LifeBar/Count/Background/Number
-onready var bar = $Bars/Lifebar/Gauge
-onready var tween = $Tween
+onready var number_label = $CanvasLayer/UI/Bars/Lifebar/Backround/Number # $Bars/LifeBar/Count/Background/Number
+onready var bar = $CanvasLayer/UI/Bars/Lifebar/Gauge
+onready var tween = $CanvasLayer/UI/Tween
 
 var animated_health = 0
 
 
-func _ready():
-	var player_max_health = get_parent().get_parent().get_parent().max_health
-	bar.max_value = player_max_health
-	update_health(player_max_health)
+#func _ready():
 
+func _process(delta):
+	var round_value = round(animated_health)
+	number_label.text = str(round_value)
+	bar.value = round_value
 
-func _on_Player_health_changed(player_health):
-	update_health(player_health)
 
 
 func update_health(new_value):
@@ -23,10 +22,8 @@ func update_health(new_value):
 		tween.start()
 
 
-func _process(delta):
-	var round_value = round(animated_health)
-	number_label.text = str(round_value)
-	bar.value = round_value
+func update_max_health(new_value:int):
+	bar.max_value
 
 
 func _on_Player_died():
