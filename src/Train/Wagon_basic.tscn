@@ -4,6 +4,51 @@
 
 [node name="Wagon_Basic" type="Node2D"]
 
+[node name="Background_Inside" type="Polygon2D" parent="."]
+color = Color( 0.231373, 0.231373, 0.231373, 1 )
+polygon = PoolVector2Array( -680, -328, 680, -328, 680, 0, -680, 0 )
+
+[node name="Window" type="Polygon2D" parent="Background_Inside"]
+position = Vector2( -480, -224 )
+color = Color( 0.592157, 0.717647, 0.701961, 1 )
+polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
+
+[node name="Window2" type="Polygon2D" parent="Background_Inside"]
+position = Vector2( -176, -224 )
+color = Color( 0.592157, 0.717647, 0.701961, 1 )
+polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
+
+[node name="Window3" type="Polygon2D" parent="Background_Inside"]
+position = Vector2( 176, -224 )
+color = Color( 0.592157, 0.717647, 0.701961, 1 )
+polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
+
+[node name="Window4" type="Polygon2D" parent="Background_Inside"]
+position = Vector2( 480, -224 )
+color = Color( 0.592157, 0.717647, 0.701961, 1 )
+polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
+
+[node name="Base" type="Polygon2D" parent="."]
+color = Color( 0.215686, 0.239216, 0.247059, 1 )
+polygon = PoolVector2Array( -600, 0, -512, 64, 512, 64, 600, 0 )
+
+[node name="Wheel" type="Polygon2D" parent="Base"]
+color = Color( 0.635294, 0.627451, 0.627451, 1 )
+polygon = PoolVector2Array( -496, 48, -512, 46, -528, 48, -544, 56, -552, 64, -560, 80, -562, 97, -560, 112, -552, 128, -544, 136, -528, 144, -512, 146, -496, 144, -480, 136, -472, 128, -464, 112, -462, 97, -464, 80, -472, 64, -480, 56 )
+
+[node name="Wheel_inside" type="Polygon2D" parent="Base/Wheel"]
+color = Color( 0.231373, 0.231373, 0.231373, 1 )
+polygon = PoolVector2Array( -536, 64, -520, 58, -520, 88, -504, 88, -504, 58, -488, 64, -480, 72, -474, 88, -504, 88, -504, 104, -474, 104, -480, 120, -488, 128, -504, 134, -504, 104, -520, 104, -520, 134, -536, 128, -544, 120, -550, 104, -520, 104, -520, 88, -550, 88, -544, 72 )
+
+[node name="Wheel2" type="Polygon2D" parent="Base"]
+position = Vector2( 128, 0 )
+color = Color( 0.635294, 0.627451, 0.627451, 1 )
+polygon = PoolVector2Array( -496, 48, -512, 46, -528, 48, -544, 56, -552, 64, -560, 80, -562, 97, -560, 112, -552, 128, -544, 136, -528, 144, -512, 146, -496, 144, -480, 136, -472, 128, -464, 112, -462, 97, -464, 80, -472, 64, -480, 56 )
+
+[node name="Wheel_inside" type="Polygon2D" parent="Base/Wheel2"]
+color = Color( 0.231373, 0.231373, 0.231373, 1 )
+polygon = PoolVector2Array( -536, 64, -520, 58, -520, 88, -504, 88, -504, 58, -488, 64, -480, 72, -474, 88, -504, 88, -504, 104, -474, 104, -480, 120, -488, 128, -504, 134, -504, 104, -520, 104, -520, 134, -536, 128, -544, 120, -550, 104, -520, 104, -520, 88, -550, 88, -544, 72 )
+
 [node name="Floor" type="YSort" parent="."]
 
 [node name="Wagon_Segment2" parent="Floor" instance=ExtResource( 1 )]
@@ -26,44 +71,63 @@ position = Vector2( -456, 0 )
 [node name="Wagon_Segment7" parent="Floor" instance=ExtResource( 1 )]
 position = Vector2( -608, 0 )
 
+[node name="Wagon_Segment10" parent="Floor" instance=ExtResource( 1 )]
+position = Vector2( -736, -8 )
+
+[node name="Wagon_Segment11" parent="Floor" instance=ExtResource( 1 )]
+position = Vector2( 736, -8 )
+
 [node name="Wagon_Segment8" parent="Floor" instance=ExtResource( 1 )]
 position = Vector2( 456, 0 )
 
 [node name="Wagon_Segment9" parent="Floor" instance=ExtResource( 1 )]
 position = Vector2( 608, 0 )
 
-[node name="Floor2" type="YSort" parent="."]
+[node name="Roof" type="YSort" parent="."]
 position = Vector2( 0, -320 )
 
-[node name="Wagon_Segment2" parent="Floor2" instance=ExtResource( 1 )]
+[node name="Wagon_Segment2" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( -152, 0 )
 
-[node name="Wagon_Segment" parent="Floor2" instance=ExtResource( 1 )]
+[node name="Wagon_Segment" parent="Roof" instance=ExtResource( 1 )]
 
-[node name="Wagon_Segment3" parent="Floor2" instance=ExtResource( 1 )]
+[node name="Wagon_Segment3" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( 152, 0 )
 
-[node name="Wagon_Segment4" parent="Floor2" instance=ExtResource( 1 )]
+[node name="Wagon_Segment4" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( -304, 0 )
 
-[node name="Wagon_Segment5" parent="Floor2" instance=ExtResource( 1 )]
+[node name="Wagon_Segment5" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( 304, 0 )
 
-[node name="Wagon_Segment6" parent="Floor2" instance=ExtResource( 1 )]
+[node name="Wagon_Segment6" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( -456, 0 )
 
-[node name="Wagon_Segment7" parent="Floor2" instance=ExtResource( 1 )]
+[node name="Wagon_Segment7" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( -608, 0 )
 
-[node name="Wagon_Segment8" parent="Floor2" instance=ExtResource( 1 )]
+[node name="Wagon_Segment10" parent="Roof" instance=ExtResource( 1 )]
+position = Vector2( -648, 0 )
+
+[node name="Wagon_Segment11" parent="Roof" instance=ExtResource( 1 )]
+position = Vector2( 648, 0 )
+
+[node name="Wagon_Segment8" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( 456, 0 )
 
-[node name="Wagon_Segment9" parent="Floor2" instance=ExtResource( 1 )]
+[node name="Wagon_Segment9" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( 608, 0 )
 
 [node name="Wall_Left" type="YSort" parent="."]
-position = Vector2( -680, -160 )
+position = Vector2( -672, -160 )
 
 [node name="Wagon_Segment" parent="Wall_Left" instance=ExtResource( 1 )]
-position = Vector2( 8, 96 )
+position = Vector2( 0, -95.9999 )
+rotation = 1.5708
+
+[node name="Wall_Right" type="YSort" parent="."]
+position = Vector2( 672, -160 )
+
+[node name="Wagon_Segment" parent="Wall_Right" instance=ExtResource( 1 )]
+position = Vector2( 0, -96 )
 rotation = 1.5708

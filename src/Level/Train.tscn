@@ -13,17 +13,17 @@
 [node name="Wagon_Lokomotive" parent="Train" instance=ExtResource( 2 )]
 position = Vector2( 1243, 0 )
 
-[node name="Wagon_Sleep" parent="Train" instance=ExtResource( 2 )]
-position = Vector2( -1200, 0 )
-
 [node name="Wagon_Coal" parent="Train" instance=ExtResource( 4 )]
 position = Vector2( 0, -150 )
 
+[node name="Wagon_Sleep" parent="Train" instance=ExtResource( 2 )]
+position = Vector2( -1268, 0 )
+
 [node name="Wagon_Cafe" parent="Train" instance=ExtResource( 2 )]
-position = Vector2( -2700, 0 )
+position = Vector2( -2872, 0 )
 
 [node name="Wagon_Water" parent="Train" instance=ExtResource( 4 )]
-position = Vector2( -3900, 0 )
+position = Vector2( -4160, 8 )
 
 [node name="Entities" type="YSort" parent="."]
 position = Vector2( -27, 5 )

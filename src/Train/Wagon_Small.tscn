@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Segment_1.tscn" type="PackedScene" id=1]
 
-[node name="Node2D" type="Node2D"]
+[node name="Wagon_Coal" type="Node2D"]
 
 [node name="YSort" type="YSort" parent="."]
 
