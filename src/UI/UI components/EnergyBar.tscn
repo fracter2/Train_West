@@ -17,7 +17,6 @@ font_data = ExtResource( 2 )
 
 [node name="Backround" parent="." index="0"]
 margin_right = 80.0
-margin_bottom = 40.0
 rect_min_size = Vector2( 80, 40 )
 texture = SubResource( 2 )
 
