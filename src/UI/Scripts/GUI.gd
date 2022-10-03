@@ -15,7 +15,7 @@ func _process(delta):
 	bar.value = round_value
 
 
-
+# Player health updates
 func update_health(new_value):
 	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.8, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	if not tween.is_active():
@@ -30,3 +30,6 @@ func _on_Player_died():
 	var start_color = Color(1.0, 1.0, 1.0, 1.0)
 	var end_color = Color(1.0, 1.0, 1.0, 0.0)
 	tween.interpolate_property(self, "modulate", start_color, end_color, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
+
+
+# Misc functions

@@ -10,6 +10,9 @@ extents = Vector2( 40, 60 )
 [node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
 collision_layer = 2
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 walk_speed = 400
 run_speed = 700
 jump_speed = -800
