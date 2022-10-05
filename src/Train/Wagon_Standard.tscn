@@ -35,7 +35,7 @@ polygon = PoolVector2Array( 352, -12, -16, -12, -16, 12, 352, 12 )
 
 [node name="Reinforcement" type="Polygon2D" parent="Link"]
 show_behind_parent = true
-color = Color( 0.733333, 0.733333, 0.733333, 1 )
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( 88, -10, 104, -34, 136, -34, 120, -10 )
 
 [node name="Reinforcement2" type="Polygon2D" parent="Link"]
@@ -44,9 +44,25 @@ position = Vector2( 96, -2 )
 color = Color( 0.733333, 0.733333, 0.733333, 1 )
 polygon = PoolVector2Array( 88, -10, 104, -34, 136, -34, 120, -10 )
 
+[node name="Couple" type="Polygon2D" parent="."]
+position = Vector2( 760, 40 )
+color = Color( 0.231373, 0.231373, 0.231373, 1 )
+polygon = PoolVector2Array( -352, -12, -16, -12, -16, -20, 16, -20, 16, -12, 16, 12, 16, 20, -16, 20, -16, 12, -352, 12 )
+
+[node name="Reinforcement" type="Polygon2D" parent="Couple"]
+show_behind_parent = true
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -88, -10, -104, -34, -136, -34, -120, -10 )
+
+[node name="Reinforcement2" type="Polygon2D" parent="Couple"]
+show_behind_parent = true
+position = Vector2( -96, -2 )
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -88, -10, -104, -34, -136, -34, -120, -10 )
+
 [node name="Base" type="Polygon2D" parent="."]
 color = Color( 0.223529, 0.254902, 0.266667, 1 )
-polygon = PoolVector2Array( -600, 0, -512, 64, 512, 64, 600, 0 )
+polygon = PoolVector2Array( -600, 0, -512, 64, -32, 64, 0, 56, 32, 64, 512, 64, 600, 0 )
 
 [node name="Wheel" type="Polygon2D" parent="Base"]
 position = Vector2( -488, 80 )

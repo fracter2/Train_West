@@ -1,45 +1,44 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Train/Wagon_basic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Train/Wagon_Standard.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Entities/Enemy_Hugger.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Train/Wagon_Small.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Train/Wagon_Fuel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Entities/Enemy_Static_Hurter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Train/Lokomotive.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Train/Wagon_Short.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 40 )
 
 [node name="World" type="Node2D"]
 
-[node name="Train" type="YSort" parent="."]
-position = Vector2( 3, -128 )
+[node name="Lokomotive" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1246, -128 )
 
-[node name="Wagon_Lokomotive" parent="Train" instance=ExtResource( 2 )]
-position = Vector2( 1243, 0 )
+[node name="Wagon_Fuel" parent="Lokomotive" instance=ExtResource( 4 )]
+position = Vector2( -1203, 0 )
 
-[node name="Wagon_Coal" parent="Train" instance=ExtResource( 4 )]
-position = Vector2( 0, -150 )
+[node name="Wagon_Sleep" parent="Lokomotive" instance=ExtResource( 2 )]
+position = Vector2( -2415, 0 )
 
-[node name="Wagon_Sleep" parent="Train" instance=ExtResource( 2 )]
-position = Vector2( -1268, 0 )
+[node name="Wagon_Cafe" parent="Lokomotive" instance=ExtResource( 2 )]
+position = Vector2( -3931, 0 )
 
-[node name="Wagon_Cafe" parent="Train" instance=ExtResource( 2 )]
-position = Vector2( -2872, 0 )
-
-[node name="Wagon_Water" parent="Train" instance=ExtResource( 4 )]
-position = Vector2( -4160, 8 )
+[node name="Wagon_Water" parent="Lokomotive" instance=ExtResource( 7 )]
+position = Vector2( -5126, 0 )
 
 [node name="Entities" type="YSort" parent="."]
 position = Vector2( -24, -123 )
 
 [node name="Player" parent="Entities" instance=ExtResource( 1 )]
-position = Vector2( 1575, -118 )
+position = Vector2( 824, -101 )
 
 [node name="Enemy_Runner" parent="Entities" instance=ExtResource( 3 )]
 position = Vector2( -4204, -74 )
 
 [node name="Static_Hurter" parent="Entities" instance=ExtResource( 5 )]
-position = Vector2( 1027, -69 )
+position = Vector2( 672, -77 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
 
