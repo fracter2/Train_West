@@ -7,12 +7,14 @@ export (int) var jump_speed = -1800
 export (int) var gravity = 4000
 
 var velocity = Vector2.ZERO
+var frame_jump:int = 0
+var velocity_queued: int = 0
 
 export (float, 0, 1.0) var friction:float = 0.1
 export (float, 0, 1.0) var acceleration:float = 0.25
 
 # Player Parameters
-var input_dir: Vector2 = Vector2(0,0)
+var input_dir: Vector3 = Vector3(0,0,0)
 
 
 # Health and state
@@ -40,14 +42,34 @@ func _physics_process(delta):
 	# Movement code
 	input_dir.x = Input.get_axis("move_left", "move_right")
 	input_dir.y = Input.get_axis("move_down","move_up")
+	input_dir.z = Input.get_action_strength("move_jump")
 	horizontal_movement()
 	
-	velocity.y += gravity * delta
+	velocity.y += gravity * delta - input_dir.y * 75
+	if velocity.y > -3:
+		#velocity.y += 20 - input_dir.y * 50
+		pass
+	else:
+		velocity.y -= input_dir.z * 20
+		pass
 	
-	if Input.is_action_just_pressed("move_up"):
-		if .is_on_floor():
-			velocity.y = jump_speed
-			velocity.x -= jump_speed * input_dir.x  # this makes it lunge forward a bit
+	if Input.is_action_just_released("move_jump") and not frame_jump == 20 and not velocity.y > 0:
+		frame_jump = 20
+		velocity.y = 0
+	
+	#if Input.is_action_just_pressed("move_jump"):
+	#	if .is_on_floor():
+	#		velocity.y = jump_speed
+	#		velocity.x -= jump_speed * input_dir.x  # this makes it lunge forward a bit
+	
+	if Input.is_action_pressed("move_jump"):
+		if frame_jump < 4:
+			velocity.y = jump_speed * 0.5
+			velocity.x -= -60 * input_dir.x
+			frame_jump += 1
+	
+	if .is_on_floor():
+		frame_jump = 0
 	
 	velocity = .move_and_slide(velocity, Vector2.UP)
 
