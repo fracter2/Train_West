@@ -26,6 +26,8 @@ export var max_health:int = 100
 var health:float
 var invincible: bool = false
 
+var Hit_Damage_Indicator = preload("res://src/UI/Hit_Damage.tscn")
+
 # When the character dies, we fade the UI
 enum STATES {ALIVE, DEAD}
 var state = STATES.ALIVE
@@ -53,9 +55,12 @@ func _physics_process(delta):
 		velocity.y -= input_dir.z * 20
 		pass
 	
-	if Input.is_action_just_released("move_jump") and not frame_jump == 20 and not velocity.y > 0:
+	if Input.is_action_just_released("move_down") and not velocity.y > 0:
 		frame_jump = 20
 		velocity.y = 0
+	
+	if Input.is_action_just_released("move_jump"):
+		frame_jump = 20
 	
 	#if Input.is_action_just_pressed("move_jump"):
 	#	if .is_on_floor():
@@ -63,7 +68,7 @@ func _physics_process(delta):
 	#		velocity.x -= jump_speed * input_dir.x  # this makes it lunge forward a bit
 	
 	if Input.is_action_pressed("move_jump"):
-		if frame_jump < 4:
+		if frame_jump < 3:
 			velocity.y = jump_speed * 0.5
 			velocity.x -= -60 * input_dir.x
 			frame_jump += 1
@@ -100,13 +105,18 @@ func take_damage(count):
 	invincible = true
 	$InvincibilityTimer.start()
 	emit_signal("health_changed", health)
-	print ("Player damaged" + String(health))
+	
+	var dmg_indicator_instance = Hit_Damage_Indicator.instance()
+	dmg_indicator_instance.text = String(count)
+	add_child(dmg_indicator_instance)
 	
 	if health <= 0:
 		health = 0
 		state = STATES.DEAD
 		emit_signal("died")
 		die()
+	
+	
 
 
 

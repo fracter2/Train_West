@@ -36,6 +36,7 @@ offset = Vector2( 0, -100 )
 current = true
 zoom = Vector2( 2, 2 )
 smoothing_enabled = true
+editor_draw_drag_margin = true
 
 [node name="Push Area" type="Area2D" parent="."]
 collision_layer = 0
