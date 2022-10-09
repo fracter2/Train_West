@@ -19,9 +19,11 @@ jump_speed = -1200
 gravity = 2500
 acceleration = 0.3
 
-[node name="Inventory\?" type="Node2D" parent="."]
-
-[node name="TempGun" type="Node2D" parent="."]
+[node name="Tittle" type="Position2D" parent="."]
+position = Vector2( 0, -64 )
+__meta__ = {
+"_editor_description_": "Where tittle is, and where hit-dmg indicators spawn"
+}
 
 [node name="CollisionBox" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, 8 )

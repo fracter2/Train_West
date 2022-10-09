@@ -108,8 +108,11 @@ func take_damage(count):
 	$InvincibilityTimer.start()
 	emit_signal("health_changed", health)
 	
+	# To add hit-dmg indicators
 	var dmg_indicator_instance = Hit_Damage_Indicator.instance()
 	dmg_indicator_instance.text = String(count)
+	#dmg_indicator_instance.global_position = $Tittle.global_position  			# Use this for when global positions will be used
+	dmg_indicator_instance.position = $Tittle.position
 	add_child(dmg_indicator_instance)
 	
 	if health <= 0:

@@ -8,7 +8,7 @@ func _ready():
 	$Label.text = text
 	
 func _physics_process(delta):
-	position.y += speed * delta
+	position.y -= speed * delta
 
 
 func _on_Despawn_Timer_timeout():

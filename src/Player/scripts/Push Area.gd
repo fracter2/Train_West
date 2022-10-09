@@ -13,7 +13,6 @@ func _physics_process(delta):
 			if not i.is_in_group("Non-pushable"):
 				var dir:Vector2 = i.global_position - global_position
 				dir = dir.normalized()
-				dir.x
 				i.velocity += dir * knockback
 
 
