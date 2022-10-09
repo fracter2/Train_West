@@ -1,6 +1,6 @@
 extends Entity
 
-var damage: int = 10
+export var damage: int = 10
 var attacking: bool = false
 var attackers: int = 0
 

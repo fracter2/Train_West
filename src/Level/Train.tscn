@@ -28,17 +28,21 @@ position = Vector2( -3931, 0 )
 [node name="Wagon_Water" parent="Lokomotive" instance=ExtResource( 7 )]
 position = Vector2( -5126, 0 )
 
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 800, -224 )
+
 [node name="Entities" type="YSort" parent="."]
 position = Vector2( -24, -123 )
-
-[node name="Player" parent="Entities" instance=ExtResource( 1 )]
-position = Vector2( 824, -101 )
 
 [node name="Enemy_Runner" parent="Entities" instance=ExtResource( 3 )]
 position = Vector2( -4204, -74 )
 
 [node name="Static_Hurter" parent="Entities" instance=ExtResource( 5 )]
 position = Vector2( 672, -77 )
+
+[node name="Static_Hurter2" parent="Entities" instance=ExtResource( 5 )]
+position = Vector2( 1050, -84 )
+damage = -10
 
 [node name="Ground" type="StaticBody2D" parent="."]
 

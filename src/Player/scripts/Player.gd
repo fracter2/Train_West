@@ -76,6 +76,10 @@ func _physics_process(delta):
 	if .is_on_floor():
 		frame_jump = 0
 	
+	#velocity = .move_and_slide(velocity, Vector2.UP)  # -> moved to _process at least temporarily, to see if it makes movement smoother
+
+
+func _process(delta):
 	velocity = .move_and_slide(velocity, Vector2.UP)
 
 
@@ -96,9 +100,7 @@ func horizontal_movement(): # This actually sets the horizontal speed
 
 # Health
 func take_damage(count):
-	if state == STATES.DEAD:
-		return
-	if invincible:
+	if state == STATES.DEAD or invincible:
 		return
 	
 	health -= count
@@ -112,12 +114,7 @@ func take_damage(count):
 	
 	if health <= 0:
 		health = 0
-		state = STATES.DEAD
-		emit_signal("died")
 		die()
-	
-	
-
 
 
 func die(): # Unsure what this will be used for, but it excists for now, remove later if redundant
@@ -125,8 +122,13 @@ func die(): # Unsure what this will be used for, but it excists for now, remove 
 	#var dead_msg = preload("res://src/Player/Dead_Message.tscn")
 	#add_child(dead_msg) 
 	state = STATES.DEAD
+	emit_signal("died")
 	print("player dead")
 
+
+func revive():
+	state = STATES.ALIVE
+	print("player revived")
 
 func _on_InvincibilityTimer_timeout():
 	invincible = false

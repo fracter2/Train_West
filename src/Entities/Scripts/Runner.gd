@@ -15,19 +15,22 @@ func _on_Area2D_body_exited(body):
 	player = null
 
 
+# Movement, and misc
 func _physics_process(delta):
-	move(delta)
-	attackBoxUpdate()
-
-
-func move(var delta:float):
 	#velocity.x = 0
 	if player != null:
 		velocity.x += position.direction_to(player.position).x * run_speed * delta * 3
 		get_target()
 	velocity.y += gravity * delta
 	velocity *= 0.94
+	# velocity = move_and_slide(velocity, Vector2.UP)
+	
+	attackBoxUpdate()
+
+
+func _process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
 
 # Updates the "Player" position, for chasing it
 func get_target():

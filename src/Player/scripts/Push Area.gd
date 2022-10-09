@@ -1,6 +1,6 @@
 extends Area2D
 
-export var knockback:int = 100
+export var knockback:int = 10
 
 
 
@@ -11,8 +11,9 @@ func _physics_process(delta):
 		
 		for i in entity_list:
 			if not i.is_in_group("Non-pushable"):
-				var dir:Vector2 = i.position - position
+				var dir:Vector2 = i.global_position - global_position
 				dir = dir.normalized()
+				dir.x
 				i.velocity += dir * knockback
 
 
