@@ -37,6 +37,7 @@ func _ready():
 	health = max_health
 	emit_signal("max_health_changed", max_health)
 	emit_signal("health_changed", health)
+	print("Player ready")
 
 
 # Movement
@@ -127,6 +128,8 @@ func die(): # Unsure what this will be used for, but it excists for now, remove 
 	state = STATES.DEAD
 	emit_signal("died")
 	print("player dead")
+	queue_free()
+	$"/root/Player_manager".spawn_player()
 
 
 func revive():

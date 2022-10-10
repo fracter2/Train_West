@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/Wagon_Standard.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/Entities/Enemy_Static_Hurter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Train/Lokomotive.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Train/Wagon_Short.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Level/Player_Spawner.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 40 )
@@ -15,6 +16,9 @@ extents = Vector2( 10000, 40 )
 
 [node name="Lokomotive" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1246, -128 )
+
+[node name="Spawner_Player" parent="Lokomotive" instance=ExtResource( 8 )]
+position = Vector2( -2270, -464 )
 
 [node name="Wagon_Fuel" parent="Lokomotive" instance=ExtResource( 4 )]
 position = Vector2( -1203, 0 )
@@ -27,9 +31,6 @@ position = Vector2( -3931, 0 )
 
 [node name="Wagon_Water" parent="Lokomotive" instance=ExtResource( 7 )]
 position = Vector2( -5126, 0 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 800, -224 )
 
 [node name="Entities" type="YSort" parent="."]
 position = Vector2( -24, -123 )
@@ -62,3 +63,6 @@ polygon = PoolVector2Array( -10000, 56, 10000, 56, 10000, 500, -10000, 500 )
 position = Vector2( 0, 496 )
 color = Color( 0.243137, 0.243137, 0.243137, 1 )
 polygon = PoolVector2Array( -10000, 0, 10000, 0, 10000, 1000, -10000, 1000 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 816, -248 )

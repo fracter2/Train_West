@@ -30,6 +30,12 @@ config/name="Train West"
 run/main_scene="res://src/UI/Main_Menu.tscn"
 config/icon="res://Icons/icon.png"
 
+[autoload]
+
+Events_manager="*res://src/Singletons/Events_manager.gd"
+Train_manager="*res://src/Singletons/train_manager.gd"
+Player_manager="*res://src/Singletons/Player_manager.gd"
+
 [display]
 
 window/stretch/mode="2d"
