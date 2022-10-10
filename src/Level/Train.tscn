@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/Wagon_Standard.tscn" type="PackedScene" id=2]
@@ -8,9 +8,13 @@
 [ext_resource path="res://src/Train/Lokomotive.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Train/Wagon_Short.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Level/Player_Spawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Level/scripts/Out_of_bounds_Area.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 40 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10600, 4000 )
 
 [node name="World" type="Node2D"]
 
@@ -64,5 +68,16 @@ position = Vector2( 0, 496 )
 color = Color( 0.243137, 0.243137, 0.243137, 1 )
 polygon = PoolVector2Array( -10000, 0, 10000, 0, 10000, 1000, -10000, 1000 )
 
+[node name="Out_of_bounds_Area" type="Area2D" parent="Ground"]
+collision_layer = 0
+collision_mask = 14
+script = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Out_of_bounds_Area"]
+shape = SubResource( 2 )
+one_way_collision_margin = 0.0
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 816, -248 )
+
+[connection signal="body_exited" from="Ground/Out_of_bounds_Area" to="Ground/Out_of_bounds_Area" method="_on_Out_of_bounds_Area_body_exited"]

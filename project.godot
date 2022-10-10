@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Entities/Scripts/Entity.gd"
 }, {
+"base": "Node",
+"class": "Facility",
+"language": "GDScript",
+"path": "res://src/Train/Facilities/scripts/Facility.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Entity": "",
+"Facility": "",
 "GitAPI": ""
 }
 
