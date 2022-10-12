@@ -1,7 +1,8 @@
 extends Control
 
-#func _ready():
-	#$MarginContainer/HBoxContainer/VBoxContainer/Start.grab_focus()
+func _ready():
+	$"Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer/Start".grab_focus()
+	
 
 func _on_Start_pressed():
 	get_tree().change_scene("res://src/Level/Train.tscn")

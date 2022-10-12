@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Icons/Temp_Train.jpg" type="Texture" id=1]
+[ext_resource path="res://Icons/Fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/UI/Scripts/Main_Menu.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -57,34 +61,41 @@ size_flags_vertical = 3
 alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2"]
-margin_top = 372.0
 margin_right = 150.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
-size_flags_vertical = 0
+size_flags_vertical = 3
+custom_constants/separation = 9
 alignment = 2
 
 [node name="Start" type="Button" parent="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 362.0
 margin_right = 150.0
-margin_bottom = 40.0
+margin_bottom = 402.0
 rect_min_size = Vector2( 120, 40 )
 size_flags_horizontal = 3
+custom_constants/hseparation = 12
+custom_fonts/font = SubResource( 3 )
 text = "Start"
 
 [node name="Options" type="Button" parent="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer"]
-margin_top = 44.0
+margin_top = 411.0
 margin_right = 150.0
-margin_bottom = 84.0
+margin_bottom = 451.0
 rect_min_size = Vector2( 120, 40 )
 size_flags_horizontal = 3
+custom_constants/hseparation = 12
+custom_fonts/font = SubResource( 3 )
 text = "Options"
 
 [node name="Quit" type="Button" parent="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer"]
-margin_top = 88.0
+margin_top = 460.0
 margin_right = 150.0
-margin_bottom = 128.0
+margin_bottom = 500.0
 rect_min_size = Vector2( 120, 40 )
 size_flags_horizontal = 3
+custom_constants/hseparation = 12
+custom_fonts/font = SubResource( 3 )
 text = "Quit"
 
 [node name="Image_Train" type="TextureRect" parent="Base Container"]

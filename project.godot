@@ -38,6 +38,7 @@ config/icon="res://Icons/icon.png"
 
 [autoload]
 
+Startup="*res://src/Singletons/Startup.gd"
 Events_manager="*res://src/Singletons/Events_manager.gd"
 Train_manager="*res://src/Singletons/train_manager.gd"
 Player_manager="*res://src/Singletons/Player_manager.gd"
