@@ -62,7 +62,8 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_released("move_jump"):
 		frame_jump = 20
-	
+	if Input.is_action_just_pressed("Phase"):
+		global_position=get_global_mouse_position()
 	#if Input.is_action_just_pressed("move_jump"):
 	#	if .is_on_floor():
 	#		velocity.y = jump_speed

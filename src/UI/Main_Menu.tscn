@@ -28,48 +28,81 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Base Container" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="Base Container"]
+margin_right = 250.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 250, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="Base Container/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Base Container/Panel/MarginContainer2"]
+margin_right = 150.0
+margin_bottom = 500.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Base Container/Panel/MarginContainer2/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2"]
+margin_top = 372.0
+margin_right = 150.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 2
+
+[node name="Start" type="Button" parent="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer"]
+margin_right = 150.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+size_flags_horizontal = 3
+text = "Start"
+
+[node name="Options" type="Button" parent="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 44.0
+margin_right = 150.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 120, 40 )
+size_flags_horizontal = 3
+text = "Options"
+
+[node name="Quit" type="Button" parent="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 88.0
+margin_right = 150.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 120, 40 )
+size_flags_horizontal = 3
+text = "Quit"
+
+[node name="Image_Train" type="TextureRect" parent="Base Container"]
 material = SubResource( 2 )
+margin_left = 254.0
 margin_right = 1024.0
 margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource( 1 )
 expand = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1004.0
-margin_bottom = 580.0
+[node name="Useless Margin Container" type="MarginContainer" parent="Base Container/Image_Train"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_right = 984.0
-margin_bottom = 560.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_right = 63.0
-margin_bottom = 68.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="Start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_right = 63.0
-margin_bottom = 20.0
-text = "Start"
-
-[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 63.0
-margin_bottom = 44.0
-text = "Options"
-
-[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 48.0
-margin_right = 63.0
-margin_bottom = 68.0
-text = "Quit"
-
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
