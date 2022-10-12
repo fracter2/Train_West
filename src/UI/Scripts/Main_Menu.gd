@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	$"Base Container/Panel/MarginContainer2/HBoxContainer/VBoxContainer2/VBoxContainer/Start".grab_focus()
+	$"%Start".grab_focus()
 	
 
 func _on_Start_pressed():

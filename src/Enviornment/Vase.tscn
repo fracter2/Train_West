@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Enviornment/scripts/Vase.gd" type="Script" id=1]
+
+[node name="Vase" type="RigidBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "
+																																																																																																																																																																																	
+																																																																																																																																																																																	
+																																																																																																																																																																																	"
+}
+hp_max = 25
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -8, 16, -16, -8, -8, -16, 8, -16, 16, -8, 8, 16 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0.701961, 0.345098, 0.0862745, 1 )
+polygon = PoolVector2Array( -8, -16, -16, -8, -8, 16, 8, 16, 16, -8, 8, -16 )
