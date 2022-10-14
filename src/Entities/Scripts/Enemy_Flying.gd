@@ -5,6 +5,7 @@ export (int) var run_speed = 1000
 #export (int) var gravity = 3500
 var velocity = Vector2.ZERO
 var player = null
+var attacked = 0
 
 export(int) var attack_dmg := 20
 
@@ -17,21 +18,19 @@ func _on_Area2D_body_exited(body):
 
 # Movement, and misc
 func _physics_process(delta):
-	#velocity.x = 0
-	if player != null:
-		var tops:Vector2 = position.direction_to(player.position)
-		if tops.x < 0: tops.x = -1
-		else: tops.x = 1
-		if tops.y < 0: tops.y = -1
-		else: tops.y = 1
-		velocity.x += tops.x * run_speed * delta * 3
-		velocity.y += tops.y * run_speed * delta * 3
-		get_target()
-	#velocity.y += gravity * delta
+	if attacked == 0:
+		if player != null:
+			var tops:Vector2 = position.direction_to(player.position)
+			if tops.x < 0: tops.x = -1
+			else: tops.x = 1
+			if tops.y < 0: tops.y = -1
+			else: tops.y = 1
+			velocity.x += tops.x * run_speed * delta * 3
+			velocity.y += tops.y * run_speed * delta * 3
+			get_target()
 	velocity *= 0.94
-	# velocity = move_and_slide(velocity, Vector2.UP)
 	
-	attackBoxUpdate()
+	attackBoxUpdate(delta)
 
 
 func _process(delta):
@@ -49,12 +48,25 @@ func get_target():
 			return
 
 # This is the current solution for damaging the opponent
-func attackBoxUpdate():
+func attackBoxUpdate(delta):
 	var targets: Array = $AttackBox.get_overlapping_bodies()
 	if targets.size() == 0: 
 		return # Skips the rest of this function
 	for i in targets:
 		i.take_damage(attack_dmg)
-	
-	
-	
+	if attacked == 0:
+		attacked = 1
+		$Timer.start()
+	if player != null:
+		var tops:Vector2 = position.direction_to(player.position)
+		if tops.x < 0: tops.x = -1
+		else: tops.x = 1
+		if tops.y < 0: tops.y = -1
+		else: tops.y = 1
+		velocity.x += tops.x * run_speed * delta * 3
+		velocity.y += tops.y * run_speed * delta * 3
+		print(velocity)
+		get_target()
+
+func _on_Timer_timeout():
+	attacked = 0

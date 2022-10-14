@@ -10,7 +10,7 @@
 [ext_resource path="res://src/Level/Player_Spawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Level/scripts/Out_of_bounds_Area.gd" type="Script" id=9]
 [ext_resource path="res://src/Entities/Enemy_Crawler.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/Entities/Enemy_Hugger.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Entities/Enemy_Runner.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 40 )
@@ -42,13 +42,13 @@ position = Vector2( -5126, 0 )
 position = Vector2( -24, -123 )
 
 [node name="Enemy_Crawler" parent="Entities" instance=ExtResource( 10 )]
-position = Vector2( -2697, -283 )
+position = Vector2( -2504, -285 )
 
 [node name="Enemy_Runner" parent="Entities" instance=ExtResource( 11 )]
-position = Vector2( -4204, -74 )
+position = Vector2( -4185, -78 )
 
 [node name="Enemy_Flying" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( -4001, -587 )
+position = Vector2( -2809, -1443 )
 
 [node name="Test" type="YSort" parent="Entities"]
 
