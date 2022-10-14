@@ -2,6 +2,7 @@ extends Entity
 
 
 export (int) var run_speed = 1000
+export (float, 0,1) var drag:float = 0.94
 export (int) var gravity = 3500
 var velocity = Vector2.ZERO
 var player = null
@@ -17,12 +18,19 @@ func _on_Area2D_body_exited(body):
 
 # Movement, and misc
 func _physics_process(delta):
-	#velocity.x = 0
+	
+	
+	#var target_dir: Vector2 = Vector2(clamp(player.position.x, -1, 1), clamp(player.position.y, -1, 1))
+	
 	if player != null:
-		velocity.x += position.direction_to(player.position).x * run_speed * delta * 3
+		var tpos:Vector2 = position.direction_to(player.position)
+		if tpos.x < 0: tpos.x = -1
+		else: tpos.x = 1
+		velocity.x += tpos.x * (run_speed + queued_knockback.x) * delta * 3
 		get_target()
+		
 	velocity.y += gravity * delta
-	velocity *= 0.94
+	velocity *= drag
 	# velocity = move_and_slide(velocity, Vector2.UP)
 	
 	attackBoxUpdate()

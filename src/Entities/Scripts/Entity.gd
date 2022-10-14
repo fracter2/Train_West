@@ -5,6 +5,7 @@ class_name Entity
 
 var hp: int = 100
 export(int) var hp_max: int = 100
+var queued_knockback:Vector2 = Vector2.ZERO
 
 func _ready():
 	hp = hp_max
@@ -20,6 +21,9 @@ func take_damage(var dmg:int):
 # This function is intented to maybe be overriden when creating new script
 func die():
 	queue_free()
-
+	
+func take_knockback(var knockback:Vector2):
+	queued_knockback += knockback
+	
 
 
