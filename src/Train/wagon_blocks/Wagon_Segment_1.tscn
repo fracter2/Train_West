@@ -6,6 +6,7 @@
 extents = Vector2( 72, 8 )
 
 [node name="Wagon_Segment" type="StaticBody2D"]
+collision_layer = 128
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
