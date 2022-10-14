@@ -178,9 +178,9 @@ polygon = PoolVector2Array( 679, 3, 679, -21, 700, -37, 818, -37, 839, -21, 839,
 show_behind_parent = true
 position = Vector2( 759, -21 )
 color = Color( 0.552941, 0.552941, 0.552941, 1 )
-polygon = PoolVector2Array( -80, 0, -59, -16, 59, -16, 80, 0, 80, 24, -80, 24 )
+polygon = PoolVector2Array( -80, -4, 80, -4, 80, 24, -80, 24 )
 
 [node name="Bridge_inner" type="Polygon2D" parent="Bridge"]
 position = Vector2( 759, -21 )
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
-polygon = PoolVector2Array( -72, 16, -72, 4, -56, -8, 56, -8, 72, 4, 72, 16 )
+polygon = PoolVector2Array( -72, 16, -72, 4, 72, 4, 72, 16 )
