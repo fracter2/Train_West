@@ -23,11 +23,23 @@ _global_script_classes=[ {
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "RigidBody2D",
+"class": "Physics_Entity",
+"language": "GDScript",
+"path": "res://src/Enviornment/scripts/Physics_Entity.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Wagon_Entity",
+"language": "GDScript",
+"path": "res://src/Train/wagon_blocks/scripts/Wagon_Entity.gd"
 } ]
 _global_script_class_icons={
 "Entity": "",
 "Facility": "",
-"GitAPI": ""
+"GitAPI": "",
+"Physics_Entity": "",
+"Wagon_Entity": ""
 }
 
 [application]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Segment_1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Train/wagon_blocks/scripts/Wheel.gd" type="Script" id=2]
 
 [node name="Wagon_Basic" type="Node2D"]
 
@@ -69,6 +70,7 @@ position = Vector2( -488, 80 )
 color = Color( 0.635294, 0.627451, 0.627451, 1 )
 antialiased = true
 polygon = PoolVector2Array( 16, -48, 0, -50, -16, -48, -32, -40, -40, -32, -48, -16, -50, 1, -48, 16, -40, 32, -32, 40, -16, 48, 0, 50, 16, 48, 32, 40, 40, 32, 48, 16, 50, 1, 48, -16, 40, -32, 32, -40 )
+script = ExtResource( 2 )
 
 [node name="Wheel_inside" type="Polygon2D" parent="Base/Wheel"]
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
