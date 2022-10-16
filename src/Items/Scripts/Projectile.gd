@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 
 export(int, -100, 100) var target_dmg:int = 10
