@@ -1,7 +1,7 @@
 extends Node2D
 
 
-export(int, -100, 100) var target_dmg:int = 0
+export(int, -100, 100) var target_dmg:int = 10
 
 
 # Called when the node enters the scene tree for the first time.
