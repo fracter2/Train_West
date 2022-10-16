@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Player/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/scripts/Push Area.gd" type="Script" id=2]
 [ext_resource path="res://src/UI/GUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Player/Weapon_1.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 40, 60 )
@@ -66,6 +67,8 @@ one_shot = true
 position = Vector2( 0, -16 )
 rotation = 1.5708
 shape = SubResource( 3 )
+
+[node name="Weapon" parent="." instance=ExtResource( 4 )]
 
 [connection signal="health_changed" from="." to="GUI" method="update_health"]
 [connection signal="max_health_changed" from="." to="GUI" method="update_max_health"]
