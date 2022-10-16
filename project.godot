@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Train/Facilities/scripts/Facility.gd"
 }, {
-"base": "",
+"base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
@@ -130,8 +130,8 @@ Phase={
 2d_physics/layer_5="Phys Objects"
 2d_physics/layer_6="Proj Players"
 2d_physics/layer_7="Proj Enemies"
-2d_physics/layer_8="Gabriels Private Layer"
-2d_physics/layer_9=false
+2d_physics/layer_8="Entity_Train"
+2d_physics/layer_9="Repairable"
 2d_physics/layer_420=false
 
 [physics]
