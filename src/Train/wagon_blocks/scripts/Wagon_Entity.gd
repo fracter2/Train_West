@@ -18,17 +18,16 @@ func take_damage(var dmg:int):
 	hp -= dmg
 	hp = clamp(hp, 0, hp_max)
 	
-	if hp == 0:
+	if hp <= 0:
 		state = STATES.DEAD
-		toggle_disabled(false)
+		toggle_disabled(true)
 	else:
 		if state == STATES.DEAD:
-			toggle_disabled(true)
+			toggle_disabled(false)
 		state = STATES.ALIVE
 	
 
 func toggle_disabled(var value:bool):
-	get_node("CollisionBase").set_deferred("Disabled", value)
+	get_node("CollisionBase").set_deferred("disabled", value)
 	get_node("PolygonBase").visible = not value
-	print("atempt disable")
 	

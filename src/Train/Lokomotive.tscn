@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Segment_1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Train/wagon_blocks/Wheel.tscn" type="PackedScene" id=2]
 
 [node name="Lokomotive" type="Node2D"]
 
@@ -38,38 +39,17 @@ polygon = PoolVector2Array( 88, -10, 104, -34, 136, -34, 120, -10 )
 color = Color( 0.223529, 0.254902, 0.266667, 1 )
 polygon = PoolVector2Array( -600, 0, -512, 64, 512, 64, 600, 0 )
 
-[node name="Wheel" type="Polygon2D" parent="Base"]
+[node name="Wheel" parent="Base" instance=ExtResource( 2 )]
 position = Vector2( -480, 80 )
 scale = Vector2( 1.4, 1.4 )
-color = Color( 0.635294, 0.627451, 0.627451, 1 )
-antialiased = true
-polygon = PoolVector2Array( 16, -48, 0, -50, -16, -48, -32, -40, -40, -32, -48, -16, -50, 1, -48, 16, -40, 32, -32, 40, -16, 48, 0, 50, 16, 48, 32, 40, 40, 32, 48, 16, 50, 1, 48, -16, 40, -32, 32, -40 )
 
-[node name="Wheel_inside" type="Polygon2D" parent="Base/Wheel"]
-color = Color( 0.231373, 0.231373, 0.231373, 1 )
-polygon = PoolVector2Array( -24, -32, -8, -38, -8, -8, 8, -8, 8, -38, 24, -32, 32, -24, 38, -8, 8, -8, 8, 8, 38, 8, 32, 24, 24, 32, 8, 38, 8, 8, -8, 8, -8, 38, -24, 32, -32, 24, -38, 8, -8, 8, -8, -8, -38, -8, -32, -24 )
-
-[node name="Wheel2" type="Polygon2D" parent="Base"]
-position = Vector2( -314, 78 )
+[node name="Wheel2" parent="Base" instance=ExtResource( 2 )]
+position = Vector2( -312, 80 )
 scale = Vector2( 1.4, 1.4 )
-color = Color( 0.635294, 0.627451, 0.627451, 1 )
-antialiased = true
-polygon = PoolVector2Array( 16, -48, 0, -50, -16, -48, -32, -40, -40, -32, -48, -16, -50, 1, -48, 16, -40, 32, -32, 40, -16, 48, 0, 50, 16, 48, 32, 40, 40, 32, 48, 16, 50, 1, 48, -16, 40, -32, 32, -40 )
 
-[node name="Wheel_inside" type="Polygon2D" parent="Base/Wheel2"]
-color = Color( 0.231373, 0.231373, 0.231373, 1 )
-polygon = PoolVector2Array( -24, -32, -8, -38, -8, -8, 8, -8, 8, -38, 24, -32, 32, -24, 38, -8, 8, -8, 8, 8, 38, 8, 32, 24, 24, 32, 8, 38, 8, 8, -8, 8, -8, 38, -24, 32, -32, 24, -38, 8, -8, 8, -8, -8, -38, -8, -32, -24 )
-
-[node name="Wheel3" type="Polygon2D" parent="Base"]
+[node name="Wheel3" parent="Base" instance=ExtResource( 2 )]
 position = Vector2( -144, 80 )
 scale = Vector2( 1.4, 1.4 )
-color = Color( 0.635294, 0.627451, 0.627451, 1 )
-antialiased = true
-polygon = PoolVector2Array( 16, -48, 0, -50, -16, -48, -32, -40, -40, -32, -48, -16, -50, 1, -48, 16, -40, 32, -32, 40, -16, 48, 0, 50, 16, 48, 32, 40, 40, 32, 48, 16, 50, 1, 48, -16, 40, -32, 32, -40 )
-
-[node name="Wheel_inside" type="Polygon2D" parent="Base/Wheel3"]
-color = Color( 0.231373, 0.231373, 0.231373, 1 )
-polygon = PoolVector2Array( -24, -32, -8, -38, -8, -8, 8, -8, 8, -38, 24, -32, 32, -24, 38, -8, 8, -8, 8, 8, 38, 8, 32, 24, 24, 32, 8, 38, 8, 8, -8, 8, -8, 38, -24, 32, -32, 24, -38, 8, -8, 8, -8, -8, -38, -8, -32, -24 )
 
 [node name="Wheel5" type="Polygon2D" parent="Base"]
 position = Vector2( 98, 82 )
@@ -111,7 +91,9 @@ polygon = PoolVector2Array( 16, -48, 0, -50, -16, -48, -32, -40, -40, -32, -48, 
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
 polygon = PoolVector2Array( -24, -32, -8, -38, -8, -8, 8, -8, 8, -38, 24, -32, 32, -24, 38, -8, 8, -8, 8, 8, 38, 8, 32, 24, 24, 32, 8, 38, 8, 8, -8, 8, -8, 38, -24, 32, -32, 24, -38, 8, -8, 8, -8, -8, -38, -8, -32, -24 )
 
-[node name="Floor" type="YSort" parent="."]
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -688, -16, -688, 16, 688, 16, 688, -16 )
 
 [node name="Wagon_Segment2" parent="Floor" instance=ExtResource( 1 )]
 position = Vector2( -152, 0 )
@@ -142,8 +124,10 @@ position = Vector2( 456, 0 )
 [node name="Wagon_Segment9" parent="Floor" instance=ExtResource( 1 )]
 position = Vector2( 608, 0 )
 
-[node name="Roof" type="YSort" parent="."]
+[node name="Roof" type="Polygon2D" parent="."]
 position = Vector2( 0, -320 )
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -744, -40, -24, -40, -24, -8, -72, -8, -72, 104, 416, 104, 416, -48, 408, -48, 408, -80, 408, -80, 568, -80, 568, -48, 560, -48, 560, 104, 680, 104, 680, 112, 688, 112, 688, 136, -72, 136, -104, 136, -104, -8, -744, -8 )
 
 [node name="Wagon_Segment2" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( -104, -24 )
@@ -178,15 +162,19 @@ position = Vector2( 448, 120 )
 [node name="Wagon_Segment9" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( 600, 120 )
 
-[node name="Wall_Left" type="YSort" parent="."]
+[node name="Wall_Left" type="Polygon2D" parent="."]
 position = Vector2( -672, -160 )
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -32, -32, 0, -32, 0, -168, -32, -168 )
 
 [node name="Wagon_Segment" parent="Wall_Left" instance=ExtResource( 1 )]
 position = Vector2( 584, -95.9999 )
 rotation = 1.5708
 
-[node name="Wall_Right" type="YSort" parent="."]
+[node name="Wall_Right" type="Polygon2D" parent="."]
 position = Vector2( 672, -160 )
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -16, -24, -16, 112, 16, 112, 16, -24 )
 
 [node name="Wagon_Segment" parent="Wall_Right" instance=ExtResource( 1 )]
 position = Vector2( 0, 32 )
