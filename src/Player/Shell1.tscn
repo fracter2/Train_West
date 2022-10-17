@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=2]
+resource_name = "Shell1_Script"
+script/source = "extends RigidBody2D
+
+
+func _ready():
+	pass
+
+
+func _on_Despawn_Timer_timeout():
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 11 )
+
+[node name="Physics_Entity" type="RigidBody2D" groups=["non-targetable"]]
+collision_layer = 16
+collision_mask = 159
+mass = 0.2
+gravity_scale = 4.0
+linear_damp = 0.5
+applied_torque = 20.0
+script = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -4, 0 )
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0.701961, 0.345098, 0.0862745, 1 )
+polygon = PoolVector2Array( 16, -8, 8, -8, 3, -11, -18, -11, -20, -9, -23, -11, -24, -11, -24, 11, -23, 11, -20, 9, -18, 11, 3, 11, 8, 8, 16, 8 )
+
+[node name="Despawn_Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Despawn_Timer" to="." method="_on_Despawn_Timer_timeout"]

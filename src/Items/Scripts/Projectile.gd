@@ -19,6 +19,8 @@ func _on_Despawn_Timer_timeout():
 
 
 func _on_Hitbox_body_entered(body):
+	if body.is_in_group("non-targetable"):
+		return
 	body.take_damage(target_dmg)
 	queue_free()
 

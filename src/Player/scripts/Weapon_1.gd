@@ -6,6 +6,7 @@ export var rechamber_time:float = 0.2
 
 
 var projectile = preload("res://src/Player/Projectile1.tscn")
+var shell = preload("res://src/Player/Shell1.tscn")
 
 enum STATES {READY, RECHAMBERING, RELOADING, DISABLED}
 var state:int = STATES.READY
@@ -26,13 +27,18 @@ func fire():
 	
 	proj.global_position = $"Firing Point".global_position
 	proj.rotation = global_position.angle_to_point(get_global_mouse_position())
-	print(global_position.angle_to_point(get_global_mouse_position()))
 	proj.apply_central_impulse(force.rotated(proj.rotation))
-	$"/root/World".add_child(proj)
-	#proj.look_at(get_global_mouse_position())
 	
+	
+	$"/root/World".add_child(proj)
 	state = STATES.RECHAMBERING
 	$Rechamber_Timer.start(rechamber_time)
+	
+	var shll = shell.instance()
+	shll.global_position = $"Firing Point".global_position
+	shll.apply_torque_impulse(20)
+	
+	$"/root/World".add_child(shll)
 	
 
 func _on_Rechamber_Timer_timeout():
