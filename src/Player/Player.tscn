@@ -13,6 +13,7 @@ radius = 96.0
 height = 112.0
 
 [node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
+position = Vector2( 8, 16 )
 collision_layer = 2
 collision_mask = 129
 script = ExtResource( 1 )
@@ -37,14 +38,7 @@ polygon = PoolVector2Array( -16, 56, 16, 56, 27, 47, 32, 34, 32, -48, 16, -56, -
 
 [node name="TempPlayerModel" type="Polygon2D" parent="."]
 color = Color( 0.156863, 0.772549, 0.87451, 1 )
-polygon = PoolVector2Array( 24, 64, -24, 64, -32, 56, -32, -48, -24, -56, 24, -56, 32, -48, 32, 56 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 0, -100 )
-current = true
-zoom = Vector2( 2, 2 )
-smoothing_enabled = true
-editor_draw_drag_margin = true
+polygon = PoolVector2Array( 24, 64, -24, 64, -32, 56, -32, -40, -32, -48, -24, -56, 24, -56, 32, -48, 32, 8, 32, 56 )
 
 [node name="Push Area" type="Area2D" parent="."]
 collision_layer = 0
@@ -55,12 +49,6 @@ script = ExtResource( 2 )
 position = Vector2( 0, 3 )
 shape = SubResource( 2 )
 
-[node name="InvincibilityTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="GUI" parent="." instance=ExtResource( 3 )]
-
 [node name="Interaction Range" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction Range"]
@@ -68,7 +56,23 @@ position = Vector2( 0, -16 )
 rotation = 1.5708
 shape = SubResource( 3 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 0, -100 )
+current = true
+zoom = Vector2( 2, 2 )
+smoothing_enabled = true
+editor_draw_drag_margin = true
+
 [node name="Weapon" parent="." instance=ExtResource( 4 )]
+force = Vector2( -1500, 0 )
+
+[node name="GUI" parent="." instance=ExtResource( 3 )]
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="health_changed" from="." to="GUI" method="update_health"]
 [connection signal="max_health_changed" from="." to="GUI" method="update_max_health"]

@@ -1,6 +1,6 @@
 extends Node2D
 
-export(Vector2) var force:Vector2 = Vector2(500, 0)
+export(Vector2) var force:Vector2 = Vector2(-5000, 0)
 export(Vector2) var knockback:Vector2 = Vector2(100, 0)
 export var rechamber_time:float = 0.2
 
@@ -25,8 +25,9 @@ func fire():
 	var proj = projectile.instance()
 	
 	proj.global_position = $"Firing Point".global_position
-	proj.rotation = position.angle_to_point(get_global_mouse_position())
-	proj.apply_central_impulse(force)
+	proj.rotation = global_position.angle_to_point(get_global_mouse_position())
+	print(global_position.angle_to_point(get_global_mouse_position()))
+	proj.apply_central_impulse(force.rotated(proj.rotation))
 	$"/root/World".add_child(proj)
 	#proj.look_at(get_global_mouse_position())
 	
