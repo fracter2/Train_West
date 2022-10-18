@@ -42,6 +42,7 @@ color = Color( 1, 0.894118, 0.2, 1 )
 polygon = PoolVector2Array( 15, 7, 7, 7, 7, 15, -7, 15, -7, 7, -15, 7, -15, -7, -7, -7, -7, -15, 7, -15, 7, -7, 15, -7 )
 
 [node name="Polygon2Outer" type="Polygon2D" parent="."]
+visible = false
 rotation = 1.5708
 color = Color( 0.286275, 0.180392, 0.0705882, 1 )
 polygon = PoolVector2Array( -5, -18, 5, -18, 9, -7, 9, 9, -9, 9, -9, -7 )

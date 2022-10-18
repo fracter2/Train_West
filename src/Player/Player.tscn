@@ -34,7 +34,7 @@ __meta__ = {
 
 [node name="CollisionBox" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, 8 )
-polygon = PoolVector2Array( -16, 56, 16, 56, 27, 47, 32, 34, 32, -48, 16, -56, -16, -56, -32, -48, -32, 34, -27, 47 )
+polygon = PoolVector2Array( -16, 56, 16, 56, 27, 47, 32, 34, 32, -40, 20, -52, -20, -52, -32, -40, -32, 34, -27, 47 )
 
 [node name="TempPlayerModel" type="Polygon2D" parent="."]
 color = Color( 0.156863, 0.772549, 0.87451, 1 )

@@ -4,34 +4,41 @@
 resource_name = "Shell1_Script"
 script/source = "extends RigidBody2D
 
+var spin_variate_min = 0
+var spin_variate_max = 1
 
 func _ready():
-	pass
-
+	var rot_variate = $\"/root/Events_manager\".get_random_num(spin_variate_min, spin_variate_max)
+	#var rot_impulse =
+	#rot_impulse *= 
+	#apply_torque_impulse()
+	
 
 func _on_Despawn_Timer_timeout():
 	queue_free()
 "
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 11 )
+extents = Vector2( 16, 9 )
 
 [node name="Physics_Entity" type="RigidBody2D" groups=["non-targetable"]]
 collision_layer = 16
 collision_mask = 159
 mass = 0.2
 gravity_scale = 4.0
-linear_damp = 0.5
-applied_torque = 20.0
+linear_velocity = Vector2( -300, -300 )
+linear_damp = 0.4
+angular_velocity = 45.0
+angular_damp = 0.4
 script = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -4, 0 )
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 8, 0 )
 color = Color( 0.701961, 0.345098, 0.0862745, 1 )
-polygon = PoolVector2Array( 16, -8, 8, -8, 3, -11, -18, -11, -20, -9, -23, -11, -24, -11, -24, 11, -23, 11, -20, 9, -18, 11, 3, 11, 8, 8, 16, 8 )
+polygon = PoolVector2Array( 8, -7, 4, -7, 1, -9, -18, -9, -22, -7, -23, -9, -24, -9, -24, 9, -23, 9, -22, 7, -19, 9, 1, 9, 4, 7, 8, 7 )
 
 [node name="Despawn_Timer" type="Timer" parent="."]
 process_mode = 0
