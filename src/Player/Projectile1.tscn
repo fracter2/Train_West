@@ -8,6 +8,7 @@ radius = 11.0454
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="Projectile" type="RigidBody2D"]
+rotation = 3.14159
 collision_layer = 32
 mass = 0.25
 gravity_scale = 2.0
@@ -43,13 +44,13 @@ polygon = PoolVector2Array( 15, 7, 7, 7, 7, 15, -7, 15, -7, 7, -15, 7, -15, -7, 
 
 [node name="Polygon2Outer" type="Polygon2D" parent="."]
 visible = false
-rotation = 1.5708
-color = Color( 0.286275, 0.180392, 0.0705882, 1 )
+rotation = -1.5708
+color = Color( 0.290196, 0.180392, 0.0705882, 1 )
 polygon = PoolVector2Array( -5, -18, 5, -18, 9, -7, 9, 9, -9, 9, -9, -7 )
 
 [node name="Polygon2Inner" type="Polygon2D" parent="."]
-rotation = 1.5708
-color = Color( 0.85098, 0.576471, 0.356863, 1 )
+rotation = -1.5708
+color = Color( 0.839216, 0.470588, 0.176471, 1 )
 polygon = PoolVector2Array( -3, -15, 3, -15, 6, -7, 6, 6, -6, 6, -6, -7 )
 
 [node name="Despawn_Timer" type="Timer" parent="."]

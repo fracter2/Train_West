@@ -1,6 +1,6 @@
 extends Node2D
 
-export(Vector2) var force:Vector2 = Vector2(-5000, 0)
+export(Vector2) var force:Vector2 = Vector2(5000, 0)
 export(Vector2) var knockback:Vector2 = Vector2(100, 0)
 export var rechamber_time:float = 0.2
 
@@ -26,17 +26,18 @@ func fire():
 	var proj = projectile.instance()
 	
 	proj.global_position = $"Firing Point".global_position
-	proj.rotation = global_position.angle_to_point(get_global_mouse_position())
+	proj.rotation = proj.global_position.angle_to_point(get_global_mouse_position())
+	#proj.global_rotation = global_rotation
 	proj.apply_central_impulse(force.rotated(proj.rotation))
-	
-	
 	$"/root/World".add_child(proj)
+	
 	state = STATES.RECHAMBERING
 	$Rechamber_Timer.start(rechamber_time)
 	
+	# Send out a shell casing, just cause it looks nice
 	var shll = shell.instance()
 	shll.global_position = $"Firing Point".global_position
-	shll.apply_torque_impulse(20)
+	#shll.apply_torque_impulse(20)
 	
 	$"/root/World".add_child(shll)
 	
