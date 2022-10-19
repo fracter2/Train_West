@@ -21,5 +21,5 @@ func spawn():
 	var plr = player.instance()
 	plr.position = global_position
 	print("Player_spawner_used")
-	$"/root/World".add_child(plr)
+	$"/root/World/Players".add_child(plr)
 	

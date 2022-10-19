@@ -27,9 +27,8 @@ func fire():
 	
 	proj.global_position = $"Firing Point".global_position
 	proj.rotation = proj.global_position.angle_to_point(get_global_mouse_position())
-	#proj.global_rotation = global_rotation
 	proj.apply_central_impulse(force.rotated(proj.rotation))
-	$"/root/World".add_child(proj)
+	$"/root/World/Projectiles".add_child(proj)
 	
 	state = STATES.RECHAMBERING
 	$Rechamber_Timer.start(rechamber_time)
@@ -39,7 +38,7 @@ func fire():
 	shll.global_position = $"Firing Point".global_position
 	#shll.apply_torque_impulse(20)
 	
-	$"/root/World".add_child(shll)
+	$"/root/World/Projectiles".add_child(shll)
 	
 
 func _on_Rechamber_Timer_timeout():
