@@ -84,6 +84,7 @@ func _physics_process(delta):
 	#velocity = .move_and_slide(velocity, Vector2.UP)  # -> moved to _process at least temporarily, to see if it makes movement smoother
 
 
+# to smothen the movement
 func _process(delta):
 	velocity = .move_and_slide(velocity, Vector2.UP)
 
@@ -99,8 +100,6 @@ func horizontal_movement(): # This actually sets the horizontal speed
 		
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
-
-
 
 
 # Health
@@ -140,5 +139,9 @@ func revive():
 	state = STATES.ALIVE
 	print("player revived")
 
+
 func _on_InvincibilityTimer_timeout():
 	invincible = false
+
+
+
