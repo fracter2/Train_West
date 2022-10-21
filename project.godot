@@ -14,12 +14,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Entities/Scripts/Entity.gd"
 }, {
-"base": "Node",
+"base": "Wagon_Entity",
 "class": "Facility",
 "language": "GDScript",
 "path": "res://src/Train/Facilities/scripts/Facility.gd"
 }, {
-"base": "",
+"base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"

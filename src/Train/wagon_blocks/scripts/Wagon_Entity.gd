@@ -1,9 +1,10 @@
+class_name Wagon_Entity
 extends StaticBody2D
 
-class_name Wagon_Entity
 
 var hp:int = 100
 export var hp_max: int = 100
+var revive_threshold:float = 0.3		# This is a coefficient: its the relative size of max_hp
 
 enum STATES {ALIVE, DEAD}
 var state: int = 0
@@ -21,10 +22,10 @@ func take_damage(var dmg:int):
 	if hp <= 0:
 		state = STATES.DEAD
 		toggle_disabled(true)
-	else:
-		if state == STATES.DEAD:
-			toggle_disabled(false)
+	elif hp >= hp_max * revive_threshold:
 		state = STATES.ALIVE
+		toggle_disabled(false)
+		
 	
 
 func toggle_disabled(var value:bool):

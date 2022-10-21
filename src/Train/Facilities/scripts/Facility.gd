@@ -1,4 +1,4 @@
-extends Node
+extends Wagon_Entity
 
 class_name Facility
 # Everything on a train that is would break with time, and needs maintinance
