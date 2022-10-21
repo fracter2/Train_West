@@ -1,0 +1,28 @@
+Programmers
+Ludvig
+Theodor
+
+Art 
+Joar
+
+General Design
+Everyone
+
+Human Resources
+Victoria
+
+Special Thanks To
+Gaybriel
+
+
+Thanks To
+momma
+
+
+
+Tools Used in this project
+Godot Game Enine
+Godot Git plugin
+Github
+
+Discord and Google

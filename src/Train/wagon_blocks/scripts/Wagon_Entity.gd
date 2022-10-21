@@ -4,7 +4,9 @@ extends StaticBody2D
 
 var hp:int = 100
 export var hp_max: int = 100
-var revive_threshold:float = 0.3		# This is a coefficient: its the relative size of max_hp
+export var revive_threshold:float = 0.4 #the relative hp to max, for it to be revived
+
+signal repaired_fully
 
 enum STATES {ALIVE, DEAD}
 var state: int = 0
@@ -22,11 +24,19 @@ func take_damage(var dmg:int):
 	if hp <= 0:
 		state = STATES.DEAD
 		toggle_disabled(true)
-	elif hp >= hp_max * revive_threshold:
+	
+
+func repair(var repair:int):
+	hp = clamp(hp + repair, 0, hp_max)
+	if hp > hp_max * revive_threshold and state == STATES.DEAD:
+		toggle_disabled(false)
 		state = STATES.ALIVE
 		toggle_disabled(false)
 		
 	
+	if hp == 100:
+		emit_signal("repaired_fully")
+
 
 func toggle_disabled(var value:bool):
 	get_node("CollisionBase").set_deferred("disabled", value)
