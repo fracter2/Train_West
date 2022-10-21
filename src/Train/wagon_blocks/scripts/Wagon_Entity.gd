@@ -1,9 +1,12 @@
+class_name Wagon_Entity
 extends StaticBody2D
 
-class_name Wagon_Entity
 
 var hp:int = 100
 export var hp_max: int = 100
+export var revive_threshold:float = 0.4 #the relative hp to max, for it to be revived
+
+signal repaired_fully
 
 enum STATES {ALIVE, DEAD}
 var state: int = 0
@@ -21,11 +24,17 @@ func take_damage(var dmg:int):
 	if hp <= 0:
 		state = STATES.DEAD
 		toggle_disabled(true)
-	else:
-		if state == STATES.DEAD:
-			toggle_disabled(false)
+	
+
+func repair(var repair:int):
+	hp = clamp(hp + repair, 0, hp_max)
+	if hp > hp_max * revive_threshold and state == STATES.DEAD:
+		toggle_disabled(false)
 		state = STATES.ALIVE
 	
+	if hp == 100:
+		emit_signal("repaired_fully")
+
 
 func toggle_disabled(var value:bool):
 	get_node("CollisionBase").set_deferred("disabled", value)
