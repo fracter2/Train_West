@@ -11,6 +11,11 @@ func _ready():
 
 
 func _physics_process(delta):
+	
+	# Aiming
+	look_at(get_global_mouse_position())
+	
+	# Input & Repair handling
 	if Input.is_action_just_pressed("action_2"):
 		$Particles2D.emitting = true
 		
@@ -27,7 +32,7 @@ func _physics_process(delta):
 			
 			for i in unsorted_targets: # this can repair multiple areas, as it's now
 				if not i.is_in_group("non-repirable"):
-					i.repair(repair_ammount)
+					i.get_parent().repair(repair_ammount)
 	
 	else:
 		cooldown_frame += 1
