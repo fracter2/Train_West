@@ -170,6 +170,8 @@ position = Vector2( 608, 0 )
 
 [node name="Bridge" type="StaticBody2D" parent="."]
 position = Vector2( 1, 5 )
+collision_layer = 128
+collision_mask = 0
 script = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bridge"]

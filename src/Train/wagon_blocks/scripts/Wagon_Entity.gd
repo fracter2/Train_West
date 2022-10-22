@@ -4,7 +4,7 @@ extends StaticBody2D
 
 var hp:int = 100
 export var hp_max: int = 100
-export var revive_threshold:float = 0.4 #the relative hp to max, for it to be revived
+export var revive_threshold:float = 1 #the relative hp to max, for it to be revived
 
 signal repaired_fully
 
@@ -28,7 +28,7 @@ func take_damage(var dmg:int):
 
 func repair(var repair:int):
 	hp = clamp(hp + repair, 0, hp_max)
-	if hp > hp_max * revive_threshold and state == STATES.DEAD:
+	if hp >= hp_max * revive_threshold and state == STATES.DEAD:
 		toggle_disabled(false)
 		state = STATES.ALIVE
 		toggle_disabled(false)
