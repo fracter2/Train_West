@@ -1,9 +1,9 @@
 extends Node2D
 
-export(Vector2) var force:Vector2 = Vector2(5000, 0)
+export(Vector2) var force:Vector2 = Vector2(3000, 0)
 export(Vector2) var knockback:Vector2 = Vector2(100, 0)
 export var rechamber_time:float = 0.2
-
+export var proj_dmg:int = 25
 
 var projectile = preload("res://src/Player/Projectile1.tscn")
 var shell = preload("res://src/Player/Shell1.tscn")
@@ -25,6 +25,7 @@ func _physics_process(delta):
 func fire():
 	var proj = projectile.instance()
 	
+	proj.target_dmg = proj_dmg
 	proj.global_position = $"Firing Point".global_position
 	proj.rotation = proj.global_position.angle_to_point(get_global_mouse_position())
 	proj.apply_central_impulse(force.rotated(proj.rotation))

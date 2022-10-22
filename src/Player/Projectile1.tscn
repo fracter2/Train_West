@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/Items/Scripts/Projectile.gd" type="Script" id=1]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 11.0454
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.5, 7 )
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -15,9 +15,10 @@ gravity_scale = 2.0
 continuous_cd = 2
 linear_damp = 0.5
 script = ExtResource( 1 )
-target_dmg = 50
+target_dmg = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.499999, -7.41082e-06 )
 shape = SubResource( 2 )
 
 [node name="Hitbox" type="Area2D" parent="."]

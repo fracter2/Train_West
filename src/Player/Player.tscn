@@ -67,7 +67,7 @@ smoothing_enabled = true
 editor_draw_drag_margin = true
 
 [node name="Weapon" parent="." instance=ExtResource( 4 )]
-force = Vector2( -1500, 0 )
+force = Vector2( -2500, 0 )
 
 [node name="Repair_Tool" parent="." instance=ExtResource( 6 )]
 
