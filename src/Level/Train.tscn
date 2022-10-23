@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/Wagon_Water.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/Level/scripts/Out_of_bounds_Area.gd" type="Script" id=9]
 [ext_resource path="res://src/Train/Wagon_Residance.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Train/Wagon_Cafeteria.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Train/Facilities/Spawner_Button.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 40 )
@@ -37,6 +38,9 @@ position = Vector2( -5454, 0 )
 
 [node name="Wagon_Water" parent="Lokomotive" instance=ExtResource( 2 )]
 position = Vector2( -6974, 0 )
+
+[node name="Spawner_Button" parent="Lokomotive/Wagon_Water" instance=ExtResource( 12 )]
+position = Vector2( -494, -126 )
 
 [node name="Spawner_Player" parent="Lokomotive" instance=ExtResource( 8 )]
 position = Vector2( -2414, -648 )
