@@ -44,12 +44,12 @@ position = Vector2( -6974, 0 )
 position = Vector2( -2414, -648 )
 
 [node name="Button1" parent="Lokomotive" instance=ExtResource( 12 )]
-position = Vector2( -1869, -420 )
+position = Vector2( -2549, -439 )
 
 [node name="Spawners_and_misc" type="YSort" parent="."]
 
 [node name="Spawner_Enemy" parent="Spawners_and_misc" instance=ExtResource( 13 )]
-position = Vector2( 145, -746 )
+position = Vector2( -2117, -644 )
 
 [node name="Entities" type="YSort" parent="."]
 position = Vector2( -24, -123 )
