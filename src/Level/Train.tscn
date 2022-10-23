@@ -11,7 +11,7 @@
 [ext_resource path="res://src/Level/scripts/Out_of_bounds_Area.gd" type="Script" id=9]
 [ext_resource path="res://src/Train/Wagon_Residance.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Train/Wagon_Cafeteria.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/Train/Facilities/Spawner_Button.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Train/Facilities/Button.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 40 )
