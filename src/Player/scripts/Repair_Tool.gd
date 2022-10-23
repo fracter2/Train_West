@@ -46,6 +46,7 @@ func _physics_process(delta):
 			for i in unsorted_targets: # this can repair multiple areas, as it's now
 				if not i.is_in_group("non-repirable"):
 					i.get_parent().repair(repair_ammount)
+					print("repaired")
 	
 	else:
 		cooldown_frame += 1

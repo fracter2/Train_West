@@ -13,7 +13,8 @@ func toggle_disabled(var value:bool):
 
 
 func interact(var player):
-	emit_signal("facility_interacted", player)
+	emit_signal("interacted", player)
+	
 	
 
 

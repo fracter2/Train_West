@@ -4,7 +4,7 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="Spawner_Button" type="StaticBody2D"]
+[node name="Button" type="StaticBody2D"]
 collision_layer = 768
 collision_mask = 0
 input_pickable = true
@@ -20,3 +20,5 @@ polygon = PoolVector2Array( -16, -16, -16, 16, 16, 16, 16, -16 )
 [node name="Polygon2D" type="Polygon2D" parent="PolygonBase"]
 color = Color( 0.513726, 0.92549, 0.32549, 1 )
 polygon = PoolVector2Array( -8, -8, -8, 8, 8, 8, 8, -8 )
+
+[connection signal="interacted" from="." to="." method="_on_Button_interacted"]
