@@ -137,7 +137,6 @@ Interact={
 2d_physics/layer_7="Proj Enemies"
 2d_physics/layer_8="Entity_Train"
 2d_physics/layer_9="Repairable"
-2d_physics/layer_10="Facility"
 2d_physics/layer_420=false
 
 [physics]
