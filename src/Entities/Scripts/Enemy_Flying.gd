@@ -5,7 +5,10 @@ export (int) var run_speed = 1000
 #export (int) var gravity = 3500
 var velocity = Vector2.ZERO
 var player = null
-var attacked = 0
+
+var state = 0
+var old_state = 0
+var targetPos:Vector2
 
 export(int) var attack_dmg := 20
 
@@ -18,9 +21,12 @@ func _on_Area2D_body_exited(body):
 
 # Movement, and misc
 func _physics_process(delta):
-	if attacked == 0:
+	if old_state == state:
+		targetPos = position + Vector2(1000,-1000)
+		old_state == state
+	if state == 0:
 		if player != null:
-			var tops:Vector2 = position.direction_to(player.position)
+			var tops:Vector2 = position.direction_to(player.position - Vector2(0,-50))
 			if tops.x < 0: tops.x = -1
 			else: tops.x = 1
 			if tops.y < 0: tops.y = -1
@@ -28,6 +34,14 @@ func _physics_process(delta):
 			velocity.x += tops.x * run_speed * delta * 3
 			velocity.y += tops.y * run_speed * delta * 3
 			get_target()
+	if state == 1:
+		var targetPosangel:Vector2 = position.direction_to(targetPos)
+		if targetPosangel.x < 0: targetPosangel.x = -1
+		else: targetPosangel.x = 1
+		if targetPosangel.y < 0: targetPosangel.y = -1
+		else: targetPosangel.y = 1
+		velocity.x += targetPosangel.x * run_speed * delta * 3
+		velocity.y += targetPosangel.y * run_speed * delta * 3
 	velocity *= 0.94
 	
 	attackBoxUpdate(delta)
@@ -54,19 +68,10 @@ func attackBoxUpdate(delta):
 		return # Skips the rest of this function
 	for i in targets:
 		i.take_damage(attack_dmg)
-	if attacked == 0:
-		attacked = 1
+	if state == 0:
+		state = 1
 		$Timer.start()
-	if player != null:
-		var tops:Vector2 = position.direction_to(player.position)
-		if tops.x < 0: tops.x = -1
-		else: tops.x = 1
-		if tops.y < 0: tops.y = -1
-		else: tops.y = 1
-		velocity.x += tops.x * run_speed * delta * 3
-		velocity.y += tops.y * run_speed * delta * 3
-		print(velocity)
-		get_target()
 
 func _on_Timer_timeout():
-	attacked = 0
+	state = 0
+	old_state = state
