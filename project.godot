@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Train/Facilities/scripts/Facility.gd"
 }, {
-"base": "EditorVCSInterface",
+"base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
@@ -46,6 +46,9 @@ _global_script_class_icons={
 
 config/name="Train West"
 run/main_scene="res://src/UI/Main_Menu.tscn"
+boot_splash/image="res://Icons/icon.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0.231373, 0.231373, 0.231373, 1 )
 config/icon="res://Icons/icon.png"
 
 [autoload]
@@ -54,6 +57,10 @@ Startup="*res://src/Singletons/Startup.gd"
 Events_manager="*res://src/Singletons/Events_manager.gd"
 Train_manager="*res://src/Singletons/train_manager.gd"
 Player_manager="*res://src/Singletons/Player_manager.gd"
+
+[debug]
+
+settings/stdout/verbose_stdout=true
 
 [display]
 
@@ -145,4 +152,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+threads/thread_model=2
 environment/default_environment="res://default_env.tres"
