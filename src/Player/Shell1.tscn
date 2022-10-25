@@ -25,7 +25,7 @@ func _on_Despawn_Timer_timeout():
 "
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 9 )
+extents = Vector2( 14, 7 )
 
 [node name="Physics_Entity" type="RigidBody2D" groups=["non-targetable"]]
 collision_layer = 16
@@ -41,7 +41,8 @@ script = SubResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( 8, 0 )
+position = Vector2( 7, -8.9407e-08 )
+scale = Vector2( 0.875, 0.777778 )
 color = Color( 0.701961, 0.345098, 0.0862745, 1 )
 polygon = PoolVector2Array( 8, -7, 4, -7, 1, -9, -18, -9, -22, -7, -23, -9, -24, -9, -24, 9, -23, 9, -22, 7, -19, 9, 1, 9, 4, 7, 8, 7 )
 
