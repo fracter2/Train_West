@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Train/Facilities/scripts/Facility.gd"
 }, {
-"base": "",
+"base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
@@ -57,6 +57,8 @@ Startup="*res://src/Singletons/Startup.gd"
 Events_manager="*res://src/Singletons/Events_manager.gd"
 Train_manager="*res://src/Singletons/train_manager.gd"
 Player_manager="*res://src/Singletons/Player_manager.gd"
+Utility="*res://src/Singletons/Utility.gd"
+Debug="*res://src/Singletons/Debug.gd"
 
 [debug]
 
