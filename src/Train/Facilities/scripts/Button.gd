@@ -23,11 +23,16 @@ func interact(var player): # override
 
 func update_charges(count:int): # Count may only be 1, or -1
 	#update_charge_visiblity(heal_charges + clamp(count, 0, 1), count)
-	get_node("PolygonBase/Charge" + String(heal_charges + clamp(count,0,1))).visible = count
+	var on_off:bool = false
+	if count > 0: on_off = true
+	
+	# Can only accept 
+	var n = get_node("PolygonBase/Charges/Charge" + String(heal_charges + clamp(count,0,1)))
+	n.visible = on_off
 	# Clamped because, if its negative -> current one is turned off
 	# and if positive, above charge is turned on
 	
-	heal_charges += clamp(count, 0, heal_charges_max) # Dont really have to clamp
+	heal_charges = clamp(heal_charges + count, 0, heal_charges_max) # Dont really have to clamp
 	
 
 #func update_charge_visiblity(index:int, on_off:int):
