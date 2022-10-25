@@ -1,7 +1,7 @@
 extends Position2D
 
 export var spawn_on_enter:bool = false
-var enemy_preload = preload("res://src/Entities/Enemy_Hugger.tscn")
+var enemy_preload = preload("res://src/Entities/Enemy_Runner.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
