@@ -1,8 +1,37 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Train/Facilities/scripts/Button.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="VisualShader" id=2]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx, async_visible;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Output:0
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="CanvasItemMaterial" id=4]
+blend_mode = 3
 
 [node name="Healer" type="StaticBody2D"]
 collision_layer = 768
@@ -14,9 +43,43 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="PolygonBase" type="Polygon2D" parent="."]
-color = Color( 0.466667, 0.466667, 0.466667, 1 )
-polygon = PoolVector2Array( -16, -16, -16, 16, 16, 16, 16, -16 )
+color = Color( 0.552941, 0.552941, 0.552941, 1 )
+antialiased = true
+polygon = PoolVector2Array( -32, -40, -32, 40, 32, 40, 32, -40 )
 
 [node name="Polygon2D" type="Polygon2D" parent="PolygonBase"]
-color = Color( 0.513726, 0.92549, 0.32549, 1 )
+color = Color( 0.4, 0.4, 0.4, 1 )
+polygon = PoolVector2Array( -27, -35, -27, 24, 0, 24, 0, -35 )
+
+[node name="Charge1" type="Polygon2D" parent="PolygonBase"]
+material = SubResource( 3 )
+position = Vector2( -13.5, -24.9583 )
+scale = Vector2( 1.3125, 0.880208 )
+color = Color( 0.439216, 0.937255, 0.211765, 1 )
+polygon = PoolVector2Array( -8, -8, -8, 6.76923, 8, 6.76923, 8, -8 )
+
+[node name="Charge2" type="Polygon2D" parent="PolygonBase"]
+position = Vector2( -13.5, -5.5 )
+scale = Vector2( 1.3125, 0.8125 )
+color = Color( 0.439216, 0.937255, 0.211765, 1 )
 polygon = PoolVector2Array( -8, -8, -8, 8, 8, 8, 8, -8 )
+
+[node name="Charge3" type="Polygon2D" parent="PolygonBase"]
+position = Vector2( -13.5, 14.5 )
+scale = Vector2( 1.3125, 0.8125 )
+color = Color( 0.439216, 0.937255, 0.211765, 1 )
+polygon = PoolVector2Array( -8, -8, -8, 8, 8, 8, 8, -8 )
+
+[node name="PolygonBroken" type="Polygon2D" parent="."]
+visible = false
+material = SubResource( 4 )
+color = Color( 0.286275, 0.286275, 0.286275, 1 )
+texture_offset = Vector2( 20, 0 )
+polygon = PoolVector2Array( -32, -40, 32, -40, 32, 40, -32, 40 )
+
+[node name="Recharge_Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="Recharge_Timer" to="." method="_on_Recharge_Timer_timeout"]

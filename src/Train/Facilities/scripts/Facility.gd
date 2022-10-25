@@ -5,6 +5,7 @@ extends Wagon_Entity
 export(float, 0, 1) var erode_chance:float
 
 signal interacted(player)
+signal interacted_end(player)
 
 
 func toggle_disabled(var value:bool):

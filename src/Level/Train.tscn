@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/Wagon_Water.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Icons/icon.png" type="Texture" id=14]
 [ext_resource path="res://src/Entities/Enemy_Crawler.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/Entities/Enemy_Runner.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/Train/Facilities/Healer.tscn" type="PackedScene" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 40 )
@@ -48,6 +49,9 @@ position = Vector2( 478, -120 )
 
 [node name="Wagon_Cafeteria" parent="Lokomotive" instance=ExtResource( 11 )]
 position = Vector2( -3934, 0 )
+
+[node name="Healer" parent="Lokomotive/Wagon_Cafeteria" instance=ExtResource( 17 )]
+position = Vector2( 1502, -144 )
 
 [node name="Wagon_Production" parent="Lokomotive" instance=ExtResource( 7 )]
 position = Vector2( -5454, 0 )
@@ -152,7 +156,4 @@ margin_right = -88.0
 margin_bottom = 56.0
 color = Color( 0.529412, 0.176471, 0.176471, 0 )
 
-[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Runner" to="Spawners_and_misc/Spawner_Runner" method="spawn"]
-[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Flyer" to="Spawners_and_misc/Spawner_Flyer" method="spawn"]
-[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Crawler" to="Spawners_and_misc/Spawner_Crawler" method="spawn"]
 [connection signal="body_exited" from="Ground/Out_of_bounds_Area" to="Ground/Out_of_bounds_Area" method="_on_Out_of_bounds_Area_body_exited"]
