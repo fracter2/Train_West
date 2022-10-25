@@ -15,7 +15,9 @@ func toggle_disabled(var value:bool):
 func interact(var player):
 	emit_signal("interacted", player)
 	
-	
+
+func interact_end(var player):
+	pass
 
 
 func erode():

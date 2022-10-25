@@ -113,16 +113,22 @@ func take_damage(count):
 	emit_signal("health_changed", health)
 	
 	# To add hit-dmg indicators
-	var dmg_indicator_instance = Hit_Damage_Indicator.instance()
-	dmg_indicator_instance.text = String(count)
-	#dmg_indicator_instance.global_position = $Tittle.global_position  			# Use this for when global positions will be used
-	dmg_indicator_instance.position = $Tittle.position
-	add_child(dmg_indicator_instance)
+	spawn_indicator(count)
 	
 	if health <= 0:
 		health = 0
 		die()
 
+func heal(count):
+	health += count
+	emit_signal("health_changed", health)
+
+func spawn_indicator(count):
+	var dmg_indicator_instance = Hit_Damage_Indicator.instance()
+	dmg_indicator_instance.text = String(count)
+	#dmg_indicator_instance.global_position = $Tittle.global_position  			# Use this for when global positions will be used
+	dmg_indicator_instance.position = $Tittle.position
+	add_child(dmg_indicator_instance)
 
 func die(): # Unsure what this will be used for, but it excists for now, remove later if redundant
 	# this craches it for now
