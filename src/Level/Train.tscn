@@ -12,7 +12,7 @@
 [ext_resource path="res://src/Train/Wagon_Residance.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Train/Wagon_Cafeteria.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Train/Facilities/Button.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/Level/Enemy_Spawner.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Level/Entity_Spawner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Icons/icon.png" type="Texture" id=14]
 [ext_resource path="res://src/Entities/Enemy_Crawler.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/Entities/Enemy_Runner.tscn" type="PackedScene" id=16]
@@ -34,6 +34,18 @@ position = Vector2( -1203, 0 )
 [node name="Wagon_Residance" parent="Lokomotive" instance=ExtResource( 10 )]
 position = Vector2( -2414, 0 )
 
+[node name="Button_Runner" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
+position = Vector2( -114, -440 )
+
+[node name="Button_Flyer" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
+position = Vector2( 206, -440 )
+
+[node name="Button_Crawler" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
+position = Vector2( -434, -440 )
+
+[node name="Button_Heal" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
+position = Vector2( 478, -120 )
+
 [node name="Wagon_Cafeteria" parent="Lokomotive" instance=ExtResource( 11 )]
 position = Vector2( -3934, 0 )
 
@@ -46,13 +58,18 @@ position = Vector2( -6974, 0 )
 [node name="Spawner_Player" parent="Lokomotive" instance=ExtResource( 8 )]
 position = Vector2( -2414, -648 )
 
-[node name="Button1" parent="Lokomotive" instance=ExtResource( 12 )]
-position = Vector2( -2549, -439 )
-
 [node name="Spawners_and_misc" type="YSort" parent="."]
 
-[node name="Spawner_Enemy" parent="Spawners_and_misc" instance=ExtResource( 13 )]
+[node name="Spawner_Runner" parent="Spawners_and_misc" instance=ExtResource( 13 )]
 position = Vector2( -2117, -644 )
+
+[node name="Spawner_Flyer" parent="Spawners_and_misc" instance=ExtResource( 13 )]
+position = Vector2( -1424, -1056 )
+entity_path = "res://src/Entities/Enemy_Flying.tscn"
+
+[node name="Spawner_Crawler" parent="Spawners_and_misc" instance=ExtResource( 13 )]
+position = Vector2( -1704, -408 )
+entity_path = "res://src/Entities/Enemy_Crawler.tscn"
 
 [node name="Entities" type="YSort" parent="."]
 position = Vector2( -24, -123 )
@@ -135,5 +152,7 @@ margin_right = -88.0
 margin_bottom = 56.0
 color = Color( 0.529412, 0.176471, 0.176471, 0 )
 
-[connection signal="button_just_pressed" from="Lokomotive/Button1" to="Spawners_and_misc/Spawner_Enemy" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Runner" to="Spawners_and_misc/Spawner_Runner" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Flyer" to="Spawners_and_misc/Spawner_Flyer" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Crawler" to="Spawners_and_misc/Spawner_Crawler" method="spawn"]
 [connection signal="body_exited" from="Ground/Out_of_bounds_Area" to="Ground/Out_of_bounds_Area" method="_on_Out_of_bounds_Area_body_exited"]

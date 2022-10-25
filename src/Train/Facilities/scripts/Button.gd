@@ -9,8 +9,7 @@ signal button_just_pressed()
 signal button_just_released()
 
 # Setup secondary interaction from playter on release / out of range
-
-
-func _on_Button_interacted(player):
+func interact(var player):
+	emit_signal("interacted", player)
 	emit_signal("button_just_pressed")
 	print("button pressed")

@@ -20,5 +20,3 @@ polygon = PoolVector2Array( -16, -16, -16, 16, 16, 16, 16, -16 )
 [node name="Polygon2D" type="Polygon2D" parent="PolygonBase"]
 color = Color( 0.513726, 0.92549, 0.32549, 1 )
 polygon = PoolVector2Array( -8, -8, -8, 8, 8, 8, 8, -8 )
-
-[connection signal="interacted" from="." to="." method="_on_Button_interacted"]
