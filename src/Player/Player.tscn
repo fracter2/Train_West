@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Player/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/scripts/Push Area.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Player/Weapon_1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Player/scripts/Interaction_handler.gd" type="Script" id=5]
 [ext_resource path="res://src/Player/Repair_Tool.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Player/Player_Debug.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 40, 60 )
@@ -80,6 +81,8 @@ wait_time = 0.3
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Debug_Node" parent="." instance=ExtResource( 7 )]
 
 [connection signal="health_changed" from="." to="GUI" method="update_health"]
 [connection signal="max_health_changed" from="." to="GUI" method="update_max_health"]

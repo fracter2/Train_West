@@ -63,15 +63,6 @@ func _physics_process(delta):
 	if Input.is_action_just_released("move_jump"):
 		frame_jump = 20
 	
-	# This specific if-else statement is for teleporting, with C
-	if Input.is_action_just_pressed("Phase"):
-		global_position=get_global_mouse_position()
-		velocity = Vector2.ZERO
-	#if Input.is_action_just_pressed("move_jump"):
-	#	if .is_on_floor():
-	#		velocity.y = jump_speed
-	#		velocity.x -= jump_speed * input_dir.x  # this makes it lunge forward a bit
-	
 	if Input.is_action_pressed("move_jump"):
 		if frame_jump < 3:
 			velocity.y = jump_speed * 0.5
