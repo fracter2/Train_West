@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Segment_1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/wagon_blocks/Wheel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Train/wagon_blocks/Wagon_Bridge.tscn" type="PackedScene" id=3]
 
 [node name="Lokomotive" type="Node2D"]
 
@@ -115,9 +116,6 @@ position = Vector2( -456, 0 )
 [node name="Wagon_Segment7" parent="Floor" instance=ExtResource( 1 )]
 position = Vector2( -608, 0 )
 
-[node name="Wagon_Segment10" parent="Floor" instance=ExtResource( 1 )]
-position = Vector2( -712, -16 )
-
 [node name="Wagon_Segment8" parent="Floor" instance=ExtResource( 1 )]
 position = Vector2( 456, 0 )
 
@@ -187,3 +185,6 @@ rotation = 1.5708
 [node name="Wagon_Segment3" parent="Wall_Right" instance=ExtResource( 1 )]
 position = Vector2( -240, -128 )
 rotation = 1.5708
+
+[node name="Wagon_Bridge" parent="." instance=ExtResource( 3 )]
+position = Vector2( -744, -8 )

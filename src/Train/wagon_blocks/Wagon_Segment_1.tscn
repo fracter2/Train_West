@@ -1,8 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/scripts/Wagon_Segment_1.gd" type="Script" id=1]
-[ext_resource path="res://src/Train/wagon_blocks/Animations/Damage_flash.tres" type="Animation" id=2]
-[ext_resource path="res://src/Train/wagon_blocks/Animations/Default_Flashstate.tres" type="Animation" id=3]
 
 [sub_resource type="VisualShader" id=3]
 code = "shader_type spatial;
@@ -34,8 +32,15 @@ shader = SubResource( 3 )
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 16 )
 
-[sub_resource type="CanvasItemMaterial" id=5]
-blend_mode = 4
+[sub_resource type="GDScript" id=5]
+resource_name = "Flash_node"
+script/source = "extends Polygon2D
+
+
+func _process(delta):
+	modulate.a = clamp(modulate.a - get_parent().flash_recovery_rate * delta, 0, 1) 
+	
+"
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 80, 16 )
@@ -59,10 +64,10 @@ use_parent_material = true
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( -72, -8, -72, 8, 72, 8, 72, -8 )
 
-[node name="PolygonFlash" type="Polygon2D" parent="PolygonBase"]
-material = SubResource( 5 )
-color = Color( 0, 0, 0, 0 )
+[node name="PolygonFlash" type="Polygon2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 polygon = PoolVector2Array( -80, -16, 80, -16, 80, 16, -80, 16 )
+script = SubResource( 5 )
 
 [node name="RepairArea" type="Area2D" parent="." groups=["Repairable", "Wagon"]]
 visible = false
@@ -71,8 +76,3 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepairArea"]
 shape = SubResource( 2 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-method_call_mode = 1
-anims/Damage_flash = ExtResource( 2 )
-anims/Default = ExtResource( 3 )

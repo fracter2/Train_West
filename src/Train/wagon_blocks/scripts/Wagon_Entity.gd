@@ -2,7 +2,7 @@ class_name Wagon_Entity
 extends StaticBody2D
 
 
-var hp:int = 100
+var hp:float = 100
 export var hp_max: int = 100
 export(float, 0, 1) var revive_threshold:float = 1 #the relative hp to max, for it to be revived
 
@@ -33,11 +33,12 @@ func repair(var repair:int):
 		toggle_disabled(false)
 		state = STATES.ALIVE
 	
-	if hp != hp_max:
-		update_effects(1)
-		if hp + repair == hp_max:
-			update_effects(2)
-			emit_signal("repaired_fully")
+	if hp == hp_max: # In case of absolute max health reached
+		update_effects(2)
+		emit_signal("repaired_fully")
+	else:
+		update_effects(1) # Normal repair instnace
+
 
 
 func toggle_disabled(var value:bool):
