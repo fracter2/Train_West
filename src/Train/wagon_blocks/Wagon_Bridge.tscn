@@ -44,7 +44,7 @@ extents = Vector2( 80, 16 )
 
 [node name="Wagon_Bridge" type="StaticBody2D" groups=["Repairable", "Wagon"]]
 material = SubResource( 4 )
-collision_layer = 128
+collision_layer = 4096
 collision_mask = 0
 script = ExtResource( 1 )
 hp_max = 75

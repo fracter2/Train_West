@@ -4,11 +4,6 @@ extends RigidBody2D
 export(int, -100, 100) var target_dmg:int = 10
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 func attack(var body):
 	if body.is_in_group("non-targetable"):
 		return
@@ -26,3 +21,7 @@ func _on_Hitbox_body_entered(body):
 func _on_Hitbox_area_entered(area):
 	attack(area.get_parent())
 
+
+# On standard physics collision
+func _on_Projectile_body_entered(body):
+	queue_free()
