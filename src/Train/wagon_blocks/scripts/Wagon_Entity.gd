@@ -20,6 +20,7 @@ func _ready():
 func take_damage(var dmg:int):
 	hp -= dmg
 	hp = clamp(hp, 0, hp_max)
+	update_effects()
 	
 	if hp <= 0:
 		state = STATES.DEAD
@@ -31,14 +32,19 @@ func repair(var repair:int):
 	if hp >= hp_max * revive_threshold and state == STATES.DEAD:
 		toggle_disabled(false)
 		state = STATES.ALIVE
-		toggle_disabled(false)
-		
 	
-	if hp == 100:
-		emit_signal("repaired_fully")
+	if hp != hp_max:
+		update_effects(1)
+		if hp + repair == hp_max:
+			update_effects(2)
+			emit_signal("repaired_fully")
 
 
 func toggle_disabled(var value:bool):
 	get_node("CollisionBase").set_deferred("disabled", value)
 	get_node("PolygonBase").visible = not value
+	
+
+func update_effects(variable:int = 0):
+	pass
 	
