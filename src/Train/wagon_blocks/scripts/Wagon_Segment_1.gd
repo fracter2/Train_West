@@ -1,11 +1,13 @@
 extends Wagon_Entity
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var color_offset = 50
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func update_effects(variable:int = 0):
+	var hp_fullness:float = (hp_max + color_offset) / (hp + color_offset)
+	
+	$AnimationPlayer.play("Damage_flash")
+	
+	modulate = Color(color_offset)
+	
