@@ -13,8 +13,10 @@ func interact(var player): # override
 	emit_signal("interacted", player)
 	emit_signal("button_just_pressed")
 	pressed = true
+	print("Button pressed!")
 
 func interact_end(var player):
 	emit_signal("button_just_released")
 	pressed = false
+	print("Button released!")
 

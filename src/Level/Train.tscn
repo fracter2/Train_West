@@ -156,4 +156,7 @@ margin_right = -88.0
 margin_bottom = 56.0
 color = Color( 0.529412, 0.176471, 0.176471, 0 )
 
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Runner" to="Spawners_and_misc/Spawner_Runner" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Flyer" to="Spawners_and_misc/Spawner_Flyer" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Crawler" to="Spawners_and_misc/Spawner_Crawler" method="spawn"]
 [connection signal="body_exited" from="Ground/Out_of_bounds_Area" to="Ground/Out_of_bounds_Area" method="_on_Out_of_bounds_Area_body_exited"]
