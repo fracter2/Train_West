@@ -50,7 +50,7 @@ script = ExtResource( 1 )
 hp_max = 75
 
 [node name="CollisionBase" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -80, 16, -80, 0, -56, -16, 56, -16, 80, 0, 80, 16 )
+polygon = PoolVector2Array( -80, 16, -80, 0, -56, -12, 56, -12, 80, 0, 80, 16 )
 
 [node name="PolygonBase" type="Polygon2D" parent="."]
 color = Color( 0.552941, 0.552941, 0.552941, 1 )
