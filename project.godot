@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "Wagon_Entity",
 "language": "GDScript",
 "path": "res://src/Train/wagon_blocks/scripts/Wagon_Entity.gd"
+}, {
+"base": "Wagon_Entity",
+"class": "Wagon_Segment",
+"language": "GDScript",
+"path": "res://src/Train/wagon_blocks/scripts/Wagon_Segment_1.gd"
 } ]
 _global_script_class_icons={
 "Entity": "",
 "Facility": "",
 "GitAPI": "",
 "Physics_Entity": "",
-"Wagon_Entity": ""
+"Wagon_Entity": "",
+"Wagon_Segment": ""
 }
 
 [application]
