@@ -94,6 +94,7 @@ position = Vector2( 1502, -144 )
 
 [node name="Button_Heal" parent="Lokomotive/Wagon_Cafeteria" instance=ExtResource( 12 )]
 position = Vector2( -47, -123 )
+toggle = true
 
 [node name="Wagon_Production" parent="Lokomotive" instance=ExtResource( 7 )]
 position = Vector2( -5454, 0 )
