@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Level/Map_Nodes/scripts/MapNode_Healer.gd" type="Script" id=1]
+
+[node name="MapNode_Healer" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "It heals. For example, whena  button is pressed, it might heal the player"
+}

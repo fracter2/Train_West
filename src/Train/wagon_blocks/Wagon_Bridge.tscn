@@ -44,13 +44,14 @@ extents = Vector2( 80, 16 )
 
 [node name="Wagon_Bridge" type="StaticBody2D" groups=["Repairable", "Wagon"]]
 material = SubResource( 4 )
-collision_layer = 128
+collision_layer = 4096
 collision_mask = 0
 script = ExtResource( 1 )
 hp_max = 75
+revive_threshold = 0.2
 
 [node name="CollisionBase" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -80, 16, -80, 0, -56, -16, 56, -16, 80, 0, 80, 16 )
+polygon = PoolVector2Array( -80, 16, -80, 0, -56, -12, 56, -12, 80, 0, 80, 16 )
 
 [node name="PolygonBase" type="Polygon2D" parent="."]
 color = Color( 0.552941, 0.552941, 0.552941, 1 )

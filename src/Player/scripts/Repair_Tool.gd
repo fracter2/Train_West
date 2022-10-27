@@ -6,6 +6,7 @@ export var repair_cooldown_frames:int = 5 # per 1 action frame
 var cooldown_frame:int = 0
 
 export var blowback_force:Vector2 = Vector2(100, 0)
+export var recoil_force:Vector2 = Vector2(100, 0)
 
 
 func _physics_process(delta):
