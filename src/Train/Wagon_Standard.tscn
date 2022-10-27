@@ -8,7 +8,7 @@
 
 [node name="Background_Inside" type="Polygon2D" parent="."]
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
-polygon = PoolVector2Array( -640, -320, 640, -320, 640, 0, -648, 0 )
+polygon = PoolVector2Array( -640, -320, 640, -320, 640, 0, -640, 0 )
 
 [node name="Window" type="Polygon2D" parent="Background_Inside"]
 position = Vector2( -480, -224 )
