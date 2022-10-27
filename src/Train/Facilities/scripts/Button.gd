@@ -7,12 +7,15 @@ var pressed:bool = false
 export(Color) var color_DEFAULT:Color = Color.lime
 export(Color) var color_PRESSING:Color = Color.limegreen
 export(Color) var color_TOGGLED:Color = Color.gold
-#export(Color) var color_DISABLED:Color # This one might be redundant
+export(Color) var color_DISABLED:Color = Color.crimson# This one might be redundant
 
-onready var COLORS = {0:color_DEFAULT, 1:color_PRESSING, 2:color_TOGGLED}
+onready var COLORS = {0:color_DEFAULT, 1:color_PRESSING, 2:color_TOGGLED, 3:color_DISABLED}
 
 signal button_just_pressed()
 signal button_just_released()
+
+func _ready():
+	$ButtonBase/ButtonRect.color = color_DEFAULT
 
 # Setup secondary interaction from playter on release / out of range
 func interact(var player): # override

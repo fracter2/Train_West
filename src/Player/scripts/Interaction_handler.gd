@@ -21,9 +21,22 @@ func interact():
 		return
 	elif objects_in_range == 1:
 		interact_target_index()
-	else:
-		pass # Code to calculate which is closest
-		# interact(body_index)
+		
+	else: # More than 1 # Code to calculate which is closest
+		var bodies = get_overlapping_bodies()
+		
+		#var closest_body
+		var closest_body_dist:float = -1
+		var closest_body_index:int = 0
+		for body in bodies:
+			var dist = Vector2(global_position - body.global_position).length_squared() # It is squared because we dont want negative values
+			
+			# If it is closer...
+			if closest_body_dist == -1 or dist < closest_body_dist : 
+				closest_body_dist = dist
+				closest_body_index = bodies.find(body)
+			
+		interact_target_index(closest_body_index)
 
 
 func interact_target_index(var index:int = 0):
