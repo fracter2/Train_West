@@ -111,6 +111,7 @@ rotation = 1.5708
 
 [node name="Wagon_Door" parent="Wall_Right" instance=ExtResource( 4 )]
 position = Vector2( 0, 160 )
+scale = Vector2( -1, 1 )
 
 [node name="Floor" type="Polygon2D" parent="."]
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
