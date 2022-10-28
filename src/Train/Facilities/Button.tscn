@@ -16,10 +16,12 @@ shape = SubResource( 1 )
 
 [node name="ButtonBase" type="Polygon2D" parent="."]
 color = Color( 0.466667, 0.466667, 0.466667, 1 )
+antialiased = true
 polygon = PoolVector2Array( -16, -16, -16, 16, 16, 16, 16, -16 )
 
 [node name="ButtonRect" type="Polygon2D" parent="ButtonBase"]
 color = Color( 0.294118, 0.517647, 0.188235, 1 )
+antialiased = true
 polygon = PoolVector2Array( -8, -8, -8, 8, 8, 8, 8, -8 )
 
 [node name="EditorUpdater" type="Node" parent="."]
