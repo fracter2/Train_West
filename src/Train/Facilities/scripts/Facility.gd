@@ -18,7 +18,7 @@ func interact(var player):
 	
 
 func interact_end(var player):
-	pass
+	emit_signal("interacted_end", player)
 
 
 func erode():
