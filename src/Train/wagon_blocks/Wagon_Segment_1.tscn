@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/scripts/Wagon_Segment_1.gd" type="Script" id=1]
 
@@ -29,6 +29,8 @@ graph_offset = Vector2( -457.333, 194.667 )
 [sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 3 )
 
+[sub_resource type="PhysicsMaterial" id=6]
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 16 )
 
@@ -49,6 +51,7 @@ extents = Vector2( 80, 16 )
 material = SubResource( 4 )
 collision_layer = 128
 collision_mask = 0
+physics_material_override = SubResource( 6 )
 script = ExtResource( 1 )
 hp_max = 75
 revive_threshold = 0.2

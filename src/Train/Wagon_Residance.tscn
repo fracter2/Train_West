@@ -9,26 +9,26 @@
 
 [node name="Background_Inside" type="Polygon2D" parent="."]
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
-polygon = PoolVector2Array( -640, -320, 640, -320, 640, 0, -640, 0 )
+polygon = PoolVector2Array( -640, -320, 640, -320, 640, -256, -576, -256, -576, -192, -384, -192, -384, -256, -272, -256, -272, -192, -80, -192, -80, -256, 80, -256, 80, -192, 272, -192, 272, -256, 384, -256, 384, -192, 576, -192, 576, -256, 624, -256, 624, -192, 640, -192, 640, 0, -640, 0 )
 
 [node name="Window" type="Polygon2D" parent="Background_Inside"]
 position = Vector2( -480, -224 )
-color = Color( 0.592157, 0.717647, 0.701961, 1 )
+color = Color( 0.592157, 0.717647, 0.701961, 0.121569 )
 polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
 
 [node name="Window2" type="Polygon2D" parent="Background_Inside"]
 position = Vector2( -176, -224 )
-color = Color( 0.592157, 0.717647, 0.701961, 1 )
+color = Color( 0.592157, 0.717647, 0.701961, 0.121569 )
 polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
 
 [node name="Window3" type="Polygon2D" parent="Background_Inside"]
 position = Vector2( 176, -224 )
-color = Color( 0.592157, 0.717647, 0.701961, 1 )
+color = Color( 0.592157, 0.717647, 0.701961, 0.121569 )
 polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
 
 [node name="Window4" type="Polygon2D" parent="Background_Inside"]
 position = Vector2( 480, -224 )
-color = Color( 0.592157, 0.717647, 0.701961, 1 )
+color = Color( 0.592157, 0.717647, 0.701961, 0.121569 )
 polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
 
 [node name="Link" type="Polygon2D" parent="."]
@@ -108,6 +108,10 @@ polygon = PoolVector2Array( -16, -80, -16, 80, 16, 80, 16, -80 )
 
 [node name="Wagon_Segment" parent="Wall_Right" instance=ExtResource( 2 )]
 rotation = 1.5708
+
+[node name="Wagon_Door" parent="Wall_Right" instance=ExtResource( 4 )]
+position = Vector2( 0, 160 )
+scale = Vector2( -1, 1 )
 
 [node name="Floor" type="Polygon2D" parent="."]
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
