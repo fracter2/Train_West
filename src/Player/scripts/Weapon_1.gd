@@ -25,20 +25,24 @@ func _physics_process(delta):
 func fire():
 	var proj = projectile.instance()
 	
+	# Projectile logic
 	proj.target_dmg = proj_dmg
 	proj.global_position = $"Firing Point".global_position
 	proj.rotation = proj.global_position.angle_to_point(get_global_mouse_position())
 	proj.apply_central_impulse(force.rotated(proj.rotation))
 	$"/root/World/Projectiles".add_child(proj)
 	
+	# Rechamber
 	state = STATES.RECHAMBERING
 	$Rechamber_Timer.start(rechamber_time)
+	
+	# Recoil
+	var r: Vector2 = knockback.rotated(proj.rotation)
+	get_parent().velocity_recoil += Vector2(r.x, clamp(r.y, -20, 20))			# Limit y velocity to something that seems about right
 	
 	# Send out a shell casing, just cause it looks nice
 	var shll = shell.instance()
 	shll.global_position = $"Firing Point".global_position
-	#shll.apply_torque_impulse(20)
-	
 	$"/root/World/Projectiles".add_child(shll)
 	
 

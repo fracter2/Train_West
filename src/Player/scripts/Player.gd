@@ -1,20 +1,21 @@
 extends KinematicBody2D
 
 # Movement variables
-export (int) var walk_speed = 600
-export (int) var run_speed = 1000
-export (int) var jump_speed = -1800
-export (int) var gravity = 4000
+export (int) var walk_speed := 600
+export (int) var run_speed := 1000
+export (int) var jump_speed := -1800
+export (int) var gravity := 4000
 
-var velocity = Vector2.ZERO
-var frame_jump:int = 0
-var velocity_queued: int = 0
+var velocity := Vector2.ZERO
+var frame_jump := 0
+var velocity_queued := Vector2.ZERO 		# Knockback
+var velocity_recoil := Vector2.ZERO			# Recoil
 
-export (float, 0, 1.0) var friction:float = 0.1
-export (float, 0, 1.0) var acceleration:float = 0.25
+export (float, 0, 1.0) var friction := 0.1
+export (float, 0, 1.0) var acceleration := 0.25
 
 # Player Parameters
-var input_dir: Vector3 = Vector3(0,0,0)
+var input_dir := Vector3(0,0,0)
 
 
 # Health and state
@@ -48,39 +49,42 @@ func _physics_process(delta):
 	input_dir.z = Input.get_action_strength("move_jump")
 	horizontal_movement()
 	
-	velocity.y += gravity * delta - input_dir.y * 75
-	if velocity.y > -3:
-		#velocity.y += 20 - input_dir.y * 50
-		pass
-	else:
-		velocity.y -= input_dir.z * 20
-		pass
+	velocity.y += gravity * delta - input_dir.y * 75			# Gravity
+	if not velocity.y > -30:									# If gaining height at around > -3 speed, increase lift, from jump
+		velocity.y -= input_dir.z * 16							# 20 is a bit arbituary, just felt right
 	
+	
+	# Various Input reactions
 	if Input.is_action_just_released("move_down") and not velocity.y > 0:
 		frame_jump = 20
 		velocity.y = 0
 	
 	if Input.is_action_just_released("move_jump"):
-		frame_jump = 20
+		frame_jump = 20 							# 20 is an arbituary large number. It just signifies that the "jump" part has ended
 	
 	if Input.is_action_pressed("move_jump"):
 		if frame_jump < 3:
-			velocity.y = jump_speed * 0.5
-			velocity.x -= -60 * input_dir.x
+			velocity.y = jump_speed * 0.5 			# times 0.5 to make the inputed jump_speed not stray too much, since it gets applied thru 3 frames. might be redundant
+			velocity.x -= -60 * input_dir.x 		# Boosts the player in the inputed direction, left or right, when jumping. -60 is the strength
 			frame_jump += 1
 	
-	if .is_on_floor():
+	if .is_on_floor(): # Reset jump
 		frame_jump = 0
 	
-	#velocity = .move_and_slide(velocity, Vector2.UP)  # -> moved to _process at least temporarily, to see if it makes movement smoother
+	
+	# Queued velocity, AKA KNOCKBACK & RECOIL
+	velocity += velocity_queued						# Knockback
+	velocity_queued *= Vector2(0.75, 0.35)			# Custom drag, so it lasts for more than a frame
+	
+	#velocity += Vector2(velocity_recoil.x, clamp(velocity_recoil.y, -20, 10))
+	var r := velocity_recoil
+	if velocity.y < -300: r.y = clamp(velocity_recoil.y, -60, 100)
+	else: r.y = clamp(velocity_recoil.y, -30, 100)
+	velocity += Vector2(r.x, r.y)					# Limit recoil up, we dont care about down (positive direction)
+	velocity_recoil *= Vector2(0.75, 0.35)
 
 
-# to smothen the movement
-func _process(delta):
-	velocity = .move_and_slide(velocity, Vector2.UP)
-
-
-func horizontal_movement(): # This actually sets the horizontal speed
+func horizontal_movement(): # Includes friction calculation
 	if input_dir.x != 0:
 		var speed:int
 		if Input.is_action_pressed("run"):
@@ -91,6 +95,11 @@ func horizontal_movement(): # This actually sets the horizontal speed
 		
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
+
+# Movement and collision is executed here, every frame, not every physics frame
+func _process(delta):
+	velocity = .move_and_slide(velocity, Vector2.UP)
+
 
 
 # Health
@@ -110,9 +119,11 @@ func take_damage(count):
 		health = 0
 		die()
 
+
 func heal(count):
 	health += count
 	emit_signal("health_changed", health)
+
 
 func spawn_indicator(count):
 	var dmg_indicator_instance = Hit_Damage_Indicator.instance()
@@ -121,10 +132,8 @@ func spawn_indicator(count):
 	dmg_indicator_instance.position = $Tittle.position
 	add_child(dmg_indicator_instance)
 
-func die(): # Unsure what this will be used for, but it excists for now, remove later if redundant
-	# this craches it for now
-	#var dead_msg = preload("res://src/Player/Dead_Message.tscn")
-	#add_child(dead_msg) 
+
+func die(): 
 	state = STATES.DEAD
 	emit_signal("died")
 	print("player dead")

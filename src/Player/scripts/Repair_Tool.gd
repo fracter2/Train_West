@@ -6,7 +6,7 @@ export var repair_cooldown_frames:int = 5 # per 1 action frame
 var cooldown_frame:int = 0
 
 export var blowback_force:Vector2 = Vector2(100, 0)
-export var recoil_force:Vector2 = Vector2(100, 0)
+export var recoil_force:Vector2 = Vector2(-100, 0)
 
 
 func _physics_process(delta):
@@ -30,7 +30,7 @@ func _physics_process(delta):
 			if i is RigidBody2D:
 				i.sleeping = false
 		
-		# rotate blowing force
+		# rotate blowing force, and apply
 		if global_rotation >= 1 and global_rotation <= 2:
 			$Repair_Box.gravity_vec = -1 * blowback_force.rotated(global_rotation)
 		else:
@@ -47,7 +47,10 @@ func _physics_process(delta):
 			for i in unsorted_targets: # this can repair multiple areas, as it's now
 				if not i.is_in_group("non-repirable"):
 					i.get_parent().repair(repair_ammount)
-					
+			
+			# Recoil
+			var r = recoil_force.rotated(rotation)
+			get_parent().velocity_recoil += Vector2(r.x, clamp(r.y, -100, 7))					# limit y recoil, we dont care about the recoil upwards, only down
 	
 	else:
 		cooldown_frame += 1
