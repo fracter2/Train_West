@@ -1,3 +1,4 @@
+class_name Facility_Button
 extends Facility
 
 export var toggle:bool = false
