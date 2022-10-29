@@ -19,7 +19,7 @@
 [ext_resource path="res://src/Train/Facilities/Healer.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0, 0.140244, 0.621951, 0.786585, 1 )
+offsets = PoolRealArray( 0, 0.140244, 0.652439, 0.841463, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 0.0873298, 0.0873298, 0.0873298, 1, 0.523784, 0.523784, 0.523784, 1, 0.86407, 0.86407, 0.86407, 1, 1, 1, 1, 1 )
 
 [sub_resource type="GradientTexture" id=5]
@@ -32,7 +32,7 @@ sky_horizon_color = Color( 0.447059, 0.101961, 0.478431, 1 )
 background_mode = 4
 background_sky = SubResource( 6 )
 tonemap_mode = 2
-tonemap_exposure = 1.35
+tonemap_exposure = 1.21
 auto_exposure_min_luma = 0.04
 auto_exposure_max_luma = 0.35
 dof_blur_near_distance = 15.42
