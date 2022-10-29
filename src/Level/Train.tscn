@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/Wagon_Water.tscn" type="PackedScene" id=2]
@@ -18,6 +18,29 @@
 [ext_resource path="res://src/Entities/Enemy_Runner.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/Train/Facilities/Healer.tscn" type="PackedScene" id=17]
 
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.140244, 0.652439, 0.841463, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.0873298, 0.0873298, 0.0873298, 1, 0.523784, 0.523784, 0.523784, 1, 0.86407, 0.86407, 0.86407, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ProceduralSky" id=6]
+sky_horizon_color = Color( 0.447059, 0.101961, 0.478431, 1 )
+
+[sub_resource type="Environment" id=3]
+background_mode = 4
+background_sky = SubResource( 6 )
+tonemap_mode = 2
+tonemap_exposure = 1.21
+auto_exposure_min_luma = 0.04
+auto_exposure_max_luma = 0.35
+dof_blur_near_distance = 15.42
+dof_blur_near_transition = 0.15
+dof_blur_near_quality = 2
+adjustment_enabled = true
+adjustment_color_correction = SubResource( 5 )
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 40 )
 
@@ -25,6 +48,9 @@ extents = Vector2( 10000, 40 )
 extents = Vector2( 10600, 4000 )
 
 [node name="World" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
 
 [node name="Background2" type="CanvasLayer" parent="."]
 layer = -1
@@ -38,7 +64,7 @@ texture = ExtResource( 14 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Background2"]
 position = Vector2( -208, 312 )
-color = Color( 0.517647, 0.443137, 0.145098, 1 )
+color = Color( 0.501961, 0.443137, 0.203922, 1 )
 polygon = PoolVector2Array( -8128, -536, -7752, -904, -6464, -760, -5184, -928, -4728, -640, -4248, -840, -3528, -728, -2816, -760, -1936, -1232, -616, -1064, -144, -1192, 888, -992, 1840, -1072, 3176, -760, 4200, -880, 4864, -640, 5920, -904, 6728, -776, 9208, -1024, 10984, -784, 10992, 1576, -9976, 1440, -10168, -480, -9352, -872 )
 
 [node name="Background1" type="CanvasLayer" parent="."]
@@ -53,8 +79,8 @@ texture = ExtResource( 14 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Background1"]
 position = Vector2( -208, 312 )
-color = Color( 0.701961, 0.588235, 0.141176, 1 )
-polygon = PoolVector2Array( -7936, -584, -7008, -760, -5592, -808, -4536, -464, -2688, -696, -1648, -1304, -648, -952, 312, -784, 1480, -968, 3272, -632, 5520, -784, 6656, -496, 9248, -896, 10984, -784, 10992, 1576, -9976, 1440, -10168, -480, -9072, -832 )
+color = Color( 0.631373, 0.537255, 0.156863, 1 )
+polygon = PoolVector2Array( -7936, -584, -7008, -760, -5592, -808, -4536, -464, -2688, -696, -1648, -1304, -648, -952, 312, -784, 1480, -968, 3272, -632, 5520, -784, 6656, -496, 9248, -896, 10984, -784, 10992, 1576, -10168, 1576, -10168, -480, -9072, -832 )
 
 [node name="Foreground" type="CanvasLayer" parent="."]
 layer = 3
@@ -142,11 +168,11 @@ position = Vector2( 0, 40 )
 shape = SubResource( 1 )
 
 [node name="Surface" type="Polygon2D" parent="Ground"]
-color = Color( 0.803922, 0.576471, 0.0823529, 1 )
+color = Color( 0.705882, 0.588235, 0.117647, 1 )
 polygon = PoolVector2Array( -10000, 0, 10000, 0, 10000, 64, -10000, 64 )
 
 [node name="Surface2" type="Polygon2D" parent="Ground/Surface"]
-color = Color( 0.705882, 0.462745, 0.113725, 1 )
+color = Color( 0.635294, 0.47451, 0.129412, 1 )
 polygon = PoolVector2Array( -10000, 56, 10000, 56, 10000, 500, -10000, 500 )
 
 [node name="Surface3" type="Polygon2D" parent="Ground/Surface"]

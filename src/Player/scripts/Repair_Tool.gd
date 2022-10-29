@@ -7,6 +7,7 @@ var cooldown_frame:int = 0
 
 export var blowback_force:Vector2 = Vector2(100, 0)
 export var recoil_force:Vector2 = Vector2(-100, 0)
+export(float, 0, 2) var horizontal_recoil_modifyer:float = 1
 
 
 func _physics_process(delta):
@@ -50,7 +51,7 @@ func _physics_process(delta):
 			
 			# Recoil
 			var r = recoil_force.rotated(rotation)
-			get_parent().velocity_recoil += Vector2(r.x, clamp(r.y, -100, 7))					# limit y recoil, we dont care about the recoil upwards, only down
+			get_parent().velocity_recoil += Vector2(r.x * horizontal_recoil_modifyer, clamp(r.y, -100, 7))					# limit y recoil, we dont care about the recoil upwards, only down
 	
 	else:
 		cooldown_frame += 1
