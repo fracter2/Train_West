@@ -2,7 +2,7 @@ extends Facility
 
 var opened:bool = false #setget set_opened
 
-var color_offset = 60
+export var color_offset = 170
 export(float, 0, 1) var flash_ammount:float = 0.4 # (flash range: 0 - 1 )
 export(float, 0, 10) var flash_recovery_rate:float = 4 # how much it recovers per second
 
