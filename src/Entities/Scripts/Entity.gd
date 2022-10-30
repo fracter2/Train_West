@@ -12,7 +12,7 @@ func _ready():
 
 
 # This function is intented to maybe be overriden when creating new script
-func take_damage(var dmg:int):
+func take_damage(dmg:int, node):
 	hp -= dmg;
 	if hp < 0:
 		die()

@@ -17,27 +17,28 @@ func _ready():
 	hp = hp_max
 
 
-func take_damage(var dmg:int):
+func take_damage(dmg:int, node):
 	hp -= dmg
 	hp = clamp(hp, 0, hp_max)
-	update_effects()
+	update_effects(0) 				# Normal damage instance
 	
 	if hp <= 0:
 		state = STATES.DEAD
 		toggle_disabled(true)
+		update_effects(3)			# Death Instance
 	
 
-func repair(var repair:int):
+func repair(repair:int, node):
 	hp = clamp(hp + repair, 0, hp_max)
 	if hp >= hp_max * revive_threshold and state == STATES.DEAD:
 		toggle_disabled(false)
 		state = STATES.ALIVE
 	
-	if hp == hp_max: # In case of absolute max health reached
+	if hp == hp_max: 				# In case of absolute max health reached, instance
 		update_effects(2)
 		emit_signal("repaired_fully")
 	else:
-		update_effects(1) # Normal repair instnace
+		update_effects(1) 			# Normal repair instnace
 
 
 

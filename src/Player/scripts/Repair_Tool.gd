@@ -15,6 +15,7 @@ func _physics_process(delta):
 	# Aiming
 	look_at(get_global_mouse_position())
 	
+	
 	# Particle and effects
 	if Input.is_action_just_pressed("action_2"):
 		$Particles2D.emitting = true
@@ -23,6 +24,7 @@ func _physics_process(delta):
 	elif Input.is_action_just_released("action_2"):
 		$Particles2D.emitting = false
 		$Repair_Box.space_override = Area2D.SPACE_OVERRIDE_DISABLED
+	
 	
 	# Make sure the physics bodies dont sleep while we are blowing them
 	if Input.is_action_pressed("action_2"):
@@ -45,13 +47,14 @@ func _physics_process(delta):
 			cooldown_frame = 0
 			var unsorted_targets = $Repair_Box.get_overlapping_areas()
 			
-			for i in unsorted_targets: # this can repair multiple areas, as it's now
+			for i in unsorted_targets: 											# this can repair multiple areas, as it's now
 				if not i.is_in_group("non-repirable"):
-					i.get_parent().repair(repair_ammount)
+					i.get_parent().repair(repair_ammount, self)
 			
 			# Recoil
-			var r = recoil_force.rotated(rotation)
-			get_parent().velocity_recoil += Vector2(r.x * horizontal_recoil_modifyer, clamp(r.y, -100, 7))					# limit y recoil, we dont care about the recoil upwards, only down
+			var r = recoil_force.rotated(rotation)								# limit y recoil, we dont care about the recoil upwards, only down
+			get_parent().velocity_recoil += Vector2(r.x * horizontal_recoil_modifyer, clamp(r.y, -100, 7))
+	
 	
 	else:
 		cooldown_frame += 1

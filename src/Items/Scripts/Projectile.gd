@@ -7,7 +7,7 @@ export(int, -100, 100) var target_dmg:int = 10
 func attack(var body):
 	if body.is_in_group("non-targetable"):
 		return
-	body.take_damage(target_dmg)
+	body.take_damage(target_dmg, self)
 	queue_free()
 
 
