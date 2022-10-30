@@ -53,7 +53,6 @@ collision_layer = 128
 collision_mask = 0
 physics_material_override = SubResource( 6 )
 script = ExtResource( 1 )
-hp_max = 75
 revive_threshold = 0.2
 
 [node name="CollisionBase" type="CollisionShape2D" parent="."]

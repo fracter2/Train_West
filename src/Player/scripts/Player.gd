@@ -76,10 +76,11 @@ func _physics_process(delta):
 	velocity += velocity_queued						# Knockback
 	velocity_queued *= Vector2(0.75, 0.35)			# Custom drag, so it lasts for more than a frame
 	
-	#velocity += Vector2(velocity_recoil.x, clamp(velocity_recoil.y, -20, 10))
+	# Recoil portion
 	var r := velocity_recoil
 	if velocity.y < -300: r.y = clamp(velocity_recoil.y, -60, 100)
 	else: r.y = clamp(velocity_recoil.y, -30, 100)
+	
 	velocity += Vector2(r.x, r.y)					# Limit recoil up, we dont care about down (positive direction)
 	velocity_recoil *= Vector2(0.75, 0.35)
 
