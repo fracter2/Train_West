@@ -34,7 +34,7 @@ func _physics_process(delta):
 				i.sleeping = false
 		
 		# rotate blowing force, and apply
-		if global_rotation >= 1 and global_rotation <= 2:
+		if global_rotation >= 0.33*PI and global_rotation <= 0.66*PI:
 			$Repair_Box.gravity_vec = -1 * blowback_force.rotated(global_rotation)
 		else:
 			$Repair_Box.gravity_vec = blowback_force.rotated(global_rotation)
