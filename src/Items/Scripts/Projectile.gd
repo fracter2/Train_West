@@ -3,6 +3,20 @@ extends RigidBody2D
 
 export(int, -100, 100) var target_dmg:int = 10
 
+onready var current_pos:Vector2 = global_position
+onready var previous_pos:Vector2 = global_position
+
+func _physics_process(delta): 
+	previous_pos = current_pos
+	current_pos = global_position
+
+func _process(delta):
+	var f = Engine.get_physics_interpolation_fraction()
+	$Visuals.global_position = previous_pos.linear_interpolate(global_position, f)
+	
+
+
+# player_body.global_transform.origin = last_physics_pos.linear_interpolate(global_transform.origin, fraction)
 
 func attack(var body):
 	if body.is_in_group("non-targetable"):

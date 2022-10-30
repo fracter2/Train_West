@@ -34,28 +34,15 @@ collision_mask = 220
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 1 )
 
-[node name="PolygonBack" type="Polygon2D" parent="."]
-visible = false
-color = Color( 0.447059, 0.443137, 0.466667, 1 )
-polygon = PoolVector2Array( -21, -10, -10, -21, 10, -21, 21, -10, 21, 10, 10, 21, -10, 21, -21, 10 )
+[node name="Visuals" type="YSort" parent="."]
 
-[node name="PolygonBoundry" type="Polygon2D" parent="."]
-visible = false
-color = Color( 0.337255, 0.309804, 0.152941, 1 )
-polygon = PoolVector2Array( 18, 10, 10, 10, 10, 18, -10, 18, -10, 10, -18, 10, -18, -10, -10, -10, -10, -18, 10, -18, 10, -10, 18, -10 )
-
-[node name="PolygonInner" type="Polygon2D" parent="."]
-visible = false
-color = Color( 1, 0.894118, 0.2, 1 )
-polygon = PoolVector2Array( 15, 7, 7, 7, 7, 15, -7, 15, -7, 7, -15, 7, -15, -7, -7, -7, -7, -15, 7, -15, 7, -7, 15, -7 )
-
-[node name="Polygon2Outer" type="Polygon2D" parent="."]
+[node name="Polygon2Outer" type="Polygon2D" parent="Visuals"]
 visible = false
 rotation = -1.5708
 color = Color( 0.290196, 0.180392, 0.0705882, 1 )
 polygon = PoolVector2Array( -5, -18, 5, -18, 9, -7, 9, 9, -9, 9, -9, -7 )
 
-[node name="Polygon2Inner" type="Polygon2D" parent="."]
+[node name="Polygon2Inner" type="Polygon2D" parent="Visuals"]
 rotation = -1.5708
 color = Color( 0.839216, 0.470588, 0.176471, 1 )
 polygon = PoolVector2Array( -3, -15, 3, -15, 6, -7, 6, 6, -6, 6, -6, -7 )
