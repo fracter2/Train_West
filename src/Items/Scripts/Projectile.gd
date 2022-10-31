@@ -8,6 +8,8 @@ var knockback:int = 10
 onready var current_pos:Vector2 = global_position
 onready var previous_pos:Vector2 = global_position
 
+#func _ready(): $"%Firing_Particles".emitting = true
+
 func _physics_process(delta): 
 	previous_pos = current_pos
 	current_pos = global_position

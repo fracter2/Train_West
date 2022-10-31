@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Items/Scripts/Projectile.gd" type="Script" id=1]
+[ext_resource path="res://src/Player/resources/Weapon_Firing_Particles.tres" type="Material" id=2]
 
 [sub_resource type="PhysicsMaterial" id=3]
 
@@ -49,6 +50,18 @@ polygon = PoolVector2Array( -3, -15, 3, -15, 6, -7, 6, 6, -6, 6, -6, -7 )
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="Firing_Particles" type="Particles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 32
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.5
+explosiveness = 1.0
+local_coords = false
+draw_order = 1
+process_material = ExtResource( 2 )
 
 [connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]

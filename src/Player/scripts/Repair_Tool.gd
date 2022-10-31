@@ -44,7 +44,7 @@ func _physics_process(delta):
 		
 		# Experimental
 		#$Particles2D.lifetime = default_particle_lifetime * (1 +(2000 / get_parent().velocity.length_squared()))
-		$RayCast2D.
+		#$RayCast2D.
 		
 		
 		# rotate blowing force, and apply

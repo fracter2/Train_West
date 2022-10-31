@@ -72,10 +72,6 @@ Player_manager="*res://src/Singletons/Player_manager.gd"
 Utility="*res://src/Singletons/Utility.gd"
 Debug="*res://src/Singletons/Debug.gd"
 
-[debug]
-
-settings/stdout/verbose_stdout=true
-
 [display]
 
 window/stretch/mode="2d"
