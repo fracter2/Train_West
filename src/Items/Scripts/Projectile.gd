@@ -1,7 +1,9 @@
 extends RigidBody2D
 
 
-export(int, -100, 100) var target_dmg:int = 10
+#export(int, -100, 100) var target_dmg:int = 10				# Removed from export because its unnessessary; the weapon applies new dmg value
+var target_dmg:int = 10
+var knockback:int = 10
 
 onready var current_pos:Vector2 = global_position
 onready var previous_pos:Vector2 = global_position

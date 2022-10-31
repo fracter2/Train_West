@@ -21,7 +21,6 @@ contact_monitor = true
 can_sleep = false
 linear_damp = 0.5
 script = ExtResource( 1 )
-target_dmg = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.499999, -7.41082e-06 )
@@ -37,7 +36,6 @@ shape = SubResource( 1 )
 [node name="Visuals" type="YSort" parent="."]
 
 [node name="Polygon2Outer" type="Polygon2D" parent="Visuals"]
-visible = false
 rotation = -1.5708
 color = Color( 0.290196, 0.180392, 0.0705882, 1 )
 polygon = PoolVector2Array( -5, -18, 5, -18, 9, -7, 9, 9, -9, 9, -9, -7 )

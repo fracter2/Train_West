@@ -9,6 +9,14 @@ export var blowback_force:Vector2 = Vector2(100, 0)
 export var recoil_force:Vector2 = Vector2(-100, 0)
 export(float, 0, 2) var horizontal_recoil_modifyer:float = 1
 
+export(int, 0, 1000) var resource_max := 100
+var resource := 100
+export(float, 0, 1000) var resource_recharge:float = 7
+
+
+var default_particle_lifetime:float
+func _ready(): default_particle_lifetime = $Particles2D.lifetime
+
 
 func _physics_process(delta):
 	
@@ -21,6 +29,7 @@ func _physics_process(delta):
 		$Particles2D.emitting = true
 		$Repair_Box.space_override = Area2D.SPACE_OVERRIDE_COMBINE
 		
+		
 	elif Input.is_action_just_released("action_2"):
 		$Particles2D.emitting = false
 		$Repair_Box.space_override = Area2D.SPACE_OVERRIDE_DISABLED
@@ -32,6 +41,11 @@ func _physics_process(delta):
 		for i in bodies:
 			if i is RigidBody2D:
 				i.sleeping = false
+		
+		# Experimental
+		#$Particles2D.lifetime = default_particle_lifetime * (1 +(2000 / get_parent().velocity.length_squared()))
+		$RayCast2D.
+		
 		
 		# rotate blowing force, and apply
 		if global_rotation >= 0.33*PI and global_rotation <= 0.66*PI:
