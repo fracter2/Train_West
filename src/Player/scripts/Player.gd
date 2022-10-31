@@ -34,6 +34,7 @@ enum STATES {ALIVE, DEAD}
 var state = STATES.ALIVE
 
 
+
 func _ready():
 	health = max_health
 	emit_signal("max_health_changed", max_health)
@@ -85,6 +86,7 @@ func _physics_process(delta):
 	velocity_recoil *= Vector2(0.75, 0.35)
 
 
+
 func horizontal_movement(): # Includes friction calculation
 	if input_dir.x != 0:
 		var speed:int
@@ -126,12 +128,14 @@ func heal(count):
 	emit_signal("health_changed", health)
 
 
+
 func spawn_indicator(count):
 	var dmg_indicator_instance = Hit_Damage_Indicator.instance()
 	dmg_indicator_instance.text = String(count)
 	#dmg_indicator_instance.global_position = $Tittle.global_position  			# Use this for when global positions will be used
-	dmg_indicator_instance.position = $Tittle.position
-	add_child(dmg_indicator_instance)
+	dmg_indicator_instance.position = $Tittle.global_position
+	$"/root/World".add_child(dmg_indicator_instance)
+
 
 
 func die(): 
