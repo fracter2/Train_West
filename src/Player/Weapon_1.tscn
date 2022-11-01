@@ -9,13 +9,13 @@ script/source = "extends Particles2D
 
 
 func _ready():
-	print(\"particles node instanced\")
 	get_child(0).start(lifetime)
+	#print(\"particles node instanced\")
 
 
 func _on_Destroy_Timer_timeout():
 	queue_free()
-	print(\"particle node freed!\")
+	#print(\"particle node freed!\")
 "
 
 [node name="Weapon" type="Node2D"]

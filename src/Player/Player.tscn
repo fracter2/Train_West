@@ -10,7 +10,7 @@
 [ext_resource path="res://src/UI/UI components/Lifebar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/UI components/EnergyBar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/UI/Scripts/GUI.gd" type="Script" id=10]
-[ext_resource path="res://src/Player/scripts/Player_Camera.gd" type="Script" id=8]
+[ext_resource path="res://src/Player/scripts/Player_Camera.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 40, 60 )
@@ -73,7 +73,7 @@ current = true
 zoom = Vector2( 2, 2 )
 smoothing_enabled = true
 editor_draw_drag_margin = true
-script = ExtResource( 8 )
+script = ExtResource( 11 )
 
 [node name="Weapon" parent="." instance=ExtResource( 4 )]
 force = Vector2( -2500, 0 )
@@ -99,15 +99,23 @@ script = ExtResource( 3 )
 [node name="Tween" type="Tween" parent="GUI/CanvasLayer/UI"]
 
 [node name="Bars" type="VBoxContainer" parent="GUI/CanvasLayer/UI"]
+margin_top = 503.0
 margin_right = 500.0
-margin_bottom = 97.0
+margin_bottom = 600.0
 size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="Lifebar" parent="GUI/CanvasLayer/UI/Bars" instance=ExtResource( 8 )]
+size_flags_vertical = 8
 
 [node name="EnergyBar" parent="GUI/CanvasLayer/UI/Bars" instance=ExtResource( 9 )]
-margin_top = 57.0
+margin_bottom = 40.0
+
+[node name="Backround" parent="GUI/CanvasLayer/UI/Bars/EnergyBar" index="0"]
+margin_bottom = 40.0
+
+[node name="Gauge" parent="GUI/CanvasLayer/UI/Bars/EnergyBar" index="1"]
+margin_bottom = 40.0
+
+[node name="Lifebar" parent="GUI/CanvasLayer/UI/Bars" instance=ExtResource( 8 )]
+margin_top = 44.0
 margin_bottom = 97.0
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
@@ -127,3 +135,5 @@ __meta__ = {
 [connection signal="body_entered" from="Interaction Range" to="Interaction Range" method="_on_Interaction_Range_body_entered"]
 [connection signal="body_exited" from="Interaction Range" to="Interaction Range" method="_on_Interaction_Range_body_exited"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
+
+[editable path="GUI/CanvasLayer/UI/Bars/EnergyBar"]

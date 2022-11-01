@@ -1,7 +1,8 @@
 extends Polygon2D
 
-func _physics_process(delta):
-	rotation += Train_manager.train_velocity * 0.02 
+export(float, 0, 1) var speed_variable:float = 1
 
-#func set_speed(var train_vel):
-	
+func _physics_process(delta):
+	rotation += Train_manager.train_velocity * 0.02 * speed_variable
+
+
