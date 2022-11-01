@@ -27,7 +27,7 @@ func _on_Despawn_Timer_timeout():
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14, 7 )
 
-[node name="Physics_Entity" type="RigidBody2D" groups=["non-targetable"]]
+[node name="Physics_Entity" type="RigidBody2D" groups=["non-targetable", "vanity"]]
 collision_layer = 16
 collision_mask = 157
 mass = 0.2

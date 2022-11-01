@@ -92,6 +92,7 @@ __meta__ = {
 layer = 20
 
 [node name="UI" type="MarginContainer" parent="GUI/CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )

@@ -5,6 +5,7 @@ export (int) var walk_speed := 600
 export (int) var run_speed := 1000
 export (int) var jump_speed := -1800
 export (int) var gravity := 4000
+export(float, 0, 20) var fake_train_vel_k := 1
 
 var velocity := Vector2.ZERO
 var frame_jump := 0
@@ -30,8 +31,11 @@ var invincible: bool = false
 var Hit_Damage_Indicator = preload("res://src/UI/Hit_Damage.tscn")
 
 # When the character dies, we fade the UI
-enum STATES {ALIVE, DEAD}
+enum STATES {ALIVE, DEAD, DISABLED}
 var state = STATES.ALIVE
+
+var aiming := false
+var inside := false
 
 
 
@@ -39,39 +43,36 @@ func _ready():
 	health = max_health
 	emit_signal("max_health_changed", max_health)
 	emit_signal("health_changed", health)
-	print("Player ready")
 
 
 # Movement
 func _physics_process(delta):
 	# Movement code
-	input_dir.x = Input.get_axis("move_left", "move_right")
-	input_dir.y = Input.get_axis("move_down","move_up")
-	input_dir.z = Input.get_action_strength("move_jump")
-	horizontal_movement()
+	if state == STATES.ALIVE:
+		input_dir.x = Input.get_axis("move_left", "move_right")
+		input_dir.y = Input.get_axis("move_down","move_up")
+		input_dir.z = Input.get_action_strength("move_jump")
+		movement(delta)
+		
+		
 	
+	
+
+
+func movement(delta:float):			# Non-controlls
 	velocity.y += gravity * delta - input_dir.y * 75			# Gravity
 	if not velocity.y > -30:									# If gaining height at around > -3 speed, increase lift, from jump
 		velocity.y -= input_dir.z * 16							# 20 is a bit arbituary, just felt right
 	
 	
 	# Various Input reactions
-	if Input.is_action_just_released("move_down") and not velocity.y > 0:
-		frame_jump = 20
-		velocity.y = 0
+	vertical_movement()
+	horizontal_movement()
 	
-	if Input.is_action_just_released("move_jump"):
-		frame_jump = 20 							# 20 is an arbituary large number. It just signifies that the "jump" part has ended
 	
-	if Input.is_action_pressed("move_jump"):
-		if frame_jump < 3:
-			velocity.y = jump_speed * 0.5 			# times 0.5 to make the inputed jump_speed not stray too much, since it gets applied thru 3 frames. might be redundant
-			velocity.x -= -60 * input_dir.x 		# Boosts the player in the inputed direction, left or right, when jumping. -60 is the strength
-			frame_jump += 1
-	
-	if .is_on_floor(): # Reset jump
-		frame_jump = 0
-	
+	# Fake train velocity
+	if not inside:
+		velocity.x -= Train_manager.velocity * fake_train_vel_k
 	
 	# Queued velocity, AKA KNOCKBACK & RECOIL
 	velocity += velocity_queued						# Knockback
@@ -87,7 +88,25 @@ func _physics_process(delta):
 
 
 
-func horizontal_movement(): # Includes friction calculation
+func vertical_movement():			# Up_down controlls
+	if Input.is_action_just_released("move_down") and not velocity.y > 0:
+		frame_jump = 20
+		velocity.y = 0
+	
+	if Input.is_action_just_released("move_jump"):
+		frame_jump = 20 							# 20 is an arbituary large number. It just signifies that the "jump" part has ended
+	
+	if Input.is_action_pressed("move_jump"):
+		if frame_jump < 3:
+			velocity.y = jump_speed * 0.5 			# times 0.5 to make the inputed jump_speed not stray too much, since it gets applied thru 3 frames. might be redundant
+			velocity.x -= -60 * input_dir.x 		# Boosts the player in the inputed direction, left or right, when jumping. -60 is the strength
+			frame_jump += 1
+	
+	if .is_on_floor(): # Reset jump
+		frame_jump = 0
+
+
+func horizontal_movement(): 		# Left-Right controlls
 	if input_dir.x != 0:
 		var speed:int
 		if Input.is_action_pressed("run"):
@@ -98,10 +117,13 @@ func horizontal_movement(): # Includes friction calculation
 		
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
+		
+
 
 # Movement and collision is executed here, every frame, not every physics frame
 func _process(delta):
 	velocity = .move_and_slide(velocity, Vector2.UP)
+
 
 
 

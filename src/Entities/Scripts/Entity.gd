@@ -6,6 +6,7 @@ class_name Entity
 var hp: int = 100
 export(int) var hp_max: int = 100
 var queued_knockback:Vector2 = Vector2.ZERO
+var inside:bool = false
 
 func _ready():
 	hp = hp_max

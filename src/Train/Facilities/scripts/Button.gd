@@ -22,24 +22,24 @@ func _ready():
 func interact(var player): # override
 	emit_signal("interacted", player)
 	if not pressed:
-		emit_signal("button_just_pressed")
 		pressed = true
+		emit_signal("button_just_pressed")
 		$ButtonBase/ButtonRect.color = COLORS[1]
-		print("Button just pressed!")
+		print("Button just pressed! ")
 	
-	#This happens if it was toggled on, already
+	# Toggled interaction
 	else: 
-		emit_signal("button_just_released")
 		pressed = false
+		emit_signal("button_just_released")
 		$ButtonBase/ButtonRect.color = COLORS[0]
-		print("Button just released!")
+		print("Button just released! ")
 
 func interact_end(var player):
 	emit_signal("interacted_end")
 	
 	if not toggle:
-		emit_signal("button_just_released")
 		pressed = false
+		emit_signal("button_just_released")
 		$ButtonBase/ButtonRect.color = COLORS[0]
 		print("Button just released!")
 	
