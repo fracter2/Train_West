@@ -34,6 +34,11 @@ func _on_Quit_button_down():		# Main Menu
 
 func _on_Quit_Game_button_down():
 	get_tree().quit()
+
+
+func _on_Fullscreen_button_down():
+	OS.window_fullscreen = not OS.window_fullscreen
+	
 "
 
 [sub_resource type="DynamicFont" id=1]
@@ -54,12 +59,14 @@ rect_min_size = Vector2( 250, 0 )
 color = Color( 0.219608, 0.219608, 0.219608, 0.686275 )
 
 [node name="ColorRect2" type="ColorRect" parent="Pause_Menu_Layer/Panel"]
+visible = false
 anchor_top = 0.42
 anchor_right = 0.22
 anchor_bottom = 1.0
 color = Color( 0.14902, 0.14902, 0.14902, 0.686275 )
 
 [node name="ColorRect" type="ColorRect" parent="Pause_Menu_Layer/Panel"]
+visible = false
 anchor_top = 0.45
 anchor_right = 0.2
 anchor_bottom = 1.0
@@ -74,27 +81,27 @@ margin_right = -40.0
 margin_bottom = -40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu_Layer/Panel/MarginContainer"]
-margin_right = 120.0
+margin_right = 944.0
 margin_bottom = 520.0
-size_flags_horizontal = 2
+size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer"]
+[node name="ButtonCollumn" type="VBoxContainer" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer"]
 margin_top = 284.0
-margin_right = 120.0
+margin_right = 820.0
 margin_bottom = 520.0
 size_flags_horizontal = 3
 size_flags_vertical = 10
 
-[node name="Button_Row" type="VBoxContainer" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
-margin_right = 120.0
+[node name="Button_Row" type="VBoxContainer" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn"]
+margin_right = 820.0
 margin_bottom = 236.0
 size_flags_horizontal = 3
 size_flags_vertical = 8
 custom_constants/separation = 9
 
-[node name="Resume" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Button_Row"]
+[node name="Resume" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn/Button_Row"]
 unique_name_in_owner = true
-margin_right = 120.0
+margin_right = 820.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 focus_neighbour_top = NodePath("../Quit_Game")
@@ -108,10 +115,10 @@ text = "Resume"
 flat = true
 align = 0
 
-[node name="Options" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Button_Row"]
+[node name="Options" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn/Button_Row"]
 unique_name_in_owner = true
 margin_top = 49.0
-margin_right = 120.0
+margin_right = 820.0
 margin_bottom = 89.0
 rect_min_size = Vector2( 120, 40 )
 focus_neighbour_top = NodePath("../Resume")
@@ -125,10 +132,10 @@ text = "Options"
 flat = true
 align = 0
 
-[node name="Credits" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Button_Row"]
+[node name="Credits" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn/Button_Row"]
 unique_name_in_owner = true
 margin_top = 98.0
-margin_right = 120.0
+margin_right = 820.0
 margin_bottom = 138.0
 rect_min_size = Vector2( 120, 40 )
 focus_neighbour_top = NodePath("../Options")
@@ -142,10 +149,10 @@ text = "Credits"
 flat = true
 align = 0
 
-[node name="Quit" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Button_Row"]
+[node name="Quit" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn/Button_Row"]
 unique_name_in_owner = true
 margin_top = 147.0
-margin_right = 120.0
+margin_right = 820.0
 margin_bottom = 187.0
 rect_min_size = Vector2( 120, 40 )
 focus_neighbour_top = NodePath("../Credits")
@@ -159,10 +166,10 @@ text = "Main Menu"
 flat = true
 align = 0
 
-[node name="Quit_Game" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Button_Row"]
+[node name="Quit_Game" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn/Button_Row"]
 unique_name_in_owner = true
 margin_top = 196.0
-margin_right = 120.0
+margin_right = 820.0
 margin_bottom = 236.0
 rect_min_size = Vector2( 120, 40 )
 focus_neighbour_top = NodePath("../Quit")
@@ -176,8 +183,35 @@ text = "Quit Game"
 flat = true
 align = 0
 
-[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Button_Row/Resume" to="." method="_on_Start_button_down"]
-[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Button_Row/Options" to="." method="_on_Options_button_down"]
-[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Button_Row/Credits" to="." method="_on_Credits_button_down"]
-[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Button_Row/Quit" to="." method="_on_Quit_button_down"]
-[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Button_Row/Quit_Game" to="." method="_on_Quit_Game_button_down"]
+[node name="Button_Row_2" type="VBoxContainer" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer"]
+margin_left = 824.0
+margin_right = 944.0
+margin_bottom = 520.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/Button_Row_2"]
+margin_top = 480.0
+margin_right = 120.0
+margin_bottom = 520.0
+size_flags_vertical = 10
+
+[node name="Fullscreen" type="Button" parent="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/Button_Row_2/VBoxContainer"]
+margin_right = 120.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+focus_neighbour_top = NodePath("../Quit_Game")
+focus_neighbour_bottom = NodePath("../Options")
+focus_next = NodePath("../Quit_Game")
+focus_previous = NodePath("../Options")
+size_flags_horizontal = 3
+custom_constants/hseparation = 7
+custom_fonts/font = SubResource( 1 )
+text = "Fullscreen"
+flat = true
+align = 2
+
+[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn/Button_Row/Resume" to="." method="_on_Start_button_down"]
+[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn/Button_Row/Options" to="." method="_on_Options_button_down"]
+[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn/Button_Row/Credits" to="." method="_on_Credits_button_down"]
+[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn/Button_Row/Quit" to="." method="_on_Quit_button_down"]
+[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/ButtonCollumn/Button_Row/Quit_Game" to="." method="_on_Quit_Game_button_down"]
+[connection signal="button_down" from="Pause_Menu_Layer/Panel/MarginContainer/HBoxContainer/Button_Row_2/VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_button_down"]
