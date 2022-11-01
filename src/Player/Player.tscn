@@ -106,17 +106,22 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 
 [node name="EnergyBar" parent="GUI/CanvasLayer/UI/Bars" instance=ExtResource( 9 )]
+self_modulate = Color( 1, 1, 1, 0.729412 )
 margin_bottom = 40.0
 
 [node name="Backround" parent="GUI/CanvasLayer/UI/Bars/EnergyBar" index="0"]
 margin_bottom = 40.0
 
 [node name="Gauge" parent="GUI/CanvasLayer/UI/Bars/EnergyBar" index="1"]
+self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_bottom = 40.0
 
 [node name="Lifebar" parent="GUI/CanvasLayer/UI/Bars" instance=ExtResource( 8 )]
 margin_top = 44.0
 margin_bottom = 97.0
+
+[node name="Gauge" parent="GUI/CanvasLayer/UI/Bars/Lifebar" index="1"]
+self_modulate = Color( 1, 1, 1, 0.862745 )
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 0.3
@@ -137,3 +142,4 @@ __meta__ = {
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
 
 [editable path="GUI/CanvasLayer/UI/Bars/EnergyBar"]
+[editable path="GUI/CanvasLayer/UI/Bars/Lifebar"]
