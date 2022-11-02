@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/Wheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Segment_1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Bridge.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Door.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Train/wagon_blocks/Force_Override.tscn" type="PackedScene" id=5]
 
 [node name="Wagon_Basic" type="Node2D"]
 
@@ -178,3 +179,6 @@ position = Vector2( 608, 0 )
 
 [node name="Wagon_Bridge" parent="." instance=ExtResource( 3 )]
 position = Vector2( 760, -8 )
+
+[node name="Force_Override" parent="." instance=ExtResource( 5 )]
+visible = false

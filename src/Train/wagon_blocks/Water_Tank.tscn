@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Train/wagon_blocks/scripts/Water_Tank.gd" type="Script" id=1]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "Flash_node"
+script/source = "extends Polygon2D
+
+
+func _process(delta):
+	modulate.a = clamp(modulate.a - get_parent().get_parent().flash_recovery_rate * delta, 0, 1) 
+	
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 528, 144 )
+
+[node name="Water_Tank" type="StaticBody2D"]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource( 1 )
+hp_max = 2000
+color_offset = 500
+
+[node name="PolygonBase" type="Polygon2D" parent="."]
+position = Vector2( 0, -40 )
+color = Color( 0.635294, 0.627451, 0.627451, 1 )
+polygon = PoolVector2Array( -544, -320, -480, -384, 480, -384, 544, -320, 544, -128, 480, -64, -480, -64, -544, -128 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="PolygonBase"]
+color = Color( 0.635294, 0.627451, 0.627451, 1 )
+polygon = PoolVector2Array( -520, -296, -456, -360, 456, -360, 520, -296, 520, -152, 456, -88, -456, -88, -520, -152 )
+
+[node name="PolygonFlash" type="Polygon2D" parent="PolygonBase"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -216 )
+polygon = PoolVector2Array( -480, -168, 480, -168, 544, -104, 544, 88, 480, 152, -480, 152, -544, 88, -544, -104 )
+script = SubResource( 1 )
+
+[node name="CollisionBase" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -544, -360, -480, -424, 480, -424, 544, -360, 544, -168, 480, -104, -480, -104, -544, -168 )
+
+[node name="RepairArea" type="Area2D" parent="." groups=["Repairable", "Wagon"]]
+position = Vector2( 0, -256 )
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RepairArea"]
+position = Vector2( 0, -8 )
+shape = SubResource( 2 )

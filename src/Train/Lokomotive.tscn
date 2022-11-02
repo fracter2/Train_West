@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Segment_1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/wagon_blocks/Wheel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Bridge.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Train/wagon_blocks/Force_Override.tscn" type="PackedScene" id=4]
 
 [node name="Lokomotive" type="Node2D"]
 
@@ -164,3 +165,7 @@ rotation = 1.5708
 
 [node name="Wagon_Bridge" parent="." instance=ExtResource( 3 )]
 position = Vector2( -744, -8 )
+
+[node name="Force_Override" parent="." instance=ExtResource( 4 )]
+position = Vector2( -384, -176 )
+scale = Vector2( 0.46, 1.1 )

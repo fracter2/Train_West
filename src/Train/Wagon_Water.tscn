@@ -1,34 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/Wheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Segment_1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Bridge.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Train/wagon_blocks/Water_Tank.tscn" type="PackedScene" id=4]
 
 [node name="Wagon_Water" type="Node2D"]
 
-[node name="Background_Inside" type="Polygon2D" parent="."]
+[node name="Support" type="Polygon2D" parent="."]
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
-polygon = PoolVector2Array( -640, -320, 640, -320, 640, 0, -640, 0 )
+polygon = PoolVector2Array( -384, -192, -448, -192, -464, -256, -448, -320, 448, -320, 464, -256, 440, -192, 384, -192, 448, 0, 384, 0, 320, -176, 256, 0, 192, 0, 256, -184, 88, -184, 168, -8, 104, -8, 24, -184, -40, -184, -120, -8, -184, -8, -104, -184, -256, -184, -192, 0, -256, 0, -320, -176, -384, 0, -448, 0 )
 
-[node name="Window" type="Polygon2D" parent="Background_Inside"]
-position = Vector2( -480, -224 )
-color = Color( 0.592157, 0.717647, 0.701961, 1 )
-polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
-
-[node name="Window2" type="Polygon2D" parent="Background_Inside"]
-position = Vector2( -176, -224 )
-color = Color( 0.592157, 0.717647, 0.701961, 1 )
-polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
-
-[node name="Window3" type="Polygon2D" parent="Background_Inside"]
-position = Vector2( 176, -224 )
-color = Color( 0.592157, 0.717647, 0.701961, 1 )
-polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
-
-[node name="Window4" type="Polygon2D" parent="Background_Inside"]
-position = Vector2( 480, -224 )
-color = Color( 0.592157, 0.717647, 0.701961, 1 )
-polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
+[node name="Water_Tank" parent="." instance=ExtResource( 4 )]
 
 [node name="Link" type="Polygon2D" parent="."]
 position = Vector2( -736, 42 )
@@ -89,22 +72,6 @@ position = Vector2( 364, 82 )
 [node name="Wheel8" parent="Base" instance=ExtResource( 1 )]
 position = Vector2( 492, 82 )
 
-[node name="Wall_Left" type="Polygon2D" parent="."]
-position = Vector2( -640, -256 )
-color = Color( 0.431373, 0.431373, 0.431373, 1 )
-polygon = PoolVector2Array( -16, -80, -16, 80, 16, 80, 16, -80 )
-
-[node name="Wagon_Segment" parent="Wall_Left" instance=ExtResource( 2 )]
-rotation = 1.5708
-
-[node name="Wall_Right" type="Polygon2D" parent="."]
-position = Vector2( 640, -256 )
-color = Color( 0.431373, 0.431373, 0.431373, 1 )
-polygon = PoolVector2Array( -16, -80, -16, 80, 16, 80, 16, -80 )
-
-[node name="Wagon_Segment" parent="Wall_Right" instance=ExtResource( 2 )]
-rotation = 1.5708
-
 [node name="Floor" type="Polygon2D" parent="."]
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( -688, -16, -688, 16, 688, 16, 688, -16 )
@@ -133,39 +100,6 @@ position = Vector2( 304, 0 )
 position = Vector2( 456, 0 )
 
 [node name="Wagon_Segment4" parent="Floor" instance=ExtResource( 2 )]
-position = Vector2( 608, 0 )
-
-[node name="Roof" type="Polygon2D" parent="."]
-position = Vector2( 0, -320 )
-color = Color( 0.431373, 0.431373, 0.431373, 1 )
-polygon = PoolVector2Array( -688, -16, -704, 16, 704, 16, 688, -16 )
-
-[node name="Wagon_Segment-4" parent="Roof" instance=ExtResource( 2 )]
-position = Vector2( -608, 0 )
-
-[node name="Wagon_Segment-3" parent="Roof" instance=ExtResource( 2 )]
-position = Vector2( -456, 0 )
-
-[node name="Wagon_Segment-2" parent="Roof" instance=ExtResource( 2 )]
-position = Vector2( -304, 0 )
-
-[node name="Wagon_Segment-1" parent="Roof" instance=ExtResource( 2 )]
-position = Vector2( -152, 0 )
-
-[node name="Wagon_Segment" parent="Roof" instance=ExtResource( 2 )]
-
-[node name="Wagon_Segment1" parent="Roof" instance=ExtResource( 2 )]
-
-[node name="Wagon_Segment2" parent="Roof" instance=ExtResource( 2 )]
-position = Vector2( 152, 0 )
-
-[node name="Wagon_Segment3" parent="Roof" instance=ExtResource( 2 )]
-position = Vector2( 304, 0 )
-
-[node name="Wagon_Segment4" parent="Roof" instance=ExtResource( 2 )]
-position = Vector2( 456, 0 )
-
-[node name="Wagon_Segment5" parent="Roof" instance=ExtResource( 2 )]
 position = Vector2( 608, 0 )
 
 [node name="Wagon_Bridge" parent="." instance=ExtResource( 3 )]
