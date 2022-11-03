@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Train/wagon_blocks/scripts/Engine.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.329114, 0.651899, 1 )
+colors = PoolColorArray( 0.463867, 0.463867, 0.463867, 1, 0.693298, 0.693298, 0.693298, 1, 0.716511, 0.716511, 0.716511, 1, 0.916992, 0.916992, 0.916992, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Gradient" id=4]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.417722, 0.816456, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.926233, 0.926233, 0.926233, 0.947309, 0.750466, 0.750466, 0.750466, 0.821761, 0.368627, 0.368627, 0.368627, 0.54902 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0.291411 ), 0.0, 3.20484, 0, 0, Vector2( 0.444286, 0.769939 ), 0.245399, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 2
+emission_box_extents = Vector3( 25, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( -60, -120, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 30.93
+damping_random = 0.14
+scale = 200.0
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+color_initial_ramp = SubResource( 3 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 372, 112 )
+
+[node name="Engine" type="StaticBody2D"]
+position = Vector2( 304, -160 )
+script = ExtResource( 1 )
+hp_max = 3000
+color_offset = 1000
+
+[node name="PolygonBase" type="Polygon2D" parent="."]
+color = Color( 0.231373, 0.231373, 0.231373, 1 )
+polygon = PoolVector2Array( -376, 152, -376, 136, -352, 128, -352, -24, -376, -32, -376, -64, 120, -64, 120, -136, 96, -176, 96, -200, 232, -200, 232, -176, 208, -136, 208, -64, 368, -64, 368, -56, 376, -56, 376, -32, 368, -32, 368, 112, 376, 112, 376, 152 )
+
+[node name="Particles2D" type="Particles2D" parent="PolygonBase"]
+show_behind_parent = true
+position = Vector2( 164, -176 )
+amount = 16
+lifetime = 8.0
+randomness = 0.3
+process_material = SubResource( 8 )
+
+[node name="RowBot" type="Polygon2D" parent="."]
+color = Color( 0.552941, 0.552941, 0.552941, 1 )
+polygon = PoolVector2Array( -376, 144, 352, 144, 352, 160, 384, 160, 384, 176, -376, 176 )
+
+[node name="Polygon2D" type="Polygon2D" parent="RowBot"]
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -376, 152, 336, 152, 336, 168, -376, 168 )
+
+[node name="RowTop" type="Polygon2D" parent="."]
+position = Vector2( 0, 104 )
+scale = Vector2( 1, -1 )
+color = Color( 0.552941, 0.552941, 0.552941, 1 )
+polygon = PoolVector2Array( -376, 144, 352, 144, 352, 160, 384, 160, 384, 176, -376, 176 )
+
+[node name="Polygon2D" type="Polygon2D" parent="RowTop"]
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -376, 152, 336, 152, 336, 168, -376, 168 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="RowTop"]
+color = Color( 0.337255, 0.337255, 0.337255, 1 )
+polygon = PoolVector2Array( 96, 168, 104, 176, 112, 176, 216, 176, 224, 176, 232, 168, 232, 144, 96, 144 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -4, 48 )
+shape = SubResource( 1 )
