@@ -27,7 +27,7 @@ extents = Vector2( 10600, 4000 )
 [node name="World" type="Node2D"]
 
 [node name="Lokomotive" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1248, -136 )
+position = Vector2( 1251, -136 )
 
 [node name="Wagon_Fuel" parent="Lokomotive" instance=ExtResource( 4 )]
 position = Vector2( -1203, 0 )
@@ -78,17 +78,15 @@ entity_path = "res://src/Entities/Enemy_Crawler.tscn"
 [node name="Entities" type="YSort" parent="."]
 position = Vector2( -24, -123 )
 
-[node name="Enemy_Runner" parent="Entities" instance=ExtResource( 16 )]
-position = Vector2( -5760, -525 )
-
 [node name="Enemy_Crawler" parent="Entities" instance=ExtResource( 15 )]
-position = Vector2( -2504, -285 )
+position = Vector2( -2503, -293 )
 
 [node name="Enemy_Runner" parent="Entities" instance=ExtResource( 16 )]
-position = Vector2( -4216, -66 )
+position = Vector2( -4335, -91 )
 
 [node name="Enemy_Flying" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 200, -725 )
+position = Vector2( 831, -481 )
+scale = Vector2( 0.92261, 0.989712 )
 
 [node name="Test" type="YSort" parent="Entities"]
 
@@ -141,6 +139,7 @@ follow_viewport_enable = true
 follow_viewport_scale = 0.5
 
 [node name="Sprite" type="Sprite" parent="Background"]
+position = Vector2( -25, -127 )
 scale = Vector2( 50, 50 )
 texture = ExtResource( 14 )
 

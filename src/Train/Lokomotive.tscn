@@ -116,7 +116,7 @@ position = Vector2( -456, 0 )
 position = Vector2( -608, 0 )
 
 [node name="Wagon_Segment10" parent="Floor" instance=ExtResource( 1 )]
-position = Vector2( -712, -16 )
+position = Vector2( -738, -16 )
 
 [node name="Wagon_Segment8" parent="Floor" instance=ExtResource( 1 )]
 position = Vector2( 456, 0 )
