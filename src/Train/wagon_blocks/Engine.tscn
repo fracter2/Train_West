@@ -27,10 +27,13 @@ curve = SubResource( 6 )
 emission_shape = 2
 emission_box_extents = Vector3( 25, 1, 1 )
 flag_disable_z = true
-gravity = Vector3( -60, -120, 0 )
+direction = Vector3( 0, -1, 0 )
+spread = 11.6
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 61.86
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-damping = 30.93
+damping = 13.33
 damping_random = 0.14
 scale = 200.0
 scale_curve = SubResource( 7 )
@@ -56,6 +59,7 @@ position = Vector2( 164, -176 )
 amount = 16
 lifetime = 8.0
 randomness = 0.3
+visibility_rect = Rect2( -3000, -4000, 6000, 5000 )
 process_material = SubResource( 8 )
 
 [node name="RowBot" type="Polygon2D" parent="."]
