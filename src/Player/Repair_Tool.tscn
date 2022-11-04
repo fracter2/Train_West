@@ -38,6 +38,7 @@ resource_recharge = null
 [node name="Repair_Box" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 272
+priority = 3.0
 gravity_vec = Vector2( 0, -1 )
 gravity = 1.0
 
