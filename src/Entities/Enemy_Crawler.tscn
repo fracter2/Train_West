@@ -22,10 +22,13 @@ position = Vector2( 0, 4 )
 polygon = PoolVector2Array( -20, 27, -9, 36, 9, 36, 20, 27, 24, 14, 24, -22, 16, -36, -16, -36, -24, -21, -24, 14 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+light_mask = 512
 color = Color( 0.0509804, 0.313726, 0.0784314, 1 )
 polygon = PoolVector2Array( -24, 18, -24, -18, -23, -24, -21, -30, -17, -35, -12, -39, -6, -41, 0, -42, 8, -41, 12, -39, 17, -35, 21, -30, 23, -24, 24, -18, 24, 18, 23, 24, 21, 30, 17, 35, 12, 39, 6, 41, 0, 42, -6, 41, -12, 39, -17, 35, -21, 30, -23, 24 )
 
 [node name="VisionBox" type="Area2D" parent="."]
+visible = false
 modulate = Color( 0.643137, 0.141176, 0.141176, 1 )
 self_modulate = Color( 0.847059, 0.0901961, 0.0901961, 1 )
 position = Vector2( -1.14441e-05, 0 )
@@ -34,7 +37,6 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionBox"]
-visible = false
 modulate = Color( 0.635294, 0.156863, 0.156863, 1 )
 position = Vector2( 8, 0 )
 rotation = 3.14159

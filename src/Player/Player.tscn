@@ -20,7 +20,7 @@ radius = 96.0
 height = 112.0
 
 [sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0.553846, 0.784615 )
+offsets = PoolRealArray( 0.573864, 0.784615 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture2D" id=5]
@@ -89,6 +89,11 @@ script = ExtResource( 11 )
 force = Vector2( -2500, 0 )
 
 [node name="Repair_Tool" parent="." instance=ExtResource( 6 )]
+repair_ammount = 20
+repair_cooldown_frames = 5
+recoil_force = Vector2( -100, 0 )
+resource_max = 100
+resource_recharge = 7.0
 
 [node name="GUI" type="Control" parent="."]
 anchor_right = 1.0
@@ -145,9 +150,9 @@ __meta__ = {
 "_editor_description_": "Gives a few debug tool things. Like TELEPORTATION, and eventually other things maybe"
 }
 
-[node name="Experimentative Visuals" type="Light2D" parent="."]
+[node name="Vision_Field" type="Light2D" parent="."]
 light_mask = 512
-scale = Vector2( 30, 30 )
+scale = Vector2( 80, 80 )
 texture = SubResource( 5 )
 mode = 3
 range_item_cull_mask = 512

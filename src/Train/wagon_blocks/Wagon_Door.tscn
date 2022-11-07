@@ -16,7 +16,7 @@ func _process(delta):
 "
 
 [sub_resource type="OccluderPolygon2D" id=6]
-polygon = PoolVector2Array( 16, -32, -12, -32, -12, 80, 16, 80 )
+polygon = PoolVector2Array( 16, -16, -12, -16, -12, 80, 16, 80 )
 
 [sub_resource type="OccluderPolygon2D" id=7]
 polygon = PoolVector2Array( 16, -32, -12, -32, -12, -16, 16, -16 )
