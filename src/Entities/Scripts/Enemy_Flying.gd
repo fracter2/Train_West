@@ -10,6 +10,7 @@ var old_state = 0
 var targetPos:Vector2
 
 export(int) var attack_dmg := 20
+export(int) var attack_Wagon := 100
 
 func _on_Area2D_body_entered(body):
 	player = body
@@ -83,7 +84,7 @@ func attack(var body):
 		return
 	if body.is_in_group("Player"):
 		return
-	body.take_damage(attack_dmg)
+	body.take_damage(attack_Wagon)
 
 
 #The area for destorying walls
