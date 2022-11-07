@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Player/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/scripts/Push Area.gd" type="Script" id=2]
@@ -20,29 +20,14 @@ radius = 96.0
 height = 112.0
 
 [sub_resource type="Gradient" id=4]
-interpolation_mode = 1
-offsets = PoolRealArray( 0, 0.425641, 0.548718, 0.723077 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.490196, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0.553846, 0.784615 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture2D" id=5]
 gradient = SubResource( 4 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
-fill_to = Vector2( 1, 1 )
-
-[sub_resource type="CanvasItemMaterial" id=8]
-blend_mode = 3
-
-[sub_resource type="Gradient" id=6]
-interpolation_mode = 1
-offsets = PoolRealArray( 0, 0.425641, 0.553846, 0.723077 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0.554688, 0.554688, 0.554688, 0.490196, 0.410156, 0.410156, 0.410156, 0 )
-
-[sub_resource type="GradientTexture2D" id=7]
-gradient = SubResource( 6 )
-fill = 1
-fill_from = Vector2( 0.5, 0.5 )
-fill_to = Vector2( 1, 1 )
+fill_to = Vector2( 1, 0.5 )
 
 [node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
 position = Vector2( 8, 16 )
@@ -162,19 +147,12 @@ __meta__ = {
 
 [node name="Experimentative Visuals" type="Light2D" parent="."]
 light_mask = 512
-scale = Vector2( 20, 20 )
+scale = Vector2( 30, 30 )
 texture = SubResource( 5 )
 mode = 3
 range_item_cull_mask = 512
 shadow_enabled = true
 shadow_item_cull_mask = 512
-
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-light_mask = 513
-material = SubResource( 8 )
-scale = Vector2( 10, 10 )
-texture = SubResource( 7 )
 
 [connection signal="health_changed" from="." to="GUI" method="update_health"]
 [connection signal="max_health_changed" from="." to="GUI" method="update_max_health"]

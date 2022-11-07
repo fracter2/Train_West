@@ -216,7 +216,6 @@ script = ExtResource( 9 )
 shape = SubResource( 2 )
 one_way_collision_margin = 0.0
 
-
 [connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Runner" to="Spawners_and_misc/Spawner_Runner" method="spawn"]
 [connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Flyer" to="Spawners_and_misc/Spawner_Flyer" method="spawn"]
 [connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Crawler" to="Spawners_and_misc/Spawner_Crawler" method="spawn"]

@@ -15,13 +15,18 @@ func set_opened(var state:bool):
 	$PolygonBase.visible = not state
 	$PolygonBase2.visible = state
 	set_collision_layer_bit(7, not state)
-	print("door just ->" + String(state))
+	
+	#$LightOccluder1.light_mask = 1 + int(not state) * 512		# 512 is the value for layer 10
+	#$LightOccluder2.light_mask = 1 + int(not state) * 512
+	$LightOccluder1.visible = not state
+	$LightOccluder2.visible = not state
+	#print("door just ->" + String(state))
 
 
 func interact(var player):
 	emit_signal("interacted", player)
 	set_opened(not opened)
-	print("door interaction")
+	#print("door interaction")
 
 
 # The fancy darkening + flash effect

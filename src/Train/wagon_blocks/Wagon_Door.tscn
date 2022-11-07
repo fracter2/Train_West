@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/scripts/Wagon_Door.gd" type="Script" id=1]
 
@@ -14,6 +14,12 @@ func _process(delta):
 	modulate.a = clamp(modulate.a - get_parent().flash_recovery_rate * delta, 0, 1) 
 	
 "
+
+[sub_resource type="OccluderPolygon2D" id=6]
+polygon = PoolVector2Array( 16, -32, -12, -32, -12, 80, 16, 80 )
+
+[sub_resource type="OccluderPolygon2D" id=7]
+polygon = PoolVector2Array( 16, -32, -12, -32, -12, -16, 16, -16 )
 
 [node name="Wagon_Door" type="StaticBody2D" groups=["Repairable", "Wagon"]]
 collision_layer = 896
@@ -70,3 +76,14 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepairArea"]
 shape = SubResource( 1 )
+
+[node name="LightOccluder1" type="LightOccluder2D" parent="."]
+light_mask = 513
+occluder = SubResource( 6 )
+light_mask = 513
+
+[node name="LightOccluder2" type="LightOccluder2D" parent="."]
+light_mask = 513
+position = Vector2( 0, -48 )
+occluder = SubResource( 7 )
+light_mask = 513
