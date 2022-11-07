@@ -21,6 +21,10 @@ func _on_Area2D_body_exited(body):
 
 # Movement, and misc
 func _physics_process(delta):
+	# Knockback
+	velocity += queued_knockback
+	queued_knockback = Vector2.ZERO
+	# Rest of movement
 	if old_state == state:
 		targetPos = position + Vector2(1000,-1000)
 		old_state == state

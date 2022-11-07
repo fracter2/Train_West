@@ -26,12 +26,19 @@ func _physics_process(delta):
 		var tpos:Vector2 = position.direction_to(player.position)
 		if tpos.x < 0: tpos.x = -1
 		else: tpos.x = 1
-		velocity.x += tpos.x * (run_speed + queued_knockback.x) * delta * 3
+		velocity.x += tpos.x * run_speed * delta * 3		# The 3 is a magic variable
 		get_target()
 		
 	velocity.y += gravity * delta
+	
+	if queued_knockback.y < 0: queued_knockback.y *= -1
+	velocity += queued_knockback
+	queued_knockback = Vector2.ZERO
+	
 	velocity *= drag
 	# velocity = move_and_slide(velocity, Vector2.UP)
+	
+	queued_knockback = Vector2.ZERO
 	
 	attackBoxUpdate()
 

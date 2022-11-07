@@ -17,14 +17,14 @@ func take_damage(dmg:int, node):
 	hp -= dmg;
 	if hp < 0:
 		die()
-		
 	
+	queued_knockback += Vector2(0, node.knockback).rotated(node.get_angle_to(position))
+	print(queued_knockback)
+
 # This function is intented to maybe be overriden when creating new script
 func die():
 	queue_free()
 	
-func take_knockback(var knockback:Vector2):
-	queued_knockback += knockback
-	
+
 
 
