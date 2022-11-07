@@ -19,7 +19,6 @@ func take_damage(dmg:int, node):
 		die()
 	
 	queued_knockback += Vector2(0, node.knockback).rotated(node.get_angle_to(position))
-	print(queued_knockback)
 
 # This function is intented to maybe be overriden when creating new script
 func die():
