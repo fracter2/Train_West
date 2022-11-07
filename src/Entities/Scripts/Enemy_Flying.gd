@@ -84,7 +84,7 @@ func attack(var body):
 		return
 	if body.is_in_group("Player"):
 		return
-	body.take_damage(attack_Wagon)
+	body.take_damage(attack_Wagon, self)
 
 
 #The area for destorying walls
