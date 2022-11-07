@@ -1,6 +1,5 @@
 extends Entity
 
-
 export (int) var run_speed = 1000
 #export (int) var gravity = 3500
 var velocity = Vector2.ZERO
@@ -11,6 +10,7 @@ var old_state = 0
 var targetPos:Vector2
 
 export(int) var attack_dmg := 20
+export(int) var attack_Wagon := 100
 
 func _on_Area2D_body_entered(body):
 	player = body
@@ -43,13 +43,12 @@ func _physics_process(delta):
 		velocity.x += targetPosangel.x * run_speed * delta * 3
 		velocity.y += targetPosangel.y * run_speed * delta * 3
 	velocity *= 0.94
-	
 	attackBoxUpdate(delta)
 
 
 func _process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
-	
+
 
 # Updates the "Player" position, for chasing it
 func get_target():
@@ -60,6 +59,7 @@ func get_target():
 		if i.is_in_group("Player"):
 			player = i
 			return
+
 
 # This is the current solution for damaging the opponent
 func attackBoxUpdate(delta):
@@ -72,6 +72,21 @@ func attackBoxUpdate(delta):
 		state = 1
 		$Timer.start()
 
+
 func _on_Timer_timeout():
 	state = 0
 	old_state = state
+
+
+# This is for destorying walls
+func attack(var body):
+	if body.is_in_group("non-targetable"):
+		return
+	if body.is_in_group("Player"):
+		return
+	body.take_damage(attack_Wagon)
+
+
+#The area for destorying walls
+func _on_DestroyBox_body_entered(body):
+	attack(body)
