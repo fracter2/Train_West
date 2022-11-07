@@ -85,7 +85,7 @@ position = Vector2( -2503, -293 )
 position = Vector2( -4335, -91 )
 
 [node name="Enemy_Flying" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 682, -280 )
+position = Vector2( -3322, -778 )
 scale = Vector2( 0.92261, 0.989712 )
 
 [node name="Test" type="YSort" parent="Entities"]
