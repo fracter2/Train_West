@@ -88,7 +88,12 @@ position = Vector2( -2504, -285 )
 position = Vector2( -4216, -66 )
 
 [node name="Enemy_Flying" parent="Entities" instance=ExtResource( 3 )]
+<<<<<<< Updated upstream
 position = Vector2( 200, -725 )
+=======
+position = Vector2( -1728, -667 )
+scale = Vector2( 0.92261, 0.989712 )
+>>>>>>> Stashed changes
 
 [node name="Test" type="YSort" parent="Entities"]
 
