@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Train/wagon_blocks/scripts/Wagon_Segment_1.gd" type="Script" id=1]
+
+[sub_resource type="VisualShader" id=3]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx, async_visible;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Output:0
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -457.333, 194.667 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[sub_resource type="GDScript" id=5]
+resource_name = "Flash_node"
+script/source = "extends Polygon2D
+
+
+func _process(delta):
+	modulate.a = clamp(modulate.a - get_parent().flash_recovery_rate * delta, 0, 1) 
+	
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 80, 16 )
+
+[node name="Wagon_Bridge" type="StaticBody2D" groups=["Repairable", "Wagon"]]
+material = SubResource( 4 )
+collision_layer = 4096
+collision_mask = 0
+script = ExtResource( 1 )
+hp_max = 75
+revive_threshold = 0.2
+
+[node name="CollisionBase" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -80, 16, -80, 0, -56, -12, 56, -12, 80, 0, 80, 16 )
+
+[node name="PolygonBase" type="Polygon2D" parent="."]
+color = Color( 0.552941, 0.552941, 0.552941, 1 )
+polygon = PoolVector2Array( -56, -16, 56, -16, 80, -4, 80, 16, -80, 16, -80, -4 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="PolygonBase"]
+use_parent_material = true
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -56, -8, -72, 0, -72, 8, 72, 8, 72, 0, 56, -8 )
+
+[node name="PolygonFlash" type="Polygon2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+polygon = PoolVector2Array( -56, -16, 56, -16, 80, -4, 80, 16, -80, 16, -80, -4 )
+script = SubResource( 5 )
+
+[node name="RepairArea" type="Area2D" parent="." groups=["Repairable", "Wagon"]]
+visible = false
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RepairArea"]
+shape = SubResource( 2 )

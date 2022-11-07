@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Player/resources/Weapon_Firing_Particles.tres" type="Material" id=1]
+
+[node name="Particles1" type="Particles2D"]
+unique_name_in_owner = true
+emitting = false
+amount = 32
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.5
+explosiveness = 1.0
+local_coords = false
+draw_order = 1
+process_material = ExtResource( 1 )

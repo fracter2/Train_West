@@ -1,11 +1,16 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Player/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/scripts/Push Area.gd" type="Script" id=2]
-[ext_resource path="res://src/UI/GUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/Scripts/UI_ready.gd" type="Script" id=3]
 [ext_resource path="res://src/Player/Weapon_1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Player/scripts/Interaction_handler.gd" type="Script" id=5]
 [ext_resource path="res://src/Player/Repair_Tool.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Player/Player_Debug.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UI/UI components/Lifebar.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/UI/UI components/EnergyBar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/UI/Scripts/GUI.gd" type="Script" id=10]
+[ext_resource path="res://src/Player/scripts/Player_Camera.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 40, 60 )
@@ -14,10 +19,36 @@ extents = Vector2( 40, 60 )
 radius = 96.0
 height = 112.0
 
+[sub_resource type="Gradient" id=4]
+interpolation_mode = 1
+offsets = PoolRealArray( 0, 0.425641, 0.548718, 0.723077 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.490196, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=5]
+gradient = SubResource( 4 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 1, 1 )
+
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 3
+
+[sub_resource type="Gradient" id=6]
+interpolation_mode = 1
+offsets = PoolRealArray( 0, 0.425641, 0.553846, 0.723077 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0.554688, 0.554688, 0.554688, 0.490196, 0.410156, 0.410156, 0.410156, 0 )
+
+[sub_resource type="GradientTexture2D" id=7]
+gradient = SubResource( 6 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 1, 1 )
+
 [node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
 position = Vector2( 8, 16 )
 collision_layer = 2
-collision_mask = 129
+collision_mask = 4225
+collision/safe_margin = 0.1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -67,13 +98,56 @@ current = true
 zoom = Vector2( 2, 2 )
 smoothing_enabled = true
 editor_draw_drag_margin = true
+script = ExtResource( 11 )
 
 [node name="Weapon" parent="." instance=ExtResource( 4 )]
 force = Vector2( -2500, 0 )
 
 [node name="Repair_Tool" parent="." instance=ExtResource( 6 )]
 
-[node name="GUI" parent="." instance=ExtResource( 3 )]
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
+layer = 20
+
+[node name="UI" type="MarginContainer" parent="GUI/CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="GUI/CanvasLayer/UI"]
+
+[node name="Bars" type="VBoxContainer" parent="GUI/CanvasLayer/UI"]
+margin_top = 503.0
+margin_right = 500.0
+margin_bottom = 600.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="EnergyBar" parent="GUI/CanvasLayer/UI/Bars" instance=ExtResource( 9 )]
+self_modulate = Color( 1, 1, 1, 0.729412 )
+margin_bottom = 40.0
+
+[node name="Backround" parent="GUI/CanvasLayer/UI/Bars/EnergyBar" index="0"]
+margin_bottom = 40.0
+
+[node name="Gauge" parent="GUI/CanvasLayer/UI/Bars/EnergyBar" index="1"]
+self_modulate = Color( 1, 1, 1, 0.862745 )
+margin_bottom = 40.0
+
+[node name="Lifebar" parent="GUI/CanvasLayer/UI/Bars" instance=ExtResource( 8 )]
+margin_top = 44.0
+margin_bottom = 97.0
+
+[node name="Gauge" parent="GUI/CanvasLayer/UI/Bars/Lifebar" index="1"]
+self_modulate = Color( 1, 1, 1, 0.862745 )
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 0.3
@@ -81,9 +155,33 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="Debug_Node" parent="." instance=ExtResource( 7 )]
+__meta__ = {
+"_editor_description_": "Gives a few debug tool things. Like TELEPORTATION, and eventually other things maybe"
+}
+
+[node name="Experimentative Visuals" type="Light2D" parent="."]
+light_mask = 512
+scale = Vector2( 20, 20 )
+texture = SubResource( 5 )
+mode = 3
+range_item_cull_mask = 512
+shadow_enabled = true
+shadow_item_cull_mask = 512
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+light_mask = 513
+material = SubResource( 8 )
+scale = Vector2( 10, 10 )
+texture = SubResource( 7 )
+
 [connection signal="health_changed" from="." to="GUI" method="update_health"]
 [connection signal="max_health_changed" from="." to="GUI" method="update_max_health"]
 [connection signal="body_entered" from="Push Area" to="Push Area" method="_on_Push_Area_body_entered"]
 [connection signal="body_entered" from="Interaction Range" to="Interaction Range" method="_on_Interaction_Range_body_entered"]
 [connection signal="body_exited" from="Interaction Range" to="Interaction Range" method="_on_Interaction_Range_body_exited"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
+
+[editable path="GUI/CanvasLayer/UI/Bars/EnergyBar"]
+[editable path="GUI/CanvasLayer/UI/Bars/Lifebar"]

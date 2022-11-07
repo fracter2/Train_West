@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Train/wagon_blocks/scripts/Wagon_Door.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 80 )
+
+[sub_resource type="GDScript" id=5]
+resource_name = "Flash_node"
+script/source = "extends Polygon2D
+
+
+func _process(delta):
+	modulate.a = clamp(modulate.a - get_parent().flash_recovery_rate * delta, 0, 1) 
+	
+"
+
+[node name="Wagon_Door" type="StaticBody2D" groups=["Repairable", "Wagon"]]
+collision_layer = 896
+collision_mask = 0
+script = ExtResource( 1 )
+hp_max = 200
+
+[node name="CollisionBase" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="PolygonBase" type="Polygon2D" parent="."]
+scale = Vector2( 0.3, 1 )
+color = Color( 0.552941, 0.552941, 0.552941, 1 )
+polygon = PoolVector2Array( -40, -76, -26.6667, -80, 26.6667, -80, 40, -76, 40, 76, 26.6667, 80, -26.6667, 80, -40, 76 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="PolygonBase"]
+use_parent_material = true
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -16.6667, -72, -16.6667, 72, 16.6667, 72, 16.6667, -72 )
+
+[node name="Polygon2D" type="Polygon2D" parent="PolygonBase"]
+show_behind_parent = true
+position = Vector2( -7.62939e-06, 0 )
+scale = Vector2( 2, 1 )
+color = Color( 0.701961, 0.345098, 0.0862745, 1 )
+polygon = PoolVector2Array( 40, -8, -40, -8, -40, 8, 40, 8 )
+
+[node name="PolygonBase2" type="Polygon2D" parent="."]
+scale = Vector2( 0.3, 1 )
+color = Color( 0.552941, 0.552941, 0.552941, 1 )
+polygon = PoolVector2Array( -266.667, -80, 53.3333, -80, 53.3333, -64, -213.333, -64, -213.333, -32, 0, -32, 0, -64, 53.3333, -64, 53.3333, -32, 53.3333, 80, -266.667, 80 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="PolygonBase2"]
+use_parent_material = true
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -160, -16, -160, 64, 0, 64, 0, -16 )
+
+[node name="Polygon2D" type="Polygon2D" parent="PolygonBase2"]
+position = Vector2( -240, -8 )
+scale = Vector2( 2, 1 )
+color = Color( 0.701961, 0.345098, 0.0862745, 1 )
+polygon = PoolVector2Array( -13.3333, -8, -26.6667, -8, -26.6667, 8, 13.3333, 8, 13.3334, 0, 13.3334, -8 )
+
+[node name="PolygonFlash" type="Polygon2D" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+polygon = PoolVector2Array( -8, -80, 8, -80, 12, -76, 12, 76, 8, 80, -8, 80, -12, 76, -12, -76 )
+script = SubResource( 5 )
+
+[node name="RepairArea" type="Area2D" parent="." groups=["Repairable", "Wagon"]]
+visible = false
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RepairArea"]
+shape = SubResource( 1 )

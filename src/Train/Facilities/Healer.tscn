@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/Train/Facilities/scripts/Button.gd" type="Script" id=1]
+[ext_resource path="res://src/Train/Facilities/scripts/Healer.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -44,11 +44,11 @@ shape = SubResource( 1 )
 
 [node name="PolygonBase" type="Polygon2D" parent="."]
 color = Color( 0.552941, 0.552941, 0.552941, 1 )
-antialiased = true
 polygon = PoolVector2Array( -32, -40, -32, 40, 32, 40, 32, -40 )
 
 [node name="Polygon2D" type="Polygon2D" parent="PolygonBase"]
 color = Color( 0.4, 0.4, 0.4, 1 )
+antialiased = true
 polygon = PoolVector2Array( -27, -35, -27, 24, 0, 24, 0, -35 )
 
 [node name="Charges" type="YSort" parent="PolygonBase"]

@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Player/scripts/Weapon_1.gd" type="Script" id=1]
+[ext_resource path="res://src/Player/resources/Weapon_Firing_Particles.tres" type="Material" id=2]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "Destroy_After_Timer"
+script/source = "extends Particles2D
+
+
+func _ready():
+	get_child(0).start(lifetime)
+	#print(\"particles node instanced\")
+
+
+func _on_Destroy_Timer_timeout():
+	queue_free()
+	#print(\"particle node freed!\")
+"
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,6 +26,24 @@ process_mode = 0
 wait_time = 0.2
 one_shot = true
 
+[node name="Particles1" type="Particles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 32
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.5
+explosiveness = 1.0
+local_coords = false
+draw_order = 1
+process_material = ExtResource( 2 )
+script = SubResource( 1 )
+
+[node name="Destroy_Timer" type="Timer" parent="Particles1"]
+one_shot = true
+
 [node name="Firing Point" type="Position2D" parent="."]
+unique_name_in_owner = true
 
 [connection signal="timeout" from="Rechamber_Timer" to="." method="_on_Rechamber_Timer_timeout"]
+[connection signal="timeout" from="Particles1/Destroy_Timer" to="Particles1" method="_on_Destroy_Timer_timeout"]

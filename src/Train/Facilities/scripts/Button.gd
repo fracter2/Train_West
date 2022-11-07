@@ -1,44 +1,59 @@
+class_name Facility_Button
 extends Facility
 
-export var heal_ammount:int = 20
-var heal_charges_max:int = 3
-var heal_charges:int = 3
+export var toggle:bool = false
+var pressed:bool = false
 
-export var recharge_time:float = 10
+#export var mouse_input:bool = false #Now Redundant
+export(Color) var color_DEFAULT:Color = Color.lime
+export(Color) var color_PRESSING:Color = Color.limegreen
+export(Color) var color_TOGGLED:Color = Color.gold
+export(Color) var color_DISABLED:Color = Color.crimson# This one might be redundant
 
-export var mouse_input:bool = false
+onready var COLORS = {0:color_DEFAULT, 1:color_PRESSING, 2:color_TOGGLED, 3:color_DISABLED}
 
+signal button_just_pressed()
+signal button_just_released()
+
+func _ready():
+	$ButtonBase/ButtonRect.color = color_DEFAULT
 
 # Setup secondary interaction from playter on release / out of range
 func interact(var player): # override
 	emit_signal("interacted", player)
-	if heal_charges == 0: return
+	if not pressed:
+		pressed = true
+		emit_signal("button_just_pressed")
+		$ButtonBase/ButtonRect.color = COLORS[1]
+		print("Button just pressed! ")
 	
-	player.heal(heal_ammount)
-	update_charges(-1)
+	# Toggled interaction
+	else: 
+		pressed = false
+		emit_signal("button_just_released")
+		$ButtonBase/ButtonRect.color = COLORS[0]
+		print("Button just released! ")
+
+func interact_end(var player):
+	emit_signal("interacted_end")
 	
-	if $Recharge_Timer.is_stopped():
-		$Recharge_Timer.start(recharge_time)
+	if not toggle:
+		pressed = false
+		emit_signal("button_just_released")
+		$ButtonBase/ButtonRect.color = COLORS[0]
+		print("Button just released!")
+	
+	# Toggled interaction
+	elif pressed:
+		$ButtonBase/ButtonRect.color = COLORS[2]
+		print("Button just toggled!")
 
 
-func update_charges(count:int): # Count may only be 1, or -1
-	#update_charge_visiblity(heal_charges + clamp(count, 0, 1), count)
-	var on_off:bool = false
-	if count > 0: on_off = true
-	
-	# Can only accept 
-	var n = get_node("PolygonBase/Charges/Charge" + String(heal_charges + clamp(count,0,1)))
-	n.visible = on_off
-	# Clamped because, if its negative -> current one is turned off
-	# and if positive, above charge is turned on
-	
-	heal_charges = clamp(heal_charges + count, 0, heal_charges_max) # Dont really have to clamp
-	
 
-#func update_charge_visiblity(index:int, on_off:int):
-	
-
-func _on_Recharge_Timer_timeout():
-	update_charges(+1)
-	if not heal_charges == heal_charges_max:
-		$Recharge_Timer.start(recharge_time)
+func _on_Button_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.pressed:
+			print("button mouse event")
+			#interact()
+			#// Shit how do i pass on the player node?
+			#// Guess this will have to be done from the player

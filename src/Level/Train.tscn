@@ -1,30 +1,105 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/Wagon_Water.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Entities/Enemy_Flying.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Train/Wagon_Fuel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Entities/Enemy_Static_Hurter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Level/Map_Nodes/Map_Healer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Train/Lokomotive.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Train/Wagon_Production.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/Level/Player_Spawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Level/Map_Nodes/Player_Spawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Level/scripts/Out_of_bounds_Area.gd" type="Script" id=9]
 [ext_resource path="res://src/Train/Wagon_Residance.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Train/Wagon_Cafeteria.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Train/Facilities/Button.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/Level/Entity_Spawner.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Level/Map_Nodes/Entity_Spawner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Icons/icon.png" type="Texture" id=14]
 [ext_resource path="res://src/Entities/Enemy_Crawler.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/Entities/Enemy_Runner.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/Train/Facilities/Healer.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/Train/Facilities/Train_Lever_1.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/Train/wagon_blocks/Force_Override.tscn" type="PackedScene" id=19]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.140244, 0.652439, 0.841463, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.0873298, 0.0873298, 0.0873298, 1, 0.523784, 0.523784, 0.523784, 1, 0.86407, 0.86407, 0.86407, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ProceduralSky" id=6]
+sky_horizon_color = Color( 0.447059, 0.101961, 0.478431, 1 )
+
+[sub_resource type="Environment" id=3]
+background_mode = 4
+background_sky = SubResource( 6 )
+tonemap_mode = 2
+tonemap_exposure = 1.21
+auto_exposure_min_luma = 0.04
+auto_exposure_max_luma = 0.35
+dof_blur_near_distance = 15.42
+dof_blur_near_transition = 0.15
+dof_blur_near_quality = 2
+adjustment_enabled = true
+adjustment_color_correction = SubResource( 5 )
+
+[sub_resource type="GDScript" id=8]
+resource_name = "Ground"
+script/source = "extends StaticBody2D
+
+export var vel_linear_K:float = 40
+
+func _physics_process(delta):
+	constant_linear_velocity.x = -Train_manager.velocity * vel_linear_K
+"
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 40 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 10600, 4000 )
+extents = Vector2( 20000, 8000 )
 
 [node name="World" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+
+[node name="Background-2" type="CanvasLayer" parent="."]
+layer = -2
+follow_viewport_enable = true
+follow_viewport_scale = 0.4
+
+[node name="Polygon2D" type="Polygon2D" parent="Background-2"]
+position = Vector2( -208, 312 )
+color = Color( 0.501961, 0.443137, 0.203922, 1 )
+polygon = PoolVector2Array( -8128, -536, -7752, -904, -6464, -760, -5184, -928, -4728, -640, -4248, -840, -3528, -728, -2816, -760, -1936, -1232, -616, -1064, -144, -1192, 888, -992, 1840, -1072, 3176, -760, 4200, -880, 4864, -640, 5920, -904, 6728, -776, 9208, -1024, 10984, -784, 10992, 1576, -9976, 1440, -10168, -480, -9352, -872 )
+
+[node name="Background-1" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enable = true
+follow_viewport_scale = 0.7
+
+[node name="Sprite" type="Sprite" parent="Background-1"]
+visible = false
+scale = Vector2( 50, 50 )
+texture = ExtResource( 14 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Background-1"]
+position = Vector2( -208, 312 )
+color = Color( 0.631373, 0.537255, 0.156863, 1 )
+polygon = PoolVector2Array( -7936, -584, -7008, -760, -5592, -808, -4536, -464, -2688, -696, -1648, -1304, -648, -952, 312, -784, 1480, -968, 3272, -632, 5520, -784, 6656, -496, 9248, -896, 10984, -784, 10992, 1576, -10168, 1576, -10168, -480, -9072, -832 )
+
+[node name="Foreground3" type="CanvasLayer" parent="."]
+layer = 3
+visible = false
+follow_viewport_enable = true
+
+[node name="ColorRect" type="ColorRect" parent="Foreground3"]
+margin_left = -1088.0
+margin_top = -944.0
+margin_right = -88.0
+margin_bottom = 56.0
+color = Color( 0.529412, 0.176471, 0.176471, 0 )
 
 [node name="Lokomotive" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1251, -136 )
@@ -36,22 +111,25 @@ position = Vector2( -1203, 0 )
 position = Vector2( -2414, 0 )
 
 [node name="Button_Runner" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
-position = Vector2( -114, -440 )
+position = Vector2( 390, -160 )
 
 [node name="Button_Flyer" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
-position = Vector2( 206, -440 )
+position = Vector2( 454, -160 )
 
 [node name="Button_Crawler" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
-position = Vector2( -434, -440 )
+position = Vector2( 326, -160 )
 
-[node name="Button_Heal" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
-position = Vector2( 478, -120 )
+[node name="Force_Override" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 19 )]
 
 [node name="Wagon_Cafeteria" parent="Lokomotive" instance=ExtResource( 11 )]
 position = Vector2( -3934, 0 )
 
 [node name="Healer" parent="Lokomotive/Wagon_Cafeteria" instance=ExtResource( 17 )]
 position = Vector2( 1502, -144 )
+
+[node name="Button_Heal" parent="Lokomotive/Wagon_Cafeteria" instance=ExtResource( 12 )]
+position = Vector2( -47, -123 )
+toggle = true
 
 [node name="Wagon_Production" parent="Lokomotive" instance=ExtResource( 7 )]
 position = Vector2( -5454, 0 )
@@ -60,7 +138,10 @@ position = Vector2( -5454, 0 )
 position = Vector2( -6974, 0 )
 
 [node name="Spawner_Player" parent="Lokomotive" instance=ExtResource( 8 )]
-position = Vector2( -2414, -648 )
+position = Vector2( -361, -142 )
+
+[node name="Button" parent="Lokomotive" instance=ExtResource( 18 )]
+position = Vector2( -312, -18 )
 
 [node name="Spawners_and_misc" type="YSort" parent="."]
 
@@ -75,6 +156,8 @@ entity_path = "res://src/Entities/Enemy_Flying.tscn"
 position = Vector2( -1704, -408 )
 entity_path = "res://src/Entities/Enemy_Crawler.tscn"
 
+[node name="MapNode_Healer" parent="Spawners_and_misc" instance=ExtResource( 5 )]
+
 [node name="Entities" type="YSort" parent="."]
 position = Vector2( -24, -123 )
 
@@ -88,44 +171,6 @@ position = Vector2( -4335, -91 )
 position = Vector2( -3322, -778 )
 scale = Vector2( 0.92261, 0.989712 )
 
-[node name="Test" type="YSort" parent="Entities"]
-
-[node name="Static_Hurter2" parent="Entities/Test" instance=ExtResource( 5 )]
-position = Vector2( 1050, -84 )
-damage = -10
-
-[node name="Static_Hurter" parent="Entities/Test" instance=ExtResource( 5 )]
-position = Vector2( 672, -77 )
-
-[node name="Ground" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 0, 40 )
-shape = SubResource( 1 )
-
-[node name="Surface" type="Polygon2D" parent="Ground"]
-color = Color( 0.803922, 0.576471, 0.0823529, 1 )
-polygon = PoolVector2Array( -10000, 0, 10000, 0, 10000, 64, -10000, 64 )
-
-[node name="Surface2" type="Polygon2D" parent="Ground/Surface"]
-color = Color( 0.705882, 0.462745, 0.113725, 1 )
-polygon = PoolVector2Array( -10000, 56, 10000, 56, 10000, 500, -10000, 500 )
-
-[node name="Surface3" type="Polygon2D" parent="Ground/Surface"]
-position = Vector2( -6, 502 )
-color = Color( 0.243137, 0.243137, 0.243137, 1 )
-polygon = PoolVector2Array( -10000, 0, 10000, 0, 10000, 1000, -10000, 1000 )
-
-[node name="Out_of_bounds_Area" type="Area2D" parent="Ground"]
-visible = false
-collision_layer = 0
-collision_mask = 14
-script = ExtResource( 9 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Out_of_bounds_Area"]
-shape = SubResource( 2 )
-one_way_collision_margin = 0.0
-
 [node name="Players" type="YSort" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource( 1 )]
@@ -133,26 +178,47 @@ position = Vector2( 816, -248 )
 
 [node name="Projectiles" type="YSort" parent="."]
 
-[node name="Background" type="CanvasLayer" parent="."]
-layer = -1
-follow_viewport_enable = true
-follow_viewport_scale = 0.5
+[node name="Ground1" type="StaticBody2D" parent="."]
+scale = Vector2( 20, 1 )
+script = SubResource( 8 )
 
-[node name="Sprite" type="Sprite" parent="Background"]
-position = Vector2( -25, -127 )
-scale = Vector2( 50, 50 )
-texture = ExtResource( 14 )
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="Ground1"]
+position = Vector2( 0, 40 )
+shape = SubResource( 1 )
 
-[node name="Foreground" type="CanvasLayer" parent="."]
-layer = 3
+[node name="Surface" type="Polygon2D" parent="Ground1"]
+color = Color( 0.705882, 0.588235, 0.117647, 1 )
+polygon = PoolVector2Array( -10000, 0, 10000, 0, 10000, 64, -10000, 64 )
+
+[node name="Surface2" type="Polygon2D" parent="Ground1/Surface"]
+color = Color( 0.635294, 0.47451, 0.129412, 1 )
+polygon = PoolVector2Array( -10000, 56, 10000, 56, 10000, 500, -10000, 500 )
+
+[node name="Surface3" type="Polygon2D" parent="Ground1/Surface"]
+position = Vector2( -6, 502 )
+color = Color( 0.243137, 0.243137, 0.243137, 1 )
+polygon = PoolVector2Array( -10000, 0, 10000, 0, 10000, 1000, -10000, 1000 )
+
+[node name="Play_Zone" type="Area2D" parent="Ground1"]
 visible = false
-follow_viewport_enable = true
+position = Vector2( 0, -4312 )
+collision_layer = 0
+collision_mask = 126
+monitorable = false
+priority = 1.0
+space_override = 1
+gravity_vec = Vector2( -1, 0 )
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 9 )
 
-[node name="ColorRect" type="ColorRect" parent="Foreground"]
-margin_left = -1088.0
-margin_top = -944.0
-margin_right = -88.0
-margin_bottom = 56.0
-color = Color( 0.529412, 0.176471, 0.176471, 0 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground1/Play_Zone"]
+shape = SubResource( 2 )
+one_way_collision_margin = 0.0
 
-[connection signal="body_exited" from="Ground/Out_of_bounds_Area" to="Ground/Out_of_bounds_Area" method="_on_Out_of_bounds_Area_body_exited"]
+
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Runner" to="Spawners_and_misc/Spawner_Runner" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Flyer" to="Spawners_and_misc/Spawner_Flyer" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Crawler" to="Spawners_and_misc/Spawner_Crawler" method="spawn"]
+[connection signal="interacted" from="Lokomotive/Wagon_Cafeteria/Button_Heal" to="Spawners_and_misc/MapNode_Healer" method="activate"]
+[connection signal="body_exited" from="Ground1/Play_Zone" to="Ground1/Play_Zone" method="_on_Out_of_bounds_Area_body_exited"]
