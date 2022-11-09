@@ -15,11 +15,13 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="ButtonBase" type="Polygon2D" parent="."]
+light_mask = 257
 color = Color( 0.466667, 0.466667, 0.466667, 1 )
 antialiased = true
 polygon = PoolVector2Array( -16, -16, -16, 16, 16, 16, 16, -16 )
 
 [node name="ButtonRect" type="Polygon2D" parent="ButtonBase"]
+light_mask = 257
 color = Color( 0, 1, 0, 1 )
 antialiased = true
 polygon = PoolVector2Array( -8, -8, -8, 8, 8, 8, 8, -8 )

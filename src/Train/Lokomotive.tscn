@@ -11,15 +11,18 @@
 [node name="Lokomotive" type="Node2D"]
 
 [node name="Background_Inside" type="Polygon2D" parent="."]
+light_mask = 257
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
 polygon = PoolVector2Array( -680, -328, -88, -328, -88, -200, 48, -200, 48, -88, 640, -88, 640, 0, -680, 0 )
 
 [node name="Window" type="Polygon2D" parent="Background_Inside"]
+light_mask = 257
 position = Vector2( -520, -224 )
 color = Color( 0.592157, 0.717647, 0.701961, 1 )
 polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
 
 [node name="Window2" type="Polygon2D" parent="Background_Inside"]
+light_mask = 257
 position = Vector2( -256, -224 )
 color = Color( 0.592157, 0.717647, 0.701961, 1 )
 polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
@@ -90,7 +93,7 @@ position = Vector2( -608, 0 )
 [node name="Roof" type="Polygon2D" parent="."]
 position = Vector2( 0, -320 )
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
-polygon = PoolVector2Array( -744, -40, -24, -40, -24, -8, -72, -8, -72, 88, 416, 88, 416, 32, 392, -8, 392, -48, 544, -48, 544, -8, 520, 32, 520, 88, 680, 88, 680, 96, 688, 96, 688, 120, 704, 144, 704, 280, 688, 304, 688, 328, 664, 328, 664, 120, -72, 120, -72, 136, -72, 304, -88, 304, -88, 136, -104, 136, -104, -8, -744, -8 )
+polygon = PoolVector2Array( -744, -40, -24, -40, -24, -8, -72, -8, -72, 88, 416, 88, 416, 32, 392, -8, 392, -48, 544, -48, 544, -8, 520, 32, 520, 88, 680, 88, 680, 96, 688, 96, 688, 120, 704, 144, 704, 280, 688, 304, 688, 328, 664, 328, 664, 120, -72, 120, -72, 136, -72, 304, -104, 304, -88, 288, -88, 136, -104, 120, -104, -8, -744, -8 )
 
 [node name="Wagon_Segment2" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( -104, -24 )
@@ -115,8 +118,9 @@ color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( -32, -32, 0, -32, 0, -168, -32, -168 )
 
 [node name="Wagon_Segment" parent="Wall_Left" instance=ExtResource( 1 )]
-position = Vector2( 584, -95.9999 )
+position = Vector2( 584, -104 )
 rotation = 1.5708
+scale = Vector2( 0.8, 1 )
 
 [node name="Wagon_Bridge" parent="." instance=ExtResource( 3 )]
 position = Vector2( -744, -8 )

@@ -37,6 +37,8 @@ var state = STATES.ALIVE
 var aiming := false
 var inside := false
 
+var equiped_slot:int = 0
+
 
 
 func _ready():
