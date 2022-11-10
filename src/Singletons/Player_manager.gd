@@ -20,10 +20,12 @@ func add_spawnpoint(var Node):
 
 
 func spawn_player():
-	print("attempting spawn manager")
 	if respawn_points.size() == 0:
 		return
-	print("spawner called")
 	respawn_points[0].spawn()
-	
 
+func player_disable(state:bool = true):
+	if not get_node_or_null("/root/World/Players/Player") == null:
+		$"/root/World/Players/Player".disabled = state
+	else: print("player imasen")
+	

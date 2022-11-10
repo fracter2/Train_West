@@ -24,14 +24,16 @@ func _physics_process(delta):
 	# On the frame where it updates the highlight
 	else:
 		var index:int = find_closest_object_index()
-		if index == null: return 						# if there is none in range 
+		if index == null or index == -1: return 						# if there is none in range 
 		
 		var body = get_overlapping_bodies()[index]
 		if body == highlight_interacted_prev_body:
 			pass
 		else:
 			body.highlight_start()
-			highlight_interacted_prev_body.highlight_stop()
+			if not highlight_interacted_prev_body == null:
+				highlight_interacted_prev_body.highlight_end()
+			
 			highlight_interacted_prev_body = body
 		
 		frames_skipped = 1
