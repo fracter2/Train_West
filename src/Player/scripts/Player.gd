@@ -33,6 +33,8 @@ var Hit_Damage_Indicator = preload("res://src/UI/Hit_Damage.tscn")
 # When the character dies, we fade the UI
 enum STATES {ALIVE, DEAD, DISABLED}
 var state = STATES.ALIVE
+var alive: bool = true
+var disabled: bool = false
 
 var aiming := false
 var inside := false
@@ -50,14 +52,12 @@ func _ready():
 # Movement
 func _physics_process(delta):
 	# Movement code
-	if state == STATES.ALIVE:
-		input_dir.x = Input.get_axis("move_left", "move_right")
-		input_dir.y = Input.get_axis("move_down","move_up")
-		input_dir.z = Input.get_action_strength("move_jump")
+	if alive:
 		movement(delta)
-		
-		
-	
+		if not disabled:
+			input_dir.x = Input.get_axis("move_left", "move_right")
+			input_dir.y = Input.get_axis("move_down","move_up")
+			input_dir.z = Input.get_action_strength("move_jump")
 	
 
 
@@ -124,14 +124,15 @@ func horizontal_movement(): 		# Left-Right controlls
 
 # Movement and collision is executed here, every frame, not every physics frame
 func _process(delta):
-	velocity = .move_and_slide(velocity, Vector2.UP)
+	if alive:
+		velocity = .move_and_slide(velocity, Vector2.UP)
 
 
 
 
 # Health
 func take_damage(count):
-	if state == STATES.DEAD or invincible:
+	if not alive or invincible:
 		return
 	
 	health -= count
@@ -163,7 +164,7 @@ func spawn_indicator(count):
 
 
 func die(): 
-	state = STATES.DEAD
+	alive = false
 	emit_signal("died")
 	print("player dead")
 	queue_free()
@@ -171,7 +172,7 @@ func die():
 
 
 func revive():
-	state = STATES.ALIVE
+	alive = true
 	print("player revived")
 
 
