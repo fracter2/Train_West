@@ -1,6 +1,7 @@
 class_name Facility
 extends Wagon_Entity
 
+
 # Chance to erode, every second roughly, maybe
 export(float, 0, 1) var erode_chance:float
 
@@ -15,10 +16,15 @@ func toggle_disabled(var value:bool):
 
 func interact(var player):
 	emit_signal("interacted", player)
-	
 
 func interact_end(var player):
 	emit_signal("interacted_end", player)
+
+func highlight_start():
+	print("Highlighted")
+
+func highlight_end():
+	print("Unhighlighted")
 
 
 func erode():

@@ -1,4 +1,4 @@
-extends Wagon_Entity
+extends Facility
 
 export var color_offset = 30
 export(float, 0, 1) var flash_ammount:float = 0.4 # (flash range: 0 - 1 )

@@ -6,6 +6,10 @@ signal player_died
 var respawn_points: Array = []
 var players: Array = []
 
+# Settings
+var mouse_aim:bool = true
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
