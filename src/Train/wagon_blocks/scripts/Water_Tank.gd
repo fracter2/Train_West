@@ -14,7 +14,7 @@ func update_effects(variable:int = 0):
 	
 	
 	if variable == 0: # If it was an attack
-		$PolygonBase/PolygonFlash.modulate.a = flash_ammount
+		$PolygonFlash.modulate.a = flash_ammount
 
 
 

@@ -172,7 +172,6 @@ shadow_color = Color( 0.164706, 0.164706, 0.164706, 0 )
 shadow_item_cull_mask = 512
 
 [node name="Vision_Field_shadows" type="Light2D" parent="."]
-visible = false
 light_mask = 256
 position = Vector2( 9.53674e-07, -32 )
 scale = Vector2( 80, 80 )
