@@ -104,6 +104,7 @@ position = Vector2( 0, 160 )
 position = Vector2( 0, 16 )
 rotation = 1.5708
 scale = Vector2( 0.8, 1 )
+left_corner_shadows = true
 
 [node name="Wall_Right" type="Polygon2D" parent="."]
 position = Vector2( 640, -256 )
@@ -114,6 +115,7 @@ polygon = PoolVector2Array( -16, -80, -16, 80, 16, 80, 16, -80 )
 position = Vector2( 0, 16 )
 rotation = 1.5708
 scale = Vector2( 0.8, 1 )
+left_corner_shadows = true
 
 [node name="Wagon_Door" parent="Wall_Right" instance=ExtResource( 4 )]
 position = Vector2( 0, 160 )

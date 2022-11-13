@@ -97,6 +97,7 @@ polygon = PoolVector2Array( -744, -40, -24, -40, -24, -8, -72, -8, -72, 88, 416,
 
 [node name="Wagon_Segment2" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( -104, -24 )
+right_corner_shadows = true
 
 [node name="Wagon_Segment4" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( -240, -24 )
@@ -109,9 +110,9 @@ position = Vector2( -544, -24 )
 
 [node name="Wagon_Segment10" parent="Roof" instance=ExtResource( 1 )]
 position = Vector2( -664, -24 )
+left_corner_shadows = true
 
 [node name="Wall_Left" type="Polygon2D" parent="."]
-light_mask = 512
 material = SubResource( 1 )
 position = Vector2( -672, -160 )
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
