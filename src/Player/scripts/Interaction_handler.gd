@@ -12,12 +12,24 @@ var highlight_interacted_prev_body
 
 func _physics_process(delta):
 	if get_parent().aiming:
+		#var mouse
+		var angle_to_mouse:Vector2 = (position - get_local_mouse_position()).normalized()
 		$Target_Highlight.target_pos = get_global_mouse_position()
-		$Target_Highlight.target_dimensions = 2
-		$Target_Highlight.spinning = true
-		$Target_Highlight.visible = true
-	else:
+		$Target_Highlight.target_size = 0.006 * (position - get_local_mouse_position()).length()	# Times accurasy later
+		
+		#$Target_Highlight.target_dimentions = Vector2(abs(angle_to_mouse.y) *1.2 +1, abs(angle_to_mouse.x) *1.2 +1) # This formula is for a nice looking shape
+		$Target_Highlight.target_dimentions = Vector2(1,1)
+		$Target_Highlight.target_rot = -0.25
+		
 		$Target_Highlight.spinning = false
+		$Target_Highlight.visible = true
+		
+	else:
+		$Target_Highlight.target_dimentions = Vector2(1, 1)
+		#$Target_Highlight.target_rot = 0
+		#$Target_Highlight.target_size = 1
+		$Target_Highlight.spinning = true
+		
 		if Input.is_action_just_pressed("Interact") or Input.is_action_just_pressed("action_1"):
 			interact()
 	
@@ -32,13 +44,16 @@ func _physics_process(delta):
 	elif not get_parent().aiming:
 		var index:int = find_closest_object_index()
 		if index == null or index == -1: # if there is none in range 
-			$Target_Highlight.visible = false
+			$Target_Highlight.target_pos = get_global_mouse_position()
+			$Target_Highlight.target_size = 2
+			$Target_Highlight.target_rot = 0
+			#$Target_Highlight.visible = false 									# disabled to try natural gover 
 			return 						
 			
 		$Target_Highlight.visible = true
 		var body = get_overlapping_bodies()[index]
 		$Target_Highlight.target_pos = body.get_global_position() - body.highlight_offset
-		$Target_Highlight.target_dimensions = body.highlight_dimentions
+		$Target_Highlight.target_size = body.highlight_size
 		
 		#if body == highlight_interacted_prev_body:
 		#	pass

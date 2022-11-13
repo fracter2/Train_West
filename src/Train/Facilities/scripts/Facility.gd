@@ -3,7 +3,7 @@ extends Wagon_Entity
 
 
 # Chance to erode, every second roughly, maybe
-export(float, 0, 20) var highlight_dimentions:float = 5
+export(float, 0, 20) var highlight_size:float = 5
 export(Vector2) var highlight_offset:Vector2 = Vector2.ZERO
 export(float, 0, 1) var erode_chance:float
 
