@@ -12,6 +12,7 @@ var shell = preload("res://src/Player/Shell1.tscn")
 
 enum STATES {READY, RECHAMBERING, RELOADING, DISABLED}
 var state:int = STATES.READY
+var equiped = false
 
 
 onready var firing_particles = $"%Particles1".duplicate(7)
@@ -19,8 +20,9 @@ onready var firing_particles = $"%Particles1".duplicate(7)
 
 
 func _physics_process(delta):
-	if Input.is_action_pressed("action_1") and state == STATES.READY:
-		fire()
+	if get_parent().aiming and equiped:
+		if Input.is_action_pressed("action_1") and state == STATES.READY:
+			fire()
 
 
 func fire():

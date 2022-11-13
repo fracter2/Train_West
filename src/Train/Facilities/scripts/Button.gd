@@ -6,7 +6,7 @@ var pressed:bool = false
 
 #export var mouse_input:bool = false #Now Redundant
 export(Color) var color_DEFAULT:Color = Color.lime
-export(Color) var color_PRESSING:Color = Color.limegreen
+export(Color) var color_PRESSING:Color = Color.darkgreen
 export(Color) var color_TOGGLED:Color = Color.gold
 export(Color) var color_DISABLED:Color = Color.crimson# This one might be redundant
 

@@ -17,26 +17,30 @@ export(float, 0, 1000) var resource_recharge:float = 7
 var default_particle_lifetime:float
 func _ready(): default_particle_lifetime = $Particles2D.lifetime
 
+var equiped:bool = false
+var was_equiped:bool = false
+
 
 func _physics_process(delta):
 	
 	# Aiming
 	look_at(get_global_mouse_position())
 	
-	
-	# Particle and effects
-	if Input.is_action_just_pressed("action_2"):
-		$Particles2D.emitting = true
-		$Repair_Box.space_override = Area2D.SPACE_OVERRIDE_COMBINE
+	if get_parent().aiming and equiped:
+		# Particle and effects
+		if Input.is_action_just_pressed("action_1") or (not was_equiped and equiped):		# if it wasn't, but now IS equiped
+			$Particles2D.emitting = true
+			$Repair_Box.space_override = Area2D.SPACE_OVERRIDE_COMBINE
 		
 		
-	elif Input.is_action_just_released("action_2"):
+	if Input.is_action_just_released("action_1") or (was_equiped and not equiped):			# If it was, but now IS NOT equiped
 		$Particles2D.emitting = false
 		$Repair_Box.space_override = Area2D.SPACE_OVERRIDE_DISABLED
 	
+	was_equiped = equiped
 	
 	# Make sure the physics bodies dont sleep while we are blowing them
-	if Input.is_action_pressed("action_2"):
+	if Input.is_action_pressed("action_1") and equiped:
 		var bodies = $Repair_Box.get_overlapping_bodies()
 		for i in bodies:
 			if i is RigidBody2D:
@@ -57,7 +61,7 @@ func _physics_process(delta):
 	
 	# Actual repair logic
 	if cooldown_frame == repair_cooldown_frames: 
-		if Input.is_action_pressed("action_2"):  
+		if Input.is_action_pressed("action_1") and equiped:  
 			cooldown_frame = 0
 			var unsorted_targets = $Repair_Box.get_overlapping_areas()
 			

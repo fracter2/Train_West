@@ -41,8 +41,9 @@ var disabled: bool = false
 var aiming := false
 var inside := false
 
-var equiped_slot:int = 0
+var equiped_slot:int = 0 setget set_equiped_slot
 
+var equipment_dict = {"0":"Weapon", "1":"Repair_Tool"}
 
 
 func _ready():
@@ -55,6 +56,24 @@ func _ready():
 
 # Movement
 func _physics_process(delta):
+	
+	# Aiming Controlls
+	if Input.is_action_just_pressed("key_quick_switch"):
+		set_equiped_slot(int(equiped_slot == 0))
+		# This just reverses what is equiped
+		# if equiped_slot == 0 -> equiped_slot = 1, and vice versa (true = 1, false = 0)
+		
+	
+	if Input.is_action_pressed("action_2"):			# The button for aiming, right click
+		aiming = true
+		get_node(equipment_dict[String(equiped_slot)]).equiped = true
+	elif aiming:									# the aim from the previous frame
+		get_node(equipment_dict[String(equiped_slot)]).equiped = false
+		aiming = false
+	
+	
+	
+	
 	# Movement code
 	if alive:
 		movement(delta)
@@ -69,10 +88,17 @@ func _physics_process(delta):
 			input_dir_JR.y = int(Input.is_action_just_released("move_jump")) 	# Up is Jump for now
 			input_dir_JR.y = - int(Input.is_action_just_released("move_down"))
 			
+			#input_action
+			
 		else:
 			input_dir = Vector3.ZERO
 	
-	if aiming and 
+	#if aiming:
+		#equiped_slot
+		# Get child to use, and equip it
+		# if Input.is_action_pressed("action_1"):
+			# activate it
+		# possibly add more actions to equiped slot
 
 
 func movement(delta:float):			# Non-controlls
@@ -142,6 +168,10 @@ func _process(delta):
 		velocity = .move_and_slide(velocity, Vector2.UP)
 
 
+# Use this method instead of changing the variable directly, please
+func set_equiped_slot(new_slot:int):
+	get_node(equipment_dict[String(equiped_slot)]).equiped = false
+	equiped_slot = new_slot
 
 
 # Health

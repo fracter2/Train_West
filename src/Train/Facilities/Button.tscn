@@ -18,6 +18,7 @@ shape = SubResource( 1 )
 light_mask = 257
 color = Color( 0.466667, 0.466667, 0.466667, 1 )
 antialiased = true
+invert_border = 8.0
 polygon = PoolVector2Array( -16, -16, -16, 16, 16, 16, 16, -16 )
 
 [node name="ButtonRect" type="Polygon2D" parent="ButtonBase"]

@@ -18,8 +18,10 @@ func set_opened(var state:bool):
 	
 	#$LightOccluder1.light_mask = 1 + int(not state) * 512		# 512 is the value for layer 10
 	#$LightOccluder2.light_mask = 1 + int(not state) * 512
-	$LightOccluder1.visible = not state
-	$LightOccluder2.visible = not state
+	#$LightOccluder1.visible = not state
+	#$LightOccluder2.visible = not state
+	#$LightOccluder3.visible = not state
+	#$LightOccluder4.visible = not state
 	#print("door just ->" + String(state))
 
 
