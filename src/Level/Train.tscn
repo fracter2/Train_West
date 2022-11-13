@@ -103,6 +103,14 @@ margin_right = -88.0
 margin_bottom = 56.0
 color = Color( 0.529412, 0.176471, 0.176471, 0 )
 
+[node name="World_Visoin_shadow_layer" type="Polygon2D" parent="."]
+light_mask = 128
+color = Color( 0, 0, 0, 0 )
+polygon = PoolVector2Array( -64000, -6400, 64000, -6400, 64000, 6400, -64000, 6400 )
+__meta__ = {
+"_editor_description_": "Lets there be shadows where there can be no shadows (for the thing where the players non-line of sight goes shadowyer)"
+}
+
 [node name="Lokomotive" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1251, -136 )
 

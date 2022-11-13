@@ -28,12 +28,12 @@ func _physics_process(delta):
 	
 	if get_parent().aiming and equiped:
 		# Particle and effects
-		if Input.is_action_just_pressed("action_1") or (not was_equiped and equiped):		# if it wasn't, but now IS equiped
+		if Input.is_action_just_pressed("action_1") or (not was_equiped and equiped and Input.is_action_pressed("action_1")):		# if it wasn't, but now IS equiped
 			$Particles2D.emitting = true
 			$Repair_Box.space_override = Area2D.SPACE_OVERRIDE_COMBINE
 		
 		
-	if Input.is_action_just_released("action_1") or (was_equiped and not equiped):			# If it was, but now IS NOT equiped
+	if Input.is_action_just_released("action_1") or (was_equiped and not equiped):													# If it was, but now IS NOT equiped
 		$Particles2D.emitting = false
 		$Repair_Box.space_override = Area2D.SPACE_OVERRIDE_DISABLED
 	
