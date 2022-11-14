@@ -62,7 +62,7 @@ func _physics_process(delta):
 		set_equiped_slot(int(equiped_slot == 0))
 		# This just reverses what is equiped
 		# if equiped_slot == 0 -> equiped_slot = 1, and vice versa (true = 1, false = 0)
-		
+		# Later this can be made to equip from a list
 	
 	if Input.is_action_pressed("action_2"):			# The button for aiming, right click
 		aiming = true
@@ -71,7 +71,8 @@ func _physics_process(delta):
 		get_node(equipment_dict[String(equiped_slot)]).equiped = false
 		aiming = false
 	
-	
+	#if Input.is_action_pressed("reload"):
+	# Later mae this smart
 	
 	
 	# Movement code
@@ -114,11 +115,18 @@ func movement(delta:float):			# Non-controlls
 	
 	# Fake train velocity
 	if not inside:
-		velocity.x -= Train_manager.velocity * fake_train_vel_k
+		if not is_on_floor():
+			velocity.x -= Train_manager.velocity * fake_train_vel_k
+		else:
+			velocity.x -= Train_manager.velocity * fake_train_vel_k * 0.05
 	
 	# Queued velocity, AKA KNOCKBACK & RECOIL
-	velocity += velocity_queued						# Knockback
+	var k := Vector2.ZERO
+	if is_on_floor() or velocity.y < 0: k = velocity_queued * 0.7 # The num is to make smaller, nothing special
+	else: 								k = velocity_queued
+	velocity += k
 	velocity_queued *= Vector2(0.75, 0.35)			# Custom drag, so it lasts for more than a frame
+	
 	
 	# Recoil portion
 	var r := velocity_recoil

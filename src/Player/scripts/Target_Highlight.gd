@@ -9,6 +9,14 @@ var target_size:float = 2
 var target_rot:float = 0
 var target_pos:Vector2 = Vector2.ZERO
 
+#var rotation_speed
+#var global move_speed: Vector2()
+
+
+#var default_stats: HighlightStats
+
+#var state
+#enum STATES { FOLLOW_OBJ, FOLLOW_MOUSE, FOLLOW_MOUSE_RESIZE}
 
 
 

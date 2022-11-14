@@ -10,19 +10,33 @@ export var proj_dmg:int = 25
 var projectile = preload("res://src/Player/Projectile1.tscn")
 var shell = preload("res://src/Player/Shell1.tscn")
 
-enum STATES {READY, RECHAMBERING, RELOADING, DISABLED}
-var state:int = STATES.READY
+enum STATES {READY, RECHAMBERING, RELOADING, RELOAD_PARTIAL, DISABLED}
+var state:int = STATES.READY setget set_state
 var equiped = false
 
+var default_poffset: Vector3 = Vector3.ZERO
+var cur_poffset: Vector3 = Vector3.ZERO
+var rcbr_poffset: Vector3 = Vector3 (-1, 0.5, 0)
+var rld_poffset:Vector3 = Vector3 (0, 3, -0.35)
+var rld_time:float = 3.25
+var rld_time_partial:float = 0.35
+# The Z axis is used for rotation, in degrees
 
 onready var firing_particles = $"%Particles1".duplicate(7)
 
+
+func _ready(): default_poffset = Vector3(position.x, position.y, rotation)
 
 
 func _physics_process(delta):
 	if get_parent().aiming and equiped:
 		if Input.is_action_pressed("action_1") and state == STATES.READY:
 			fire()
+	
+
+func set_state(new_state: int):		# I will work on this whole thing later
+	if new_state == STATES.READY:
+		cur_poffset = default_poffset
 
 
 func fire():

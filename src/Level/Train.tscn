@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/Wagon_Water.tscn" type="PackedScene" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://src/Train/Facilities/Healer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Train/Facilities/Train_Lever_1.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Train/wagon_blocks/Force_Override.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/Level/Enviornment/Background2.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/Level/Enviornment/Background1.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/Level/scripts/Background_Manager.gd" type="Script" id=22]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.140244, 0.652439, 0.841463, 1 )
@@ -64,32 +67,27 @@ extents = Vector2( 20000, 8000 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
 
-[node name="Background-2" type="CanvasLayer" parent="."]
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource( 22 )
+
+[node name="Background-2" type="CanvasLayer" parent="Background"]
 layer = -2
 follow_viewport_enable = true
 follow_viewport_scale = 0.4
 
-[node name="Polygon2D" type="Polygon2D" parent="Background-2"]
-light_mask = 769
-position = Vector2( -208, 312 )
-color = Color( 0.501961, 0.443137, 0.203922, 1 )
-polygon = PoolVector2Array( -8128, -536, -7752, -904, -6464, -760, -5184, -928, -4728, -640, -4248, -840, -3528, -728, -2816, -760, -1936, -1232, -616, -1064, -144, -1192, 888, -992, 1840, -1072, 3176, -760, 4200, -880, 4864, -640, 5920, -904, 6728, -776, 9208, -1024, 10984, -784, 10992, 1576, -9976, 1440, -10168, -480, -9352, -872 )
+[node name="Background2" parent="Background/Background-2" instance=ExtResource( 20 )]
 
-[node name="Background-1" type="CanvasLayer" parent="."]
+[node name="Background-1" type="CanvasLayer" parent="Background"]
 layer = -1
 follow_viewport_enable = true
 follow_viewport_scale = 0.7
 
-[node name="Sprite" type="Sprite" parent="Background-1"]
+[node name="Sprite" type="Sprite" parent="Background/Background-1"]
 visible = false
 scale = Vector2( 50, 50 )
 texture = ExtResource( 14 )
 
-[node name="Polygon2D" type="Polygon2D" parent="Background-1"]
-light_mask = 769
-position = Vector2( -208, 312 )
-color = Color( 0.631373, 0.537255, 0.156863, 1 )
-polygon = PoolVector2Array( -7936, -584, -7008, -760, -5592, -808, -4536, -464, -2688, -696, -1648, -1304, -648, -952, 312, -784, 1480, -968, 3272, -632, 5520, -784, 6656, -496, 9248, -896, 10984, -784, 10992, 1576, -10168, 1576, -10168, -480, -9072, -832 )
+[node name="Background1" parent="Background/Background-1" instance=ExtResource( 21 )]
 
 [node name="Foreground3" type="CanvasLayer" parent="."]
 layer = 3
