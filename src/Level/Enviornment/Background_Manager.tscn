@@ -12,17 +12,23 @@ layer = -2
 follow_viewport_enable = true
 follow_viewport_scale = 0.4
 
-[node name="Background2" parent="Background-2" instance=ExtResource( 2 )]
-
 [node name="Background3" parent="Background-2" instance=ExtResource( 2 )]
 position = Vector2( -20200, 312 )
+
+[node name="Background2" parent="Background-2" instance=ExtResource( 2 )]
+
+[node name="Background1" parent="Background-2" instance=ExtResource( 2 )]
+position = Vector2( 20200, 312 )
 
 [node name="Background-1" type="CanvasLayer" parent="."]
 layer = -1
 follow_viewport_enable = true
 follow_viewport_scale = 0.7
 
-[node name="Background1" parent="Background-1" instance=ExtResource( 3 )]
+[node name="Background3" parent="Background-1" instance=ExtResource( 3 )]
+position = Vector2( -20200, 312 )
 
 [node name="Background2" parent="Background-1" instance=ExtResource( 3 )]
-position = Vector2( -20200, 312 )
+
+[node name="Background1" parent="Background-1" instance=ExtResource( 3 )]
+position = Vector2( 20200, 312 )

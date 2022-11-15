@@ -37,7 +37,7 @@ func apply_train_impulse(var impulse:float):
 
 func _physics_process(delta):
 	if engine_active:
-		velocity += velocity_accelleration * delta
+		velocity += velocity_accelleration * delta * 4			# Remove the * 4 later, was for a quick debug
 	
 	velocity *= (1 - velocity_drag * delta) 
 	
