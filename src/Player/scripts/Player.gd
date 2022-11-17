@@ -11,6 +11,7 @@ var velocity := Vector2.ZERO
 var frame_jump := 0
 var velocity_queued := Vector2.ZERO 		# Knockback
 var velocity_recoil := Vector2.ZERO			# Recoil
+var last_pos:Vector2 = Vector2.ZERO
 
 export (float, 0, 1.0) var friction := 0.1
 export (float, 0, 1.0) var acceleration := 0.25
@@ -39,10 +40,13 @@ var alive: bool = true
 var disabled: bool = false
 
 var aiming := false
+var reloading := false
 var inside := false
+var highlight_state:int 
+enum HIGHLIGHT_STATES {AIMIMG, RELOADING, HOVERING, DEFAULT}
+var prev_body = null
 
 var equiped_slot:int = 0 setget set_equiped_slot
-
 var equipment_dict = {"0":"Weapon", "1":"Repair_Tool"}
 
 
@@ -54,7 +58,7 @@ func _ready():
 
 
 
-# Movement
+# Movement & input managing
 func _physics_process(delta):
 	
 	# Aiming Controlls
@@ -64,15 +68,69 @@ func _physics_process(delta):
 		# if equiped_slot == 0 -> equiped_slot = 1, and vice versa (true = 1, false = 0)
 		# Later this can be made to equip from a list
 	
+	# ---
+	if Input.is_action_just_pressed("action_2"):
+		pass
+	elif Input.is_action_just_released("action_2"):
+		pass
+	# ---
+	
 	if Input.is_action_pressed("action_2"):			# The button for aiming, right click
 		aiming = true
 		get_node(equipment_dict[String(equiped_slot)]).equiped = true
-	elif aiming:									# the aim from the previous frame
+	elif aiming:									# when not pressing the button, but there was aim from the previous frame
 		get_node(equipment_dict[String(equiped_slot)]).equiped = false
 		aiming = false
 	
 	#if Input.is_action_pressed("reload"):
 	# Later mae this smart
+	
+	
+	# Target Highlighter
+#		if custom_state:
+#			pass
+	if aiming:
+		if reloading:														# reload
+			if not highlight_state == HIGHLIGHT_STATES.RELOADING:
+				highlight_state = HIGHLIGHT_STATES.RELOADING
+				#check equiped reload stats
+				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE
+				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 3, 0, true)
+				print("reloading")
+		else: 																# aim
+			if not highlight_state == HIGHLIGHT_STATES.AIMIMG:
+				highlight_state = HIGHLIGHT_STATES.AIMIMG
+				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE_RESIZE
+				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 3, -0.25, false)
+				$Target_Highlight.dim_dist_mod = 0.001		# later this will be the accuracy of da weapon
+				print("aiming")
+			
+	
+	elif Engine.get_physics_frames() % 6: # check interact range
+		var index:int = $"Interaction Range".find_closest_object_index()
+		
+		if index == null or index == -1: # if there is none in range 
+			if not highlight_state == HIGHLIGHT_STATES.DEFAULT:
+				
+				highlight_state = HIGHLIGHT_STATES.DEFAULT
+				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE
+				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 2, 0, false)
+				print("default")
+		
+		
+		else:
+			var body = $"Interaction Range".get_overlapping_bodies()[index]
+			if not body == prev_body or highlight_state != HIGHLIGHT_STATES.HOVERING:
+				highlight_state = HIGHLIGHT_STATES.HOVERING
+				var s:int = $Target_Highlight.STATES.DEFAULT
+				var p:Vector2 = body.get_global_position() - body.highlight_offset 
+				var z:float = body.highlight_size
+				$Target_Highlight.set_targets(p, s, Vector2(1,1), z, 0, true)
+				print("interactable")
+				prev_body = body
+			
+			
+	
 	
 	
 	# Movement code
@@ -94,12 +152,7 @@ func _physics_process(delta):
 		else:
 			input_dir = Vector3.ZERO
 	
-	#if aiming:
-		#equiped_slot
-		# Get child to use, and equip it
-		# if Input.is_action_pressed("action_1"):
-			# activate it
-		# possibly add more actions to equiped slot
+
 
 
 func movement(delta:float):			# Non-controlls
@@ -171,9 +224,12 @@ func horizontal_movement(): 		# Left-Right controlls
 
 
 # Movement and collision is executed here, every frame, not every physics frame
+# This is not an ideal fix, but it is fine for now
 func _process(delta):
 	if alive:
+		last_pos = position
 		velocity = .move_and_slide(velocity, Vector2.UP)
+		
 
 
 # Use this method instead of changing the variable directly, please

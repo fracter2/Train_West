@@ -4,7 +4,9 @@ export(Vector2) var force:Vector2 = Vector2(3000, 0)		# Firing force
 export(Vector2) var recoil:Vector2 = Vector2(100, 0)		# Player recoil
 export(float, 0, 1000) var knockback = 100					# Target knockback
 
+export var refire_time:float  = 0.35
 export var rechamber_time:float = 0.35
+export var reload_time:float = 3.25
 export var proj_dmg:int = 25
 
 var projectile = preload("res://src/Player/Projectile1.tscn")
@@ -18,8 +20,8 @@ var default_poffset: Vector3 = Vector3.ZERO
 var cur_poffset: Vector3 = Vector3.ZERO
 var rcbr_poffset: Vector3 = Vector3 (-1, 0.5, 0)
 var rld_poffset:Vector3 = Vector3 (0, 3, -0.35)
-var rld_time:float = 3.25
-var rld_time_partial:float = 0.35
+#var rld_time:float = 3.25
+#var rld_time_partial:float = 0.35
 # The Z axis is used for rotation, in degrees
 
 onready var firing_particles = $"%Particles1".duplicate(7)
@@ -53,7 +55,7 @@ func fire():
 	
 	# Rechamber
 	state = STATES.RECHAMBERING
-	$Rechamber_Timer.start(rechamber_time)
+	$Rechamber_Timer.start(refire_time)
 	
 	# Recoil, and other feel-good things
 	var r: Vector2 = recoil.rotated(proj.rotation)

@@ -88,31 +88,31 @@ position = Vector2( 0, -16 )
 rotation = 1.5708
 shape = SubResource( 3 )
 
-[node name="Target_Highlight" type="Position2D" parent="Interaction Range"]
+[node name="Target_Highlight" type="Position2D" parent="."]
 position = Vector2( 0, -144 )
 script = ExtResource( 12 )
 __meta__ = {
 "_gizmo_extents_": 19.1
 }
 
-[node name="Polygon2D1" type="Polygon2D" parent="Interaction Range/Target_Highlight"]
+[node name="Polygon2D1" type="Polygon2D" parent="Target_Highlight"]
 position = Vector2( -8, 8 )
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( -3, -8, -3, 3, 8, 3, 8, -2, 2, -2, 2, -8 )
 
-[node name="Polygon2D2" type="Polygon2D" parent="Interaction Range/Target_Highlight"]
+[node name="Polygon2D2" type="Polygon2D" parent="Target_Highlight"]
 position = Vector2( -8, -8 )
 scale = Vector2( 1, -1 )
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( -3, -8, -3, 3, 8, 3, 8, -2, 2, -2, 2, -8 )
 
-[node name="Polygon2D3" type="Polygon2D" parent="Interaction Range/Target_Highlight"]
+[node name="Polygon2D3" type="Polygon2D" parent="Target_Highlight"]
 position = Vector2( 8, -8 )
 rotation = -3.14159
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( -3, -8, -3, 3, 8, 3, 8, -2, 2, -2, 2, -8 )
 
-[node name="Polygon2D4" type="Polygon2D" parent="Interaction Range/Target_Highlight"]
+[node name="Polygon2D4" type="Polygon2D" parent="Target_Highlight"]
 position = Vector2( 8, 8 )
 rotation = -3.14159
 scale = Vector2( 1, -1 )
@@ -128,7 +128,8 @@ editor_draw_drag_margin = true
 script = ExtResource( 11 )
 
 [node name="Weapon" parent="." instance=ExtResource( 4 )]
-force = Vector2( -2500, 0 )
+force = Vector2( -3000, 0 )
+proj_dmg = 35
 
 [node name="Repair_Tool" parent="." instance=ExtResource( 6 )]
 repair_ammount = 20
