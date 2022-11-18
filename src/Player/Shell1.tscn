@@ -1,4 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 0.6
+bounce = 0.1
 
 [sub_resource type="GDScript" id=2]
 resource_name = "Shell1_Script"
@@ -30,8 +34,9 @@ extents = Vector2( 14, 7 )
 [node name="Physics_Entity" type="RigidBody2D" groups=["non-targetable", "vanity"]]
 collision_layer = 16
 collision_mask = 157
-mass = 0.2
-gravity_scale = 4.0
+mass = 0.6
+physics_material_override = SubResource( 3 )
+gravity_scale = 6.0
 linear_damp = 0.4
 angular_damp = 0.4
 applied_force = Vector2( 0, 60 )

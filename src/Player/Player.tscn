@@ -21,6 +21,7 @@ radius = 112.0
 height = 214.0
 
 [sub_resource type="Gradient" id=6]
+interpolation_mode = 2
 offsets = PoolRealArray( 0.596591, 0.676136 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
@@ -31,6 +32,7 @@ fill_from = Vector2( 0.5, 0.5 )
 fill_to = Vector2( 1, 0.5 )
 
 [sub_resource type="Gradient" id=8]
+interpolation_mode = 1
 offsets = PoolRealArray( 0.801136, 0.863636 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
@@ -199,7 +201,7 @@ __meta__ = {
 [node name="Vision_Field" type="Light2D" parent="."]
 light_mask = 512
 position = Vector2( 9.53674e-07, -32 )
-scale = Vector2( 80, 80 )
+scale = Vector2( 100, 100 )
 texture = SubResource( 7 )
 mode = 3
 range_item_cull_mask = 512
@@ -210,7 +212,7 @@ shadow_item_cull_mask = 512
 [node name="Vision_Field_shadows" type="Light2D" parent="."]
 light_mask = 256
 position = Vector2( 9.53674e-07, -32 )
-scale = Vector2( 80, 80 )
+scale = Vector2( 100, 100 )
 texture = SubResource( 5 )
 mode = 3
 range_item_cull_mask = 256
@@ -224,7 +226,7 @@ __meta__ = {
 [node name="Vision_Field_shadows_env" type="Light2D" parent="."]
 light_mask = 256
 position = Vector2( 9.53674e-07, -32 )
-scale = Vector2( 80, 80 )
+scale = Vector2( 100, 100 )
 texture = SubResource( 5 )
 mode = 3
 range_item_cull_mask = 128
@@ -232,7 +234,8 @@ shadow_enabled = true
 shadow_color = Color( 0.2, 0.2, 0.2, 0.537255 )
 shadow_item_cull_mask = 384
 __meta__ = {
-"_editor_description_": "Experiment with shadows, turn on or off at will"
+"_editor_description_": "This marks the envioprnment in blacky-ness (shadows) when out of view.
+Layer 8, but calculates shadows from 8 & 9"
 }
 
 [connection signal="health_changed" from="." to="GUI" method="update_health"]

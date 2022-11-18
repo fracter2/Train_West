@@ -1,9 +1,9 @@
 extends Area2D
 
-var vel_force_Ko:float = 14
+export var vel_force_Ko:Vector2 = Vector2(0.03,0)
 
 func _physics_process(delta):
-	gravity_vec = -Vector2(Train_manager.velocity /vel_force_Ko , 0)		# Negative, cuz left is negative
+	gravity_vec = -Vector2(Train_manager.velocity * vel_force_Ko.x, 0)		# Negative, cuz left is negative
 	
 	
 

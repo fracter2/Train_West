@@ -24,7 +24,7 @@ flag_align_y = true
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 14.16
+initial_velocity = 20.33
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 6.0
@@ -84,6 +84,7 @@ draw_order = 1
 process_material = ExtResource( 2 )
 
 [node name="Tracer" type="Particles2D" parent="."]
+position = Vector2( 8, 2.02815e-05 )
 amount = 128
 lifetime = 0.3
 visibility_rect = Rect2( -10000, -10000, 20000, 20000 )
