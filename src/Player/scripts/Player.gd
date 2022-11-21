@@ -63,8 +63,7 @@ func _physics_process(delta):
 	
 	# Aiming Controlls
 	if Input.is_action_just_pressed("key_quick_switch"):
-		set_equiped_slot(int(equiped_slot == 0))
-		# This just reverses what is equiped
+		set_equiped_slot(int(equiped_slot == 0))	# This just reverses what is equiped
 		# if equiped_slot == 0 -> equiped_slot = 1, and vice versa (true = 1, false = 0)
 		# Later this can be made to equip from a list
 	

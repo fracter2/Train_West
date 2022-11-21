@@ -29,6 +29,16 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
+"base": "Resource",
+"class": "HighlightState",
+"language": "GDScript",
+"path": "res://src/Player/scripts/Highlight_State.gd"
+}, {
+"base": "Node2D",
+"class": "Item",
+"language": "GDScript",
+"path": "res://src/Player/scripts/c_Item.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Physics_Entity",
 "language": "GDScript",
@@ -49,6 +59,8 @@ _global_script_class_icons={
 "Facility": "",
 "Facility_Button": "",
 "GitAPI": "",
+"HighlightState": "",
+"Item": "",
 "Physics_Entity": "",
 "Wagon_Entity": "",
 "Wagon_Segment": ""

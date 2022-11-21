@@ -27,13 +27,8 @@ color_ramp = SubResource( 4 )
 
 [node name="Repair_Tool" type="Node2D"]
 script = ExtResource( 1 )
-repair_ammount = null
-repair_cooldown_frames = null
 blowback_force = Vector2( 1000, 0 )
-recoil_force = null
 horizontal_recoil_modifyer = 0.2
-resource_max = null
-resource_recharge = null
 
 [node name="Repair_Box" type="Area2D" parent="."]
 collision_layer = 0

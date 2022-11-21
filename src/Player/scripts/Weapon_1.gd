@@ -1,4 +1,4 @@
-extends Node2D
+extends Item
 
 export(Vector2) var force:Vector2 = Vector2(3000, 0)		# Firing force
 export(Vector2) var recoil:Vector2 = Vector2(100, 0)		# Player recoil

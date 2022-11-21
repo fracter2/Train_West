@@ -134,11 +134,6 @@ force = Vector2( -3000, 0 )
 proj_dmg = 35
 
 [node name="Repair_Tool" parent="." instance=ExtResource( 6 )]
-repair_ammount = 20
-repair_cooldown_frames = 5
-recoil_force = Vector2( -100, 0 )
-resource_max = 100
-resource_recharge = 7.0
 
 [node name="Inventory" type="YSort" parent="."]
 sort_enabled = false

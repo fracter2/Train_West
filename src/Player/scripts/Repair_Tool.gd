@@ -1,4 +1,4 @@
-extends Node2D
+extends Item
 
 
 export var repair_ammount:int = 20
