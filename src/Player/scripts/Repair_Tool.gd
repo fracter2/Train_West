@@ -17,7 +17,6 @@ export(float, 0, 1000) var resource_recharge:float = 7
 var default_particle_lifetime:float
 func _ready(): default_particle_lifetime = $Particles2D.lifetime
 
-var equiped:bool = false
 var was_equiped:bool = false
 
 
