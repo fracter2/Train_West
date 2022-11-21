@@ -66,13 +66,27 @@ func set_state(state:bool):
 	#	target_rot = 0
 
 func set_targets(pos:Vector2, new_state:int = 1, dim:Vector2 = Vector2(1,1), size:float = 2, rot:float = 0, spin:bool = false):
-	state = new_state
+	state = new_state		# Aim state
 	target_pos = pos
 	target_dimentions = dim
 	target_size = size
 	target_rot = rot
 	spinning = spin
 
+func set_speeds(spin_spd:float, spin_mod:float, spin_resp:float, move_spd:Vector2, move_mod:Vector2 ):
+	spin_speed = spin_spd
+	spin_mod = spin_mod
+	spin_responsiveness = spin_resp
+	move_speed = move_spd
+	move_mod = move_mod
+	#dim_speed
+	#dim_mod
+	
+
+#func set_positions(trg_dim:Vector2 = Vector2(1,1), size:float = 2)
+#func set_dimentions()
+#func set_rotations()
+#func set_states()
 
 #func set_speeds(move_speed:Vector2 = Vector2(1,1), spin_speed:float = 0.3)
 #	pass

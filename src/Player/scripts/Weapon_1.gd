@@ -4,7 +4,7 @@ export(Vector2) var force:Vector2 = Vector2(3000, 0)		# Firing force
 export(Vector2) var recoil:Vector2 = Vector2(100, 0)		# Player recoil
 export(float, 0, 1000) var knockback = 100					# Target knockback
 
-export var refire_time:float  = 0.35
+
 export var rechamber_time:float = 0.35
 export var reload_time:float = 3.25
 export var proj_dmg:int = 25
@@ -14,10 +14,7 @@ var shell = preload("res://src/Player/Shell1.tscn")
 
 enum STATES {READY, RECHAMBERING, RELOADING, RELOAD_PARTIAL, DISABLED}
 var state:int = STATES.READY setget set_state
-var equiped = false
 
-var default_poffset: Vector3 = Vector3.ZERO
-var cur_poffset: Vector3 = Vector3.ZERO
 var rcbr_poffset: Vector3 = Vector3 (-1, 0.5, 0)
 var rld_poffset:Vector3 = Vector3 (0, 3, -0.35)
 #var rld_time:float = 3.25
@@ -27,7 +24,10 @@ var rld_poffset:Vector3 = Vector3 (0, 3, -0.35)
 onready var firing_particles = $"%Particles1".duplicate(7)
 
 
-func _ready(): default_poffset = Vector3(position.x, position.y, rotation)
+func _ready(): 
+	default_poffset = Vector3(position.x, position.y, rotation)
+	
+	#refire_time = 0.35
 
 
 func _physics_process(delta):

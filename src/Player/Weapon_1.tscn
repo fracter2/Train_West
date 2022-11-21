@@ -20,6 +20,7 @@ func _on_Destroy_Timer_timeout():
 
 [node name="Weapon_1" type="Node2D"]
 script = ExtResource( 1 )
+refire_time = 0.35
 knockback = 1000.0
 
 [node name="Rechamber_Timer" type="Timer" parent="."]
