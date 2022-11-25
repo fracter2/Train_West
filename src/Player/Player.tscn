@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Player/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/scripts/Push Area.gd" type="Script" id=2]
@@ -11,16 +11,18 @@
 [ext_resource path="res://src/UI/UI components/EnergyBar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/UI/Scripts/GUI.gd" type="Script" id=10]
 [ext_resource path="res://src/Player/scripts/Player_Camera.gd" type="Script" id=11]
+[ext_resource path="res://src/Player/scripts/Target_Highlight.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 40, 60 )
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 96.0
-height = 112.0
+radius = 112.0
+height = 214.0
 
 [sub_resource type="Gradient" id=6]
-offsets = PoolRealArray( 0.596591, 0.778409 )
+interpolation_mode = 2
+offsets = PoolRealArray( 0.596591, 0.676136 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture2D" id=7]
@@ -30,7 +32,8 @@ fill_from = Vector2( 0.5, 0.5 )
 fill_to = Vector2( 1, 0.5 )
 
 [sub_resource type="Gradient" id=8]
-offsets = PoolRealArray( 0.596591, 0.9375 )
+interpolation_mode = 1
+offsets = PoolRealArray( 0.801136, 0.863636 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture2D" id=5]
@@ -87,6 +90,37 @@ position = Vector2( 0, -16 )
 rotation = 1.5708
 shape = SubResource( 3 )
 
+[node name="Target_Highlight" type="Position2D" parent="."]
+position = Vector2( 0, -144 )
+script = ExtResource( 12 )
+__meta__ = {
+"_gizmo_extents_": 19.1
+}
+
+[node name="Polygon2D1" type="Polygon2D" parent="Target_Highlight"]
+position = Vector2( -8, 8 )
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -3, -8, -3, 3, 8, 3, 8, -2, 2, -2, 2, -8 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Target_Highlight"]
+position = Vector2( -8, -8 )
+scale = Vector2( 1, -1 )
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -3, -8, -3, 3, 8, 3, 8, -2, 2, -2, 2, -8 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="Target_Highlight"]
+position = Vector2( 8, -8 )
+rotation = -3.14159
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -3, -8, -3, 3, 8, 3, 8, -2, 2, -2, 2, -8 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="Target_Highlight"]
+position = Vector2( 8, 8 )
+rotation = -3.14159
+scale = Vector2( 1, -1 )
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -3, -8, -3, 3, 8, 3, 8, -2, 2, -2, 2, -8 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 0, -100 )
 current = true
@@ -96,14 +130,13 @@ editor_draw_drag_margin = true
 script = ExtResource( 11 )
 
 [node name="Weapon" parent="." instance=ExtResource( 4 )]
-force = Vector2( -2500, 0 )
+force = Vector2( -3000, 0 )
+proj_dmg = 35
 
 [node name="Repair_Tool" parent="." instance=ExtResource( 6 )]
-repair_ammount = 20
-repair_cooldown_frames = 5
-recoil_force = Vector2( -100, 0 )
-resource_max = 100
-resource_recharge = 7.0
+
+[node name="Inventory" type="YSort" parent="."]
+sort_enabled = false
 
 [node name="GUI" type="Control" parent="."]
 anchor_right = 1.0
@@ -163,7 +196,7 @@ __meta__ = {
 [node name="Vision_Field" type="Light2D" parent="."]
 light_mask = 512
 position = Vector2( 9.53674e-07, -32 )
-scale = Vector2( 80, 80 )
+scale = Vector2( 100, 100 )
 texture = SubResource( 7 )
 mode = 3
 range_item_cull_mask = 512
@@ -172,18 +205,32 @@ shadow_color = Color( 0.164706, 0.164706, 0.164706, 0 )
 shadow_item_cull_mask = 512
 
 [node name="Vision_Field_shadows" type="Light2D" parent="."]
-visible = false
 light_mask = 256
 position = Vector2( 9.53674e-07, -32 )
-scale = Vector2( 80, 80 )
+scale = Vector2( 100, 100 )
 texture = SubResource( 5 )
 mode = 3
 range_item_cull_mask = 256
 shadow_enabled = true
-shadow_color = Color( 0.198242, 0.198242, 0.198242, 1 )
+shadow_color = Color( 0.2, 0.2, 0.2, 1 )
 shadow_item_cull_mask = 256
 __meta__ = {
 "_editor_description_": "Experiment with shadows, turn on or off at will"
+}
+
+[node name="Vision_Field_shadows_env" type="Light2D" parent="."]
+light_mask = 256
+position = Vector2( 9.53674e-07, -32 )
+scale = Vector2( 100, 100 )
+texture = SubResource( 5 )
+mode = 3
+range_item_cull_mask = 128
+shadow_enabled = true
+shadow_color = Color( 0.2, 0.2, 0.2, 0.537255 )
+shadow_item_cull_mask = 384
+__meta__ = {
+"_editor_description_": "This marks the envioprnment in blacky-ness (shadows) when out of view.
+Layer 8, but calculates shadows from 8 & 9"
 }
 
 [connection signal="health_changed" from="." to="GUI" method="update_health"]

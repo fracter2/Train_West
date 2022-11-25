@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Level/Enviornment/scripts/Background.gd" type="Script" id=1]
+
+[node name="Background1" type="Polygon2D"]
+light_mask = 769
+position = Vector2( 0, 312 )
+color = Color( 0.631373, 0.537255, 0.156863, 1 )
+polygon = PoolVector2Array( -7936, -584, -7008, -760, -5592, -808, -4536, -464, -2688, -696, -1648, -1304, -648, -952, 312, -784, 1480, -968, 3272, -632, 5520, -784, 6656, -496, 8700, -800, 10100, -480, 10100, 1576, -10100, 1576, -10100, -480, -9072, -832 )
+script = ExtResource( 1 )
+width = 10100.0

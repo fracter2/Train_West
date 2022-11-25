@@ -46,7 +46,7 @@ func toggle_disabled(var value:bool):
 	get_node("CollisionBase").set_deferred("disabled", value)
 	get_node("PolygonBase").visible = not value
 	
-	get_node("LightOccluderBase").visible = not value
+	#get_node("LightOccluderBase").visible = not value
 
 func update_effects(variable:int = 0):
 	pass

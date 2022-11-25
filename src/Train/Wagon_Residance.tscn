@@ -104,6 +104,7 @@ position = Vector2( 0, 160 )
 position = Vector2( 0, 16 )
 rotation = 1.5708
 scale = Vector2( 0.8, 1 )
+left_corner_shadows = true
 
 [node name="Wall_Right" type="Polygon2D" parent="."]
 position = Vector2( 640, -256 )
@@ -114,6 +115,7 @@ polygon = PoolVector2Array( -16, -80, -16, 80, 16, 80, 16, -80 )
 position = Vector2( 0, 16 )
 rotation = 1.5708
 scale = Vector2( 0.8, 1 )
+left_corner_shadows = true
 
 [node name="Wagon_Door" parent="Wall_Right" instance=ExtResource( 4 )]
 position = Vector2( 0, 160 )
@@ -156,6 +158,7 @@ polygon = PoolVector2Array( -688, -16, -704, 16, 704, 16, 688, -16 )
 
 [node name="Wagon_Segment-4" parent="Roof" instance=ExtResource( 2 )]
 position = Vector2( -608, 0 )
+left_corner_shadows = true
 
 [node name="Wagon_Segment-3" parent="Roof" instance=ExtResource( 2 )]
 position = Vector2( -456, 0 )
@@ -169,18 +172,17 @@ position = Vector2( -152, 0 )
 [node name="Wagon_Segment" parent="Roof" instance=ExtResource( 2 )]
 
 [node name="Wagon_Segment1" parent="Roof" instance=ExtResource( 2 )]
-
-[node name="Wagon_Segment2" parent="Roof" instance=ExtResource( 2 )]
 position = Vector2( 152, 0 )
 
-[node name="Wagon_Segment3" parent="Roof" instance=ExtResource( 2 )]
+[node name="Wagon_Segment2" parent="Roof" instance=ExtResource( 2 )]
 position = Vector2( 304, 0 )
 
-[node name="Wagon_Segment4" parent="Roof" instance=ExtResource( 2 )]
+[node name="Wagon_Segment3" parent="Roof" instance=ExtResource( 2 )]
 position = Vector2( 456, 0 )
 
-[node name="Wagon_Segment5" parent="Roof" instance=ExtResource( 2 )]
+[node name="Wagon_Segment4" parent="Roof" instance=ExtResource( 2 )]
 position = Vector2( 608, 0 )
+right_corner_shadows = true
 
 [node name="Background_Outside" type="Polygon2D" parent="."]
 visible = false

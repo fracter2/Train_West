@@ -15,14 +15,15 @@ onready var smoke_default_gravity = $PolygonBase/Particles2D.process_material.gr
 
 
 func _physics_process(delta):
+	# Smoke particles effect
 	var new:Vector3 = smoke_default_gravity
 	new.x = Train_manager.velocity * -3
 	smoke_emitter.process_material.set_deferred("gravity", new)
 
+
 func update_effects(variable:int = 0):
 	var hp_fullness:float = (hp + color_offset) / (hp_max + color_offset) 
 	$PolygonBase.modulate = Color(hp_fullness, hp_fullness, hp_fullness)
-	
 	
 	if variable == 0: # If it was an attack
 		$PolygonBase/PolygonFlash.modulate.a = flash_ammount

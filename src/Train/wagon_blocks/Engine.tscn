@@ -51,7 +51,7 @@ color_offset = 1000
 
 [node name="PolygonBase" type="Polygon2D" parent="."]
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
-polygon = PoolVector2Array( -376, 152, -376, 136, -352, 128, -352, -24, -376, -32, -376, -64, 120, -64, 120, -136, 96, -176, 96, -200, 232, -200, 232, -176, 208, -136, 208, -64, 368, -64, 368, -56, 376, -56, 376, -32, 368, -32, 368, 112, 376, 112, 376, 152 )
+polygon = PoolVector2Array( -376, 152, -376, 136, -360, 128, -360, -56, -376, -64, -376, -96, 120, -96, 120, -168, 96, -208, 96, -232, 232, -232, 232, -208, 208, -168, 208, -96, 368, -96, 368, -88, 376, -88, 376, -64, 368, -64, 368, 112, 376, 112, 376, 152 )
 
 [node name="Particles2D" type="Particles2D" parent="PolygonBase"]
 show_behind_parent = true
@@ -71,7 +71,7 @@ color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( -376, 152, 336, 152, 336, 168, -376, 168 )
 
 [node name="RowTop" type="Polygon2D" parent="."]
-position = Vector2( 0, 104 )
+position = Vector2( 0, 72 )
 scale = Vector2( 1, -1 )
 color = Color( 0.552941, 0.552941, 0.552941, 1 )
 polygon = PoolVector2Array( -376, 144, 352, 144, 352, 160, 384, 160, 384, 176, -376, 176 )

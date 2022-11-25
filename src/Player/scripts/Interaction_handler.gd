@@ -6,35 +6,57 @@ var objects_in_range:int = 0
 var last_interacted_body
 var mouse_interact:bool = true
 
-var highlight_frames_skip:int = 10
+var highlight_frames_skip:int = 6
 var frames_skipped:int = 0
 var highlight_interacted_prev_body
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("Interact"):
-		interact()
+	if get_parent().aiming:
+		#var mouse
+		#$Target_Highlight.target_pos = get_global_mouse_position()
+		#$Target_Highlight.target_size = 0.006 * (position - get_local_mouse_position()).length()	# Times accurasy later
+		
+		#$Target_Highlight.target_dimentions = Vector2(1,1)
+		#$Target_Highlight.target_rot = -0.25
+		
+		#$Target_Highlight.spinning = false
+		pass
+	else:
+		#$Target_Highlight.target_dimentions = Vector2(1, 1)
+		#$Target_Highlight.spinning = true
+		
+		if Input.is_action_just_pressed("Interact") or Input.is_action_just_pressed("action_1"):
+			interact()
 	
-	if Input.is_action_just_released("Interact"):
+	if Input.is_action_just_released("Interact") or (Input.is_action_just_released("action_1")):
 		interact_end()
 	
 	# Skip most of the frames, because this is an expensive operation
-	if frames_skipped <= highlight_frames_skip:
-		frames_skipped += 1
+	#if frames_skipped <= highlight_frames_skip:
+	#	frames_skipped += 1
 	
 	# On the frame where it updates the highlight
-	else:
-		var index:int = find_closest_object_index()
-		if index == null or index == -1: return 						# if there is none in range 
-		
-		var body = get_overlapping_bodies()[index]
-		if body == highlight_interacted_prev_body:
-			pass
-		else:
-			body.highlight_start()
-			if not highlight_interacted_prev_body == null:
-				highlight_interacted_prev_body.highlight_end()
+	#elif not get_parent().aiming:
+		#var index:int = find_closest_object_index()
+		#if index == null or index == -1: # if there is none in range 
+			#$Target_Highlight.target_pos = get_global_mouse_position()
+			#$Target_Highlight.target_size = 2
+			#$Target_Highlight.target_rot = 0
 			
-			highlight_interacted_prev_body = body
+		#else:
+			#$Target_Highlight.visible = true
+			#var body = get_overlapping_bodies()[index]
+			#$Target_Highlight.target_pos = body.get_global_position() - body.highlight_offset
+			#$Target_Highlight.target_size = body.highlight_size
+		
+		#if body == highlight_interacted_prev_body:
+		#	pass
+		#else:
+		#	body.highlight_start()
+		#	if not highlight_interacted_prev_body == null:
+		#		highlight_interacted_prev_body.highlight_end()
+		#	
+		#	highlight_interacted_prev_body = body
 		
 		frames_skipped = 1
 

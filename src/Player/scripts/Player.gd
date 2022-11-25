@@ -11,12 +11,15 @@ var velocity := Vector2.ZERO
 var frame_jump := 0
 var velocity_queued := Vector2.ZERO 		# Knockback
 var velocity_recoil := Vector2.ZERO			# Recoil
+var last_pos:Vector2 = Vector2.ZERO
 
 export (float, 0, 1.0) var friction := 0.1
 export (float, 0, 1.0) var acceleration := 0.25
 
 # Player Parameters
-var input_dir := Vector3(0,0,0)
+var input_dir := Vector3.ZERO
+var input_dir_JR := Vector3.ZERO
+var input_dir_JP := Vector3.ZERO
 
 
 # Health and state
@@ -37,10 +40,14 @@ var alive: bool = true
 var disabled: bool = false
 
 var aiming := false
+var reloading := false
 var inside := false
+var highlight_state:int 
+enum HIGHLIGHT_STATES {AIMIMG, RELOADING, HOVERING, DEFAULT}
+var prev_body = null
 
-var equiped_slot:int = 0
-
+var equiped_slot:int = 0 setget set_equiped_slot
+var equipment_dict = {"0":"Weapon", "1":"Repair_Tool"}
 
 
 func _ready():
@@ -49,8 +56,82 @@ func _ready():
 	emit_signal("health_changed", health)
 
 
-# Movement
+
+
+# Movement & input managing
 func _physics_process(delta):
+	
+	# Aiming Controlls
+	if Input.is_action_just_pressed("key_quick_switch"):
+		set_equiped_slot(int(equiped_slot == 0))	# This just reverses what is equiped
+		# if equiped_slot == 0 -> equiped_slot = 1, and vice versa (true = 1, false = 0)
+		# Later this can be made to equip from a list
+	
+	# ---
+	if Input.is_action_just_pressed("action_2"):
+		pass
+	elif Input.is_action_just_released("action_2"):
+		pass
+	# ---
+	
+	if Input.is_action_pressed("action_2"):			# The button for aiming, right click
+		aiming = true
+		get_node(equipment_dict[String(equiped_slot)]).equiped = true
+	elif aiming:									# when not pressing the button, but there was aim from the previous frame
+		get_node(equipment_dict[String(equiped_slot)]).equiped = false
+		aiming = false
+	
+	#if Input.is_action_pressed("reload"):
+	# Later mae this smart
+	
+	
+	# Target Highlighter
+#		if custom_state:
+#			pass
+	if aiming:
+		if reloading:														# reload
+			if not highlight_state == HIGHLIGHT_STATES.RELOADING:
+				highlight_state = HIGHLIGHT_STATES.RELOADING
+				#check equiped reload stats
+				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE
+				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 3, 0, true)
+				print("reloading")
+		else: 																# aim
+			if not highlight_state == HIGHLIGHT_STATES.AIMIMG:
+				highlight_state = HIGHLIGHT_STATES.AIMIMG
+				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE_RESIZE
+				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 3, -0.25, false)
+				$Target_Highlight.dim_dist_mod = 0.001		# later this will be the accuracy of da weapon
+				print("aiming")
+			
+	
+	elif Engine.get_physics_frames() % 6: # check interact range
+		var index:int = $"Interaction Range".find_closest_object_index()
+		
+		if index == null or index == -1: # if there is none in range 
+			if not highlight_state == HIGHLIGHT_STATES.DEFAULT:
+				
+				highlight_state = HIGHLIGHT_STATES.DEFAULT
+				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE
+				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 2, 0, false)
+				print("default")
+		
+		
+		else:
+			var body = $"Interaction Range".get_overlapping_bodies()[index]
+			if not body == prev_body or highlight_state != HIGHLIGHT_STATES.HOVERING:
+				highlight_state = HIGHLIGHT_STATES.HOVERING
+				var s:int = $Target_Highlight.STATES.DEFAULT
+				var p:Vector2 = body.get_global_position() - body.highlight_offset 
+				var z:float = body.highlight_size
+				$Target_Highlight.set_targets(p, s, Vector2(1,1), z, 0, true)
+				print("interactable")
+				prev_body = body
+			
+			
+	
+	
+	
 	# Movement code
 	if alive:
 		movement(delta)
@@ -58,7 +139,19 @@ func _physics_process(delta):
 			input_dir.x = Input.get_axis("move_left", "move_right")
 			input_dir.y = Input.get_axis("move_down","move_up")
 			input_dir.z = Input.get_action_strength("move_jump")
+			
+			input_dir_JP = Vector3.ZERO
+			
+			input_dir_JR = Vector3.ZERO
+			input_dir_JR.y = int(Input.is_action_just_released("move_jump")) 	# Up is Jump for now
+			input_dir_JR.y = - int(Input.is_action_just_released("move_down"))
+			
+			#input_action
+			
+		else:
+			input_dir = Vector3.ZERO
 	
+
 
 
 func movement(delta:float):			# Non-controlls
@@ -74,11 +167,18 @@ func movement(delta:float):			# Non-controlls
 	
 	# Fake train velocity
 	if not inside:
-		velocity.x -= Train_manager.velocity * fake_train_vel_k
+		if not is_on_floor():
+			velocity.x -= Train_manager.velocity * fake_train_vel_k
+		else:
+			velocity.x -= Train_manager.velocity * fake_train_vel_k * 0.05
 	
 	# Queued velocity, AKA KNOCKBACK & RECOIL
-	velocity += velocity_queued						# Knockback
+	var k := Vector2.ZERO
+	if is_on_floor() or velocity.y < 0: k = velocity_queued * 0.7 # The num is to make smaller, nothing special
+	else: 								k = velocity_queued
+	velocity += k
 	velocity_queued *= Vector2(0.75, 0.35)			# Custom drag, so it lasts for more than a frame
+	
 	
 	# Recoil portion
 	var r := velocity_recoil
@@ -91,14 +191,14 @@ func movement(delta:float):			# Non-controlls
 
 
 func vertical_movement():			# Up_down controlls
-	if Input.is_action_just_released("move_down") and not velocity.y > 0:
+	if input_dir_JR.y == -1 and not velocity.y > 0:
 		frame_jump = 20
 		velocity.y = 0
 	
-	if Input.is_action_just_released("move_jump"):
+	if input_dir_JR.y == 1:
 		frame_jump = 20 							# 20 is an arbituary large number. It just signifies that the "jump" part has ended
 	
-	if Input.is_action_pressed("move_jump"):
+	if input_dir.z == 1:
 		if frame_jump < 3:
 			velocity.y = jump_speed * 0.5 			# times 0.5 to make the inputed jump_speed not stray too much, since it gets applied thru 3 frames. might be redundant
 			velocity.x -= -60 * input_dir.x 		# Boosts the player in the inputed direction, left or right, when jumping. -60 is the strength
@@ -119,15 +219,22 @@ func horizontal_movement(): 		# Left-Right controlls
 		
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
-		
+
 
 
 # Movement and collision is executed here, every frame, not every physics frame
+# This is not an ideal fix, but it is fine for now
 func _process(delta):
 	if alive:
+		last_pos = position
 		velocity = .move_and_slide(velocity, Vector2.UP)
+		
 
 
+# Use this method instead of changing the variable directly, please
+func set_equiped_slot(new_slot:int):
+	get_node(equipment_dict[String(equiped_slot)]).equiped = false
+	equiped_slot = new_slot
 
 
 # Health
