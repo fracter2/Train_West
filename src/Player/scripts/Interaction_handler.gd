@@ -26,7 +26,8 @@ func _physics_process(delta):
 		#$Target_Highlight.spinning = true
 		
 		if Input.is_action_just_pressed("Interact") or Input.is_action_just_pressed("action_1"):
-			interact()
+			if not get_parent().disabled:
+				interact()
 	
 	if Input.is_action_just_released("Interact") or (Input.is_action_just_released("action_1")):
 		interact_end()
