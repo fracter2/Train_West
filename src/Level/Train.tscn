@@ -114,7 +114,6 @@ position = Vector2( 1502, -144 )
 
 [node name="Button_Heal" parent="Lokomotive/Wagon_Cafeteria" instance=ExtResource( 12 )]
 position = Vector2( -47, -123 )
-toggle = true
 
 [node name="Wagon_Production" parent="Lokomotive" instance=ExtResource( 7 )]
 position = Vector2( -5454, 0 )
@@ -201,8 +200,5 @@ script = ExtResource( 9 )
 shape = SubResource( 2 )
 one_way_collision_margin = 0.0
 
-[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Runner" to="Spawners_and_misc/Spawner_Runner" method="spawn"]
-[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Flyer" to="Spawners_and_misc/Spawner_Flyer" method="spawn"]
-[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Crawler" to="Spawners_and_misc/Spawner_Crawler" method="spawn"]
 [connection signal="interacted" from="Lokomotive/Wagon_Cafeteria/Button_Heal" to="Spawners_and_misc/MapNode_Healer" method="activate"]
 [connection signal="body_exited" from="Ground1/Play_Zone" to="Ground1/Play_Zone" method="_on_Out_of_bounds_Area_body_exited"]
