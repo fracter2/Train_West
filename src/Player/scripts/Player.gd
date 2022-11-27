@@ -56,7 +56,7 @@ func _ready():
 	emit_signal("health_changed", health)
 
 
-
+# print
 
 # Movement & input managing
 func _physics_process(delta):
@@ -95,14 +95,14 @@ func _physics_process(delta):
 				#check equiped reload stats
 				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE
 				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 3, 0, true)
-				print("reloading")
+				#print("reloading")
 		else: 																# aim
 			if not highlight_state == HIGHLIGHT_STATES.AIMIMG:
 				highlight_state = HIGHLIGHT_STATES.AIMIMG
 				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE_RESIZE
 				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 3, -0.25, false)
 				$Target_Highlight.dim_dist_mod = 0.001		# later this will be the accuracy of da weapon
-				print("aiming")
+				#print("aiming")
 			
 	
 	elif Engine.get_physics_frames() % 6: # check interact range
@@ -114,7 +114,7 @@ func _physics_process(delta):
 				highlight_state = HIGHLIGHT_STATES.DEFAULT
 				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE
 				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 2, 0, false)
-				print("default")
+				#print("default")
 		
 		
 		else:
@@ -125,7 +125,7 @@ func _physics_process(delta):
 				var p:Vector2 = body.get_global_position() - body.highlight_offset 
 				var z:float = body.highlight_size
 				$Target_Highlight.set_targets(p, s, Vector2(1,1), z, 0, true)
-				print("interactable")
+				#print("interactable")
 				prev_body = body
 			
 			

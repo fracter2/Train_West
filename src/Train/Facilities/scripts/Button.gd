@@ -25,14 +25,14 @@ func interact(var player): # override
 		pressed = true
 		emit_signal("button_just_pressed")
 		$ButtonBase/ButtonRect.color = COLORS[1]
-		print("Button just pressed! ")
+		#print("Button just pressed! ")
 	
 	# Toggled interaction
 	else: 
 		pressed = false
 		emit_signal("button_just_released")
 		$ButtonBase/ButtonRect.color = COLORS[0]
-		print("Button just released! ")
+		#print("Button just released! ")
 
 func interact_end(var player):
 	emit_signal("interacted_end")
@@ -41,12 +41,12 @@ func interact_end(var player):
 		pressed = false
 		emit_signal("button_just_released")
 		$ButtonBase/ButtonRect.color = COLORS[0]
-		print("Button just released!")
+		#print("Button just released!")
 	
 	# Toggled interaction
 	elif pressed:
 		$ButtonBase/ButtonRect.color = COLORS[2]
-		print("Button just toggled!")
+		#print("Button just toggled!")
 
 
 

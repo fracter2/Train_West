@@ -17,4 +17,5 @@ func spawn():
 	var entity = entity_preload.instance()
 	entity.position = global_position
 	$"/root/World/Entities".add_child(entity)
+	#print("attempted spawning")
 	
