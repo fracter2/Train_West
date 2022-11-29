@@ -99,7 +99,7 @@ left_corner_shadows = true
 
 [node name="Engine" parent="." instance=ExtResource( 5 )]
 
-[node name="Node2D" parent="Engine" instance=ExtResource( 6 )]
+[node name="Hatch" parent="Engine" instance=ExtResource( 6 )]
 show_behind_parent = true
 position = Vector2( -408, 48 )
 

@@ -40,6 +40,9 @@ auto_exposure_max_luma = 0.35
 dof_blur_near_distance = 15.42
 dof_blur_near_transition = 0.15
 dof_blur_near_quality = 2
+glow_enabled = true
+glow_intensity = 0.43
+glow_blend_mode = 0
 adjustment_enabled = true
 adjustment_color_correction = SubResource( 5 )
 

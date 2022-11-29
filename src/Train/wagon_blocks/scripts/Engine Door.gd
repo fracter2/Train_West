@@ -1,8 +1,8 @@
 extends Facility
 
 export var opened := false
-export var hatch1_open_pos:Vector2  = Vector2(0, 64)
-export var hatch2_open_pos:Vector2  = Vector2(0, -64)
+export var hatch1_open_pos:Vector2  = Vector2(0, -64)
+export var hatch2_open_pos:Vector2  = Vector2(0, 64)
 var hatch1_default_pos:Vector2
 var hatch2_default_pos:Vector2
 
