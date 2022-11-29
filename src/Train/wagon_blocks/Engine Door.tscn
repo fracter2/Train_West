@@ -23,9 +23,9 @@ color = Color( 0.552941, 0.552941, 0.552941, 1 )
 polygon = PoolVector2Array( -8, -100, -8, -8, 0, 0, 16, 0, 16, -108, 0, -108 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Hach 1/Hach"]
-light_mask = 769
+light_mask = 771
 occluder = SubResource( 1 )
-light_mask = 769
+light_mask = 771
 
 [node name="Hach 2" type="CollisionShape2D" parent="."]
 position = Vector2( 4, 50 )
@@ -37,7 +37,7 @@ color = Color( 0.552941, 0.552941, 0.552941, 1 )
 polygon = PoolVector2Array( -8, -96, -8, -4, 0, 4, 16, 4, 16, -104, 0, -104 )
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="Hach 2/Hach"]
-light_mask = 769
+light_mask = 771
 position = Vector2( 0, 4 )
 occluder = SubResource( 1 )
-light_mask = 769
+light_mask = 771

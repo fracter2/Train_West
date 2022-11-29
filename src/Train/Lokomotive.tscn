@@ -12,7 +12,7 @@
 [node name="Lokomotive" type="Node2D"]
 
 [node name="Background_Inside" type="Polygon2D" parent="."]
-light_mask = 257
+light_mask = 259
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
 polygon = PoolVector2Array( -680, -328, -88, -328, -88, -200, 48, -200, 48, -88, 640, -88, 640, 0, -680, 0 )
 
