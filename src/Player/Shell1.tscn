@@ -46,6 +46,7 @@ script = SubResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+light_mask = 3
 position = Vector2( 7, -8.9407e-08 )
 scale = Vector2( 0.875, 0.777778 )
 color = Color( 0.701961, 0.345098, 0.0862745, 1 )

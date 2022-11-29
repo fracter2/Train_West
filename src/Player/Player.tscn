@@ -43,6 +43,7 @@ fill_from = Vector2( 0.5, 0.5 )
 fill_to = Vector2( 1, 0.5 )
 
 [node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
+light_mask = 3
 position = Vector2( 8, 16 )
 collision_layer = 2
 collision_mask = 4225
@@ -68,6 +69,7 @@ position = Vector2( 0, 8 )
 polygon = PoolVector2Array( -16, 56, 16, 56, 27, 47, 32, 34, 32, -40, 20, -52, -20, -52, -32, -40, -32, 34, -27, 47 )
 
 [node name="TempPlayerModel" type="Polygon2D" parent="."]
+light_mask = 3
 color = Color( 0.156863, 0.772549, 0.87451, 1 )
 polygon = PoolVector2Array( 24, 64, -24, 64, -32, 56, -32, -40, -32, -48, -24, -56, 24, -56, 32, -48, 32, 8, 32, 56 )
 

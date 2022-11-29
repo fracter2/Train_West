@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/scripts/Engine.gd" type="Script" id=1]
 
@@ -40,13 +40,10 @@ scale_curve = SubResource( 7 )
 color_ramp = SubResource( 5 )
 color_initial_ramp = SubResource( 3 )
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 372, 112 )
-
 [sub_resource type="Gradient" id=9]
 interpolation_mode = 2
-offsets = PoolRealArray( 0, 0.0461538, 1 )
-colors = PoolColorArray( 4.75, 3.05, 0.2, 1, 1.85128, 1.18872, 0.0779487, 1, 0, 0, 0, 1 )
+offsets = PoolRealArray( 0, 0.0113636, 0.528409, 1 )
+colors = PoolColorArray( 4.04, 1.52, 0.2, 1, 1.9108, 1.09574, 0.107955, 1, 1.28903, 0.739189, 0.0728265, 1, 0, 0, 0, 1 )
 
 [sub_resource type="GradientTexture2D" id=10]
 gradient = SubResource( 9 )
@@ -56,18 +53,13 @@ fill_from = Vector2( 0.5, 0.5 )
 fill_to = Vector2( 0, 0.516667 )
 
 [sub_resource type="OccluderPolygon2D" id=11]
-closed = false
-cull_mode = 2
-polygon = PoolVector2Array( -304, 0, -304, 32, -104, 32, -104, 0, 456, 0 )
+polygon = PoolVector2Array( -304, 0, -104, 0, 456, 0 )
 
 [sub_resource type="OccluderPolygon2D" id=12]
 closed = false
-cull_mode = 1
-polygon = PoolVector2Array( 456, 0, -24, 0, -24, -32, -304, -32 )
+polygon = PoolVector2Array( 456, 0, -24, 0, -304, 0 )
 
 [sub_resource type="OccluderPolygon2D" id=13]
-closed = false
-cull_mode = 1
 polygon = PoolVector2Array( 8, 152, 8, -128 )
 
 [sub_resource type="OccluderPolygon2D" id=14]
@@ -98,7 +90,7 @@ process_material = SubResource( 8 )
 light_mask = 3
 position = Vector2( -288, 56 )
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
-polygon = PoolVector2Array( -88, -128, 112, -128, 192, -24, 192, 88, -88, 88 )
+polygon = PoolVector2Array( -104, -128, 112, -128, 192, -24, 192, 88, -104, 88 )
 
 [node name="RowBot" type="Polygon2D" parent="."]
 color = Color( 0.552941, 0.552941, 0.552941, 1 )
@@ -127,16 +119,19 @@ position = Vector2( -176, 192 )
 color = Color( 0.337255, 0.337255, 0.337255, 1 )
 polygon = PoolVector2Array( -40, 32, -24, 48, 24, 48, 40, 32, 40, -16, -40, -16 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 visible = false
-position = Vector2( -4, 48 )
-shape = SubResource( 1 )
+position = Vector2( 4, 36 )
+polygon = PoolVector2Array( -380, -140, 380, -140, 380, 140, -380, 140, -380, 108, -100, 108, -100, -108, -380, -108 )
 
 [node name="HeatRadiance" type="Light2D" parent="."]
 position = Vector2( -248, 64 )
 texture = SubResource( 10 )
 texture_scale = 8.0
+energy = 0.92
 range_item_cull_mask = 2
+shadow_enabled = true
+shadow_color = Color( 0.109804, 0.141176, 0.698039, 0 )
 shadow_item_cull_mask = 2
 
 [node name="LightOccluder2DTop" type="LightOccluder2D" parent="."]
@@ -152,8 +147,10 @@ occluder = SubResource( 12 )
 light_mask = 770
 
 [node name="LightOccluder2DRight" type="LightOccluder2D" parent="."]
+light_mask = 770
 position = Vector2( 376, 24 )
 occluder = SubResource( 13 )
+light_mask = 770
 
 [node name="LightOccluder2DInside" type="LightOccluder2D" parent="."]
 light_mask = 770
