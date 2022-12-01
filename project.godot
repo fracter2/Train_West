@@ -197,6 +197,11 @@ left_move_down={
 
 [layer_names]
 
+2d_render/layer_1="Normal"
+2d_render/layer_2="Engine Heat"
+2d_render/layer_8="Player_Half_Shadower"
+2d_render/layer_9="Player_Full_Shadower"
+2d_render/layer_10="Player_Vison_Field"
 2d_physics/layer_1="Map - Static env"
 2d_physics/layer_2="Entity Player"
 2d_physics/layer_3="Entity Enemy"
@@ -206,6 +211,7 @@ left_move_down={
 2d_physics/layer_7="Proj Enemies"
 2d_physics/layer_8="Entity_Train"
 2d_physics/layer_9="Repairable"
+2d_physics/layer_13="Wind Pushable"
 2d_physics/layer_420=false
 
 [physics]
