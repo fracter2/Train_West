@@ -1,4 +1,4 @@
-extends Item
+extends Inventory_Item
 
 
 export var repair_ammount:int = 20

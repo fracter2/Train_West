@@ -42,8 +42,8 @@ color_initial_ramp = SubResource( 3 )
 
 [sub_resource type="Gradient" id=9]
 interpolation_mode = 2
-offsets = PoolRealArray( 0, 0.0113636, 0.528409, 1 )
-colors = PoolColorArray( 4.04, 1.52, 0.2, 1, 1.9108, 1.09574, 0.107955, 1, 1.28903, 0.739189, 0.0728265, 1, 0, 0, 0, 1 )
+offsets = PoolRealArray( 0, 0.0461538, 1 )
+colors = PoolColorArray( 4.75, 3.05, 0.2, 1, 1.85128, 1.18872, 0.0779487, 1, 0, 0, 0, 1 )
 
 [sub_resource type="GradientTexture2D" id=10]
 gradient = SubResource( 9 )
@@ -53,13 +53,18 @@ fill_from = Vector2( 0.5, 0.5 )
 fill_to = Vector2( 0, 0.516667 )
 
 [sub_resource type="OccluderPolygon2D" id=11]
-polygon = PoolVector2Array( -304, 0, -104, 0, 456, 0 )
+closed = false
+cull_mode = 2
+polygon = PoolVector2Array( -304, 0, -304, 32, -104, 32, -104, 0, 456, 0 )
 
 [sub_resource type="OccluderPolygon2D" id=12]
 closed = false
-polygon = PoolVector2Array( 456, 0, -24, 0, -304, 0 )
+cull_mode = 1
+polygon = PoolVector2Array( 456, 0, -24, 0, -24, -32, -304, -32 )
 
 [sub_resource type="OccluderPolygon2D" id=13]
+closed = false
+cull_mode = 1
 polygon = PoolVector2Array( 8, 152, 8, -128 )
 
 [sub_resource type="OccluderPolygon2D" id=14]

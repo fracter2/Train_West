@@ -68,10 +68,24 @@ func _physics_process(delta):
 		# Later this can be made to equip from a list
 	
 	# ---
+	
+	if Input.is_action_just_pressed("action_1"):
+		get_node(equipment_dict[String(equiped_slot)]).equip()
+		aiming = true
+	elif Input.is_action_just_released("action_1"):
+		aiming = false
+	
 	if Input.is_action_just_pressed("action_2"):
 		pass
 	elif Input.is_action_just_released("action_2"):
 		pass
+	
+	if Input.is_action_just_pressed("reload"):
+		get_node(equipment_dict[String(equiped_slot)]).reload()
+		reloading = true
+	elif Input.is_action_just_released("reload"):
+		reloading = false
+	
 	# ---
 	
 	if Input.is_action_pressed("action_2"):			# The button for aiming, right click
@@ -235,6 +249,9 @@ func _process(delta):
 func set_equiped_slot(new_slot:int):
 	get_node(equipment_dict[String(equiped_slot)]).equiped = false
 	equiped_slot = new_slot
+	
+	if aiming: 
+		get_node(equipment_dict[String(equiped_slot)]).equiped = true
 
 
 # Health

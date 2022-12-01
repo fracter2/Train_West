@@ -6,8 +6,7 @@
 extents = Vector2( 12, 50 )
 
 [sub_resource type="OccluderPolygon2D" id=1]
-closed = false
-polygon = PoolVector2Array( 0, 0, -8, -8, -8, -100, 0, -108, 16, -108 )
+polygon = PoolVector2Array( 0, 0, 16, 0, 16, -108, 0, -108, -8, -100, -8, -8 )
 
 [node name="Engine Hatch" type="StaticBody2D"]
 collision_layer = 512

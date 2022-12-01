@@ -35,9 +35,14 @@ _global_script_classes=[ {
 "path": "res://src/Player/scripts/Highlight_State.gd"
 }, {
 "base": "Node2D",
-"class": "Item",
+"class": "Inventory_Item",
 "language": "GDScript",
-"path": "res://src/Player/scripts/c_Item.gd"
+"path": "res://src/Items/Scripts/Inventory_Item.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Physical_Item",
+"language": "GDScript",
+"path": "res://src/Items/Scripts/Physical_Item.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Physics_Entity",
@@ -60,7 +65,8 @@ _global_script_class_icons={
 "Facility_Button": "",
 "GitAPI": "",
 "HighlightState": "",
-"Item": "",
+"Inventory_Item": "",
+"Physical_Item": "",
 "Physics_Entity": "",
 "Wagon_Entity": "",
 "Wagon_Segment": ""
