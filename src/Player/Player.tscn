@@ -230,6 +230,9 @@ __meta__ = {
 sort_enabled = false
 
 [node name="Repair_Tool" parent="." instance=ExtResource( 6 )]
+__meta__ = {
+"_editor_description_": "This is a repair tool :D"
+}
 
 [node name="Weapon" parent="." instance=ExtResource( 4 )]
 force = Vector2( -3000, 0 )
