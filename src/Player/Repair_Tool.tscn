@@ -42,6 +42,7 @@ position = Vector2( 80, 0 )
 shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
 amount = 32
 lifetime = 0.16
 local_coords = false
