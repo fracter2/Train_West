@@ -213,6 +213,7 @@ left_move_down={
 2d_physics/layer_9="Repairable"
 2d_physics/layer_10="Interactable"
 2d_physics/layer_13="Wind Pushable"
+2d_physics/layer_14="Bridges"
 2d_physics/layer_420=false
 
 [physics]
