@@ -130,7 +130,7 @@ position = Vector2( 4, 36 )
 polygon = PoolVector2Array( -380, -140, 380, -140, 380, 140, -380, 140, -380, 108, -100, 108, -100, -108, -380, -108 )
 
 [node name="HeatRadiance" type="Light2D" parent="."]
-position = Vector2( -248, 64 )
+position = Vector2( -224, 128 )
 texture = SubResource( 10 )
 texture_scale = 8.0
 energy = 0.92
