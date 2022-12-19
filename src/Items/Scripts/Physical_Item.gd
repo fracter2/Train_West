@@ -1,8 +1,13 @@
 extends RigidBody2D
 class_name Physical_Item
 
-var stack_size:int = 1
-#var wind_pushable:bool = false 				# Might be unnessessary
+export var stack_size:int = 1
+export var ver_inventory:NodePath
 
 func _ready():
 	pass
+
+
+func interact(var player):
+	pass
+	# player.add_child()
