@@ -9,7 +9,12 @@ export var spawn_area:Vector2 = Vector2(512, 112)
 onready var smoke_emitter = $PolygonBase/Particles2D
 onready var smoke_default_material = $PolygonBase/Particles2D.process_material
 onready var smoke_default_gravity = $PolygonBase/Particles2D.process_material.gravity
-
+onready var heat_radiance = $HeatRadiance
+export var heat_radiance_min:float = 0.3
+export var heat_radiance_max:float = 1
+onready var heat_max = Train_manager.engine_heat_max
+var sup:int = 0																# Simple update timer, for expensive operations
+var supm:int = 2
 #func _ready():
 #	$PolygonBase/Particles2D.process_material.gravity.x
 
@@ -19,6 +24,11 @@ func _physics_process(delta):
 	var new:Vector3 = smoke_default_gravity
 	new.x = Train_manager.velocity * -3
 	smoke_emitter.process_material.set_deferred("gravity", new)
+	if sup >= supm:		# Simple frame_based timer, since this seems a little expensive
+		heat_radiance.energy = lerp(heat_radiance_min, heat_radiance_max, Train_manager.engine_heat / heat_max)
+		sup = 0
+	else:
+		sup += 1
 
 
 func update_effects(variable:int = 0):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/scripts/Engine.gd" type="Script" id=1]
 
@@ -54,12 +54,10 @@ fill_to = Vector2( 0, 0.516667 )
 
 [sub_resource type="OccluderPolygon2D" id=11]
 closed = false
-cull_mode = 2
 polygon = PoolVector2Array( -304, 0, -304, 32, -104, 32, -104, 0, 456, 0 )
 
 [sub_resource type="OccluderPolygon2D" id=12]
 closed = false
-cull_mode = 1
 polygon = PoolVector2Array( 456, 0, -24, 0, -24, -32, -304, -32 )
 
 [sub_resource type="OccluderPolygon2D" id=13]
@@ -69,14 +67,56 @@ polygon = PoolVector2Array( 8, 152, 8, -128 )
 
 [sub_resource type="OccluderPolygon2D" id=14]
 closed = false
-cull_mode = 1
 polygon = PoolVector2Array( 56, 144, 56, 0, -24, -104 )
+
+[sub_resource type="Gradient" id=15]
+colors = PoolColorArray( 1, 1, 1, 1, 0.782605, 0.782605, 0.782605, 1 )
+
+[sub_resource type="GradientTexture" id=16]
+gradient = SubResource( 15 )
+
+[sub_resource type="Curve" id=17]
+max_value = 2.0
+_data = [ Vector2( 0, 1.26642 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.778664 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=18]
+curve = SubResource( 17 )
+
+[sub_resource type="ParticlesMaterial" id=19]
+emission_shape = 2
+emission_box_extents = Vector3( 64, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 66.47
+gravity = Vector3( -90, -98, 0 )
+initial_velocity = -62.9
+initial_velocity_random = 0.39
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 0.64
+scale_curve = SubResource( 18 )
+color_ramp = SubResource( 16 )
+
+[sub_resource type="Gradient" id=20]
+interpolation_mode = 2
+offsets = PoolRealArray( 0.192513, 0.668449, 0.898396 )
+colors = PoolColorArray( 1.5, 1, 0.5, 1, 1, 0.7, 0.2, 0.46, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=21]
+gradient = SubResource( 20 )
+width = 16
+height = 16
+use_hdr = true
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 1, 0.5 )
 
 [node name="Engine" type="StaticBody2D"]
 position = Vector2( 304, -160 )
 script = ExtResource( 1 )
 hp_max = 3000
 color_offset = 1000
+heat_radiance_min = 0.5
 
 [node name="PolygonBase" type="Polygon2D" parent="."]
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
@@ -92,7 +132,7 @@ visibility_rect = Rect2( -3000, -4000, 6000, 5000 )
 process_material = SubResource( 8 )
 
 [node name="Polygon2D" type="Polygon2D" parent="PolygonBase"]
-light_mask = 3
+light_mask = 2
 position = Vector2( -288, 56 )
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( -104, -128, 112, -128, 192, -24, 192, 88, -104, 88 )
@@ -129,11 +169,18 @@ visible = false
 position = Vector2( 4, 36 )
 polygon = PoolVector2Array( -380, -140, 380, -140, 380, 140, -380, 140, -380, 108, -100, 108, -100, -108, -380, -108 )
 
+[node name="HeatPad" type="Polygon2D" parent="."]
+light_mask = 258
+position = Vector2( -240, 136 )
+color = Color( 1.4, 1, 0.4, 1 )
+polygon = PoolVector2Array( -64, -16, 144, -16, 144, 8, -88, 8 )
+
 [node name="HeatRadiance" type="Light2D" parent="."]
+light_mask = 2
 position = Vector2( -224, 128 )
 texture = SubResource( 10 )
 texture_scale = 8.0
-energy = 0.92
+energy = 0.9
 range_item_cull_mask = 2
 shadow_enabled = true
 shadow_color = Color( 0.109804, 0.141176, 0.698039, 0 )
@@ -162,3 +209,9 @@ light_mask = 770
 position = Vector2( -152, 32 )
 occluder = SubResource( 14 )
 light_mask = 770
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( -216, 120 )
+speed_scale = 3.0
+process_material = SubResource( 19 )
+texture = SubResource( 21 )
