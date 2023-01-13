@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/scripts/Engine.gd" type="Script" id=1]
 
@@ -75,6 +75,30 @@ colors = PoolColorArray( 1, 1, 1, 1, 0.782605, 0.782605, 0.782605, 1 )
 [sub_resource type="GradientTexture" id=16]
 gradient = SubResource( 15 )
 
+[sub_resource type="Curve" id=22]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, 60.443 ), 0.0, 0.0, 0, 0, Vector2( 0.494845, -59.557 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=23]
+curve = SubResource( 22 )
+
+[sub_resource type="Curve" id=24]
+min_value = -0.4
+max_value = 0.4
+_data = [ Vector2( 0, 0.0802725 ), 0.0, 0.0, 0, 0, Vector2( 0.747423, -0.065182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.00754529 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=25]
+curve = SubResource( 24 )
+
+[sub_resource type="Curve" id=26]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, -200 ), 0.0, 0.0, 0, 0, Vector2( 0.721649, 200 ), 0.0, 0.0, 0, 0, Vector2( 1, -3.47745 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=27]
+curve = SubResource( 26 )
+
 [sub_resource type="Curve" id=17]
 max_value = 2.0
 _data = [ Vector2( 0, 1.26642 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.778664 ), 0.0, 0.0, 0, 0 ]
@@ -82,25 +106,44 @@ _data = [ Vector2( 0, 1.26642 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.778664 ), 0.0, 0.
 [sub_resource type="CurveTexture" id=18]
 curve = SubResource( 17 )
 
+[sub_resource type="Curve" id=28]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, -200 ), 0.0, 0.0, 0, 0, Vector2( 0.726804, 200 ), 0.0, 0.0, 0, 0, Vector2( 0.927835, -12.3296 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=29]
+curve = SubResource( 28 )
+
 [sub_resource type="ParticlesMaterial" id=19]
+lifetime_randomness = 0.25
 emission_shape = 2
-emission_box_extents = Vector3( 64, 1, 1 )
+emission_box_extents = Vector3( 64, 24, 1 )
 flag_disable_z = true
 direction = Vector3( 0, 1, 0 )
 spread = 66.47
 gravity = Vector3( -90, -98, 0 )
 initial_velocity = -62.9
 initial_velocity_random = 0.39
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
+orbit_velocity = 0.06
+orbit_velocity_random = 0.83
+orbit_velocity_curve = SubResource( 25 )
+linear_accel = -44.04
+linear_accel_random = 0.27
+linear_accel_curve = SubResource( 23 )
+radial_accel = -100.0
+radial_accel_random = 0.8
+radial_accel_curve = SubResource( 27 )
+tangential_accel = -100.0
+tangential_accel_random = 0.88
+tangential_accel_curve = SubResource( 29 )
 scale_random = 0.64
 scale_curve = SubResource( 18 )
 color_ramp = SubResource( 16 )
 
 [sub_resource type="Gradient" id=20]
-interpolation_mode = 2
-offsets = PoolRealArray( 0.192513, 0.668449, 0.898396 )
-colors = PoolColorArray( 1.5, 1, 0.5, 1, 1, 0.7, 0.2, 0.46, 1, 1, 1, 0 )
+interpolation_mode = 1
+offsets = PoolRealArray( 0, 0.465241, 0.898396 )
+colors = PoolColorArray( 2, 0.8, 0, 1, 1, 0.7, 0.2, 0.46, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture2D" id=21]
 gradient = SubResource( 20 )
@@ -211,7 +254,9 @@ occluder = SubResource( 14 )
 light_mask = 770
 
 [node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( -216, 120 )
+position = Vector2( -200, 120 )
+amount = 32
+lifetime = 1.3
 speed_scale = 3.0
 process_material = SubResource( 19 )
 texture = SubResource( 21 )
