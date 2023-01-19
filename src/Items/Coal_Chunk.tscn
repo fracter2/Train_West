@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/Items/Scripts/Physical_Item.gd" type="Script" id=1]
 
-[node name="CoalChunk" type="RigidBody2D"]
+[node name="CoalChunk" type="RigidBody2D" groups=["Engine Fuel"]]
 collision_layer = 4112
 collision_mask = 8349
 script = ExtResource( 1 )

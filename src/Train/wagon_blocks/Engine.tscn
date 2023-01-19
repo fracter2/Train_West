@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/scripts/Engine.gd" type="Script" id=1]
 
@@ -69,8 +69,16 @@ polygon = PoolVector2Array( 8, 152, 8, -128 )
 closed = false
 polygon = PoolVector2Array( 56, 144, 56, 0, -24, -104 )
 
+[sub_resource type="Gradient" id=32]
+offsets = PoolRealArray( 0.245614, 0.830409 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.587793, 0.587793, 0.587793, 1 )
+
+[sub_resource type="GradientTexture" id=33]
+gradient = SubResource( 32 )
+
 [sub_resource type="Gradient" id=15]
-colors = PoolColorArray( 1, 1, 1, 1, 0.782605, 0.782605, 0.782605, 1 )
+offsets = PoolRealArray( 0.263158, 0.947368 )
+colors = PoolColorArray( 1, 0.890496, 0.5, 0.780392, 1, 0.817383, 0.46875, 0.431373 )
 
 [sub_resource type="GradientTexture" id=16]
 gradient = SubResource( 15 )
@@ -109,7 +117,7 @@ curve = SubResource( 17 )
 [sub_resource type="Curve" id=28]
 min_value = -200.0
 max_value = 200.0
-_data = [ Vector2( 0, -200 ), 0.0, 0.0, 0, 0, Vector2( 0.726804, 200 ), 0.0, 0.0, 0, 0, Vector2( 0.927835, -12.3296 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, -200 ), 0.0, 0.0, 0, 0, Vector2( 0.474227, 83.9089 ), 0.0, 0.0, 0, 0, Vector2( 0.809278, -200 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=29]
 curve = SubResource( 28 )
@@ -136,23 +144,22 @@ radial_accel_curve = SubResource( 27 )
 tangential_accel = -100.0
 tangential_accel_random = 0.88
 tangential_accel_curve = SubResource( 29 )
-scale_random = 0.64
+damping_random = 0.34
+scale = 12.0
+scale_random = 0.25
 scale_curve = SubResource( 18 )
 color_ramp = SubResource( 16 )
+color_initial_ramp = SubResource( 33 )
 
-[sub_resource type="Gradient" id=20]
-interpolation_mode = 1
-offsets = PoolRealArray( 0, 0.465241, 0.898396 )
-colors = PoolColorArray( 2, 0.8, 0, 1, 1, 0.7, 0.2, 0.46, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id=30]
+offsets = PoolRealArray( 0.491979 )
+colors = PoolColorArray( 4, 3, 2, 0.75 )
 
-[sub_resource type="GradientTexture2D" id=21]
-gradient = SubResource( 20 )
-width = 16
-height = 16
+[sub_resource type="GradientTexture2D" id=31]
+gradient = SubResource( 30 )
+width = 1
+height = 1
 use_hdr = true
-fill = 1
-fill_from = Vector2( 0.5, 0.5 )
-fill_to = Vector2( 1, 0.5 )
 
 [node name="Engine" type="StaticBody2D"]
 position = Vector2( 304, -160 )
@@ -255,8 +262,11 @@ light_mask = 770
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( -200, 120 )
-amount = 32
-lifetime = 1.3
+amount = 64
+lifetime = 2.2
 speed_scale = 3.0
+randomness = 0.2
 process_material = SubResource( 19 )
-texture = SubResource( 21 )
+texture = SubResource( 31 )
+
+[node name="Coal_Intake" type="Area2D" parent="."]
