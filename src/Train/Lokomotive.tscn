@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Segment_1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/wagon_blocks/Wheel.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Train/wagon_blocks/Force_Override.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Train/wagon_blocks/Engine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Train/wagon_blocks/Engine Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Train/Facilities/scripts/Indicator.gd" type="Script" id=8]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -27,6 +28,38 @@ light_mask = 257
 position = Vector2( -256, -224 )
 color = Color( 0.592157, 0.717647, 0.701961, 1 )
 polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
+
+[node name="Heat_Indicator" type="Polygon2D" parent="Background_Inside"]
+position = Vector2( -296, -144 )
+color = Color( 0.734375, 0.734375, 0.734375, 1 )
+polygon = PoolVector2Array( -48, 16, -48, -16, 48, -16, 48, 16 )
+script = ExtResource( 8 )
+value_node_string = "/root/Train_manager"
+value_node_signal = "heat_updated"
+
+[node name="Empty" type="Polygon2D" parent="Background_Inside/Heat_Indicator"]
+color = Color( 0.367188, 0.367188, 0.367188, 1 )
+polygon = PoolVector2Array( -40, -8, 40, -8, 40, 8, -40, 8 )
+
+[node name="Indicator" type="Polygon2D" parent="Background_Inside/Heat_Indicator"]
+color = Color( 0.729412, 0.101961, 0, 1 )
+polygon = PoolVector2Array( -40, -8, 40, -8, 40, 8, -40, 8 )
+
+[node name="Fuel_Indicator" type="Polygon2D" parent="Background_Inside"]
+position = Vector2( -296, -88 )
+color = Color( 0.734375, 0.734375, 0.734375, 1 )
+polygon = PoolVector2Array( -48, -16, 48, -16, 48, 16, -48, 16 )
+script = ExtResource( 8 )
+value_node_string = "/root/Train_manager"
+value_node_signal = "fuel_updated"
+
+[node name="Empty" type="Polygon2D" parent="Background_Inside/Fuel_Indicator"]
+color = Color( 0.367188, 0.367188, 0.367188, 1 )
+polygon = PoolVector2Array( -40, -8, 40, -8, 40, 8, -40, 8 )
+
+[node name="Indicator" type="Polygon2D" parent="Background_Inside/Fuel_Indicator"]
+color = Color( 0.136719, 0.136719, 0.136719, 1 )
+polygon = PoolVector2Array( -40, -8, 40, -8, 40, 8, -40, 8 )
 
 [node name="Link" type="Polygon2D" parent="."]
 position = Vector2( -736, 42 )
