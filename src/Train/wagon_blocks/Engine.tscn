@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/scripts/Engine.gd" type="Script" id=1]
 
@@ -161,6 +161,9 @@ width = 1
 height = 1
 use_hdr = true
 
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 128, 104 )
+
 [node name="Engine" type="StaticBody2D"]
 position = Vector2( 304, -160 )
 script = ExtResource( 1 )
@@ -172,17 +175,18 @@ heat_radiance_min = 0.5
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
 polygon = PoolVector2Array( -376, 152, -376, 136, -376, -64, -376, -96, 120, -96, 120, -168, 96, -208, 96, -232, 232, -232, 232, -208, 208, -168, 208, -96, 368, -96, 368, -88, 376, -88, 376, -64, 368, -64, 368, 112, 376, 112, 376, 152 )
 
-[node name="Particles2D" type="Particles2D" parent="PolygonBase"]
+[node name="Particles_Smoke" type="Particles2D" parent="PolygonBase"]
 show_behind_parent = true
 position = Vector2( 164, -176 )
 amount = 16
 lifetime = 8.0
+speed_scale = 1.2
 randomness = 0.3
 visibility_rect = Rect2( -3000, -4000, 6000, 5000 )
 process_material = SubResource( 8 )
 
-[node name="Polygon2D" type="Polygon2D" parent="PolygonBase"]
-light_mask = 2
+[node name="Fuel_Background" type="Polygon2D" parent="PolygonBase"]
+light_mask = 258
 position = Vector2( -288, 56 )
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( -104, -128, 112, -128, 192, -24, 192, 88, -104, 88 )
@@ -260,7 +264,9 @@ position = Vector2( -152, 32 )
 occluder = SubResource( 14 )
 light_mask = 770
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="Particles_Fire" type="Particles2D" parent="."]
+visible = false
+light_mask = 258
 position = Vector2( -200, 120 )
 amount = 64
 lifetime = 2.2
@@ -270,3 +276,12 @@ process_material = SubResource( 19 )
 texture = SubResource( 31 )
 
 [node name="Coal_Intake" type="Area2D" parent="."]
+position = Vector2( -232, 40 )
+collision_layer = 0
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coal_Intake"]
+visible = false
+shape = SubResource( 34 )
+
+[connection signal="body_entered" from="Coal_Intake" to="." method="_on_Coal_Intake_body_entered"]

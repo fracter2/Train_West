@@ -6,6 +6,8 @@ export var hatch2_open_pos:Vector2  = Vector2(0, 64)
 var hatch1_default_pos:Vector2
 var hatch2_default_pos:Vector2
 
+signal opened()
+signal closed()
 
 func _ready():
 	hatch1_default_pos = $"Hach 1".position
@@ -17,6 +19,9 @@ func interact(var player):
 	emit_signal("interacted", player)
 	opened = not opened
 	update_doors()
+	
+	if opened: emit_signal("opened")
+	else: emit_signal("closed")
 
 
 func update_doors():

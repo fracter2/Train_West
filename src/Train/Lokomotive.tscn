@@ -136,3 +136,6 @@ position = Vector2( -744, -8 )
 visible = false
 position = Vector2( -384, -176 )
 scale = Vector2( 0.46, 1.1 )
+
+[connection signal="closed" from="Engine/Hatch" to="Engine" method="hatch_close"]
+[connection signal="opened" from="Engine/Hatch" to="Engine" method="hatch_open"]

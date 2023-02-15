@@ -100,12 +100,15 @@ position = Vector2( -2414, 0 )
 
 [node name="Button_Runner" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
 position = Vector2( 390, -160 )
+highlight_size = 5.0
 
 [node name="Button_Flyer" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
 position = Vector2( 454, -160 )
+highlight_size = 5.0
 
 [node name="Button_Crawler" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
 position = Vector2( 326, -160 )
+highlight_size = 5.0
 
 [node name="Force_Override" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 19 )]
 
@@ -117,6 +120,7 @@ position = Vector2( 1502, -144 )
 
 [node name="Button_Heal" parent="Lokomotive/Wagon_Cafeteria" instance=ExtResource( 12 )]
 position = Vector2( -47, -123 )
+highlight_size = 5.0
 
 [node name="Wagon_Production" parent="Lokomotive" instance=ExtResource( 7 )]
 position = Vector2( -5454, 0 )
@@ -129,6 +133,7 @@ position = Vector2( -361, -142 )
 
 [node name="Button" parent="Lokomotive" instance=ExtResource( 18 )]
 position = Vector2( -312, -18 )
+highlight_size = 5.0
 
 [node name="Spawners_and_misc" type="YSort" parent="."]
 

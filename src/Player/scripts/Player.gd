@@ -39,6 +39,7 @@ var state = STATES.ALIVE
 var alive: bool = true
 var disabled: bool = false
 
+var holding := false
 var aiming := false
 var reloading := false
 var inside := false
@@ -102,7 +103,9 @@ func _physics_process(delta):
 	# Target Highlighter
 #		if custom_state:
 #			pass
-	if aiming:
+	if holding:
+		pass
+	elif aiming:
 		if reloading:														# reload
 			if not highlight_state == HIGHLIGHT_STATES.RELOADING:
 				highlight_state = HIGHLIGHT_STATES.RELOADING
