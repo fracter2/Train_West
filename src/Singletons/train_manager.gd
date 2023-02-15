@@ -2,6 +2,8 @@ extends Node
 
 
 signal velocity_updated
+signal heat_updated
+signal fuel_updated
 
 var hull_integrity = 1000
 var hull_integrity_max = 1000
@@ -91,6 +93,8 @@ func _physics_process(delta):
 	else:
 		simple_frame_count += 1
 	
+	emit_signal("heat_updated", engine_heat/engine_heat_max)
+	emit_signal("fuel_updated", engine_fuel/engine_fuel_max)
 	emit_signal("velocity_updated", velocity)
 
 

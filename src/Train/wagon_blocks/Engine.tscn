@@ -169,13 +169,16 @@ position = Vector2( 304, -160 )
 script = ExtResource( 1 )
 hp_max = 3000
 color_offset = 1000
+fire_time_min = 1.2
+fire_time_max = 2.4
 heat_radiance_min = 0.5
+heat_radiance_max = 1.4
 
 [node name="PolygonBase" type="Polygon2D" parent="."]
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
 polygon = PoolVector2Array( -376, 152, -376, 136, -376, -64, -376, -96, 120, -96, 120, -168, 96, -208, 96, -232, 232, -232, 232, -208, 208, -168, 208, -96, 368, -96, 368, -88, 376, -88, 376, -64, 368, -64, 368, 112, 376, 112, 376, 152 )
 
-[node name="Particles_Smoke" type="Particles2D" parent="PolygonBase"]
+[node name="Smoke_Emitter" type="Particles2D" parent="PolygonBase"]
 show_behind_parent = true
 position = Vector2( 164, -176 )
 amount = 16
@@ -264,9 +267,7 @@ position = Vector2( -152, 32 )
 occluder = SubResource( 14 )
 light_mask = 770
 
-[node name="Particles_Fire" type="Particles2D" parent="."]
-visible = false
-light_mask = 258
+[node name="Fire_Emitter" type="Particles2D" parent="."]
 position = Vector2( -200, 120 )
 amount = 64
 lifetime = 2.2
