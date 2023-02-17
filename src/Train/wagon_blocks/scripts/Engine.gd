@@ -45,10 +45,10 @@ func set_smoke(val:float):
 
 
 func hatch_close():
-	$Particles_Fire.emitting = false
+	$Fire_Emitter.emitting = false
 
 func hatch_open():
-	$Particles_Fire.emitting = true
+	$Fire_Emitter.emitting = true
 
 
 # TODO make it so leak spots appear, in staed of repairing the whole thing
