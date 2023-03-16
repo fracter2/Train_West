@@ -244,6 +244,7 @@ proj_dmg = 35
 [connection signal="body_entered" from="Interaction Range" to="Interaction Range" method="_on_Interaction_Range_body_entered"]
 [connection signal="body_exited" from="Interaction Range" to="Interaction Range" method="_on_Interaction_Range_body_exited"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
+[connection signal="resource_changed" from="Repair_Tool" to="GUI" method="_on_Repair_Tool_resource_changed"]
 
 [editable path="GUI/CanvasLayer/UI/Bars/EnergyBar"]
 [editable path="GUI/CanvasLayer/UI/Bars/Lifebar"]
