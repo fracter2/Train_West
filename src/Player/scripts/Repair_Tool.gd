@@ -20,6 +20,7 @@ var default_particle_lifetime:float
 func _ready(): default_particle_lifetime = $Particles2D.lifetime
 
 var was_equiped:bool = false
+var disabled:bool = false
 
 
 func _physics_process(delta):
@@ -42,7 +43,8 @@ func _physics_process(delta):
 	was_equiped = equiped
 	
 	# Make sure the physics bodies dont sleep while we are blowing them
-	if Input.is_action_pressed("action_1") and equiped:
+	if Input.is_action_pressed("action_1") and equiped and not disabled:
+		
 		resource -= resource_consumption_rate * delta
 		var bodies = $Repair_Box.get_overlapping_bodies()
 		for i in bodies:
@@ -69,8 +71,9 @@ func _physics_process(delta):
 	
 	
 	# Actual repair logic
-	if cooldown_frame == repair_cooldown_frames: 
-		if Input.is_action_pressed("action_1") and equiped:  
+	if cooldown_frame >= repair_cooldown_frames: 
+		if disabled: return
+		if Input.is_action_pressed("action_1") and equiped and not disabled:  
 			cooldown_frame = 0
 			var unsorted_targets = $Repair_Box.get_overlapping_areas()
 			
@@ -82,6 +85,10 @@ func _physics_process(delta):
 			var r = recoil_force.rotated(rotation)								# limit y recoil, we dont care about the recoil upwards, only down
 			get_parent().velocity_recoil += Vector2(r.x * horizontal_recoil_modifyer, clamp(r.y, -100, 7))
 			
+			if resource <= 4:
+				disabled == true
+				$Timer.start()
+				print("started timer")
 	else:
 		cooldown_frame += 1
 	
@@ -89,3 +96,8 @@ func _physics_process(delta):
 	#emit_signal("resource_changed", resource / resource_max)
 	
 
+
+
+func _on_Timer_timeout():
+	disabled == false
+	print ("timered")
