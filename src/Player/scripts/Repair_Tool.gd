@@ -88,7 +88,6 @@ func _physics_process(delta):
 			if resource <= 4:
 				disabled == true
 				$Timer.start()
-				print("started timer")
 	else:
 		cooldown_frame += 1
 	
