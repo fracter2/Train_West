@@ -1,4 +1,4 @@
-extends Item
+extends Inventory_Item
 
 export(Vector2) var force:Vector2 = Vector2(3000, 0)		# Firing force
 export(Vector2) var recoil:Vector2 = Vector2(100, 0)		# Player recoil
@@ -31,10 +31,11 @@ func _ready():
 
 
 func _physics_process(delta):
+	## This should be turned into a method activation
 	if get_parent().aiming and equiped:
 		if Input.is_action_pressed("action_1") and state == STATES.READY:
 			fire()
-	
+	##
 
 func set_state(new_state: int):		# I will work on this whole thing later
 	if new_state == STATES.READY:

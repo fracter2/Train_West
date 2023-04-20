@@ -8,7 +8,7 @@ export(float, 0, 1) var revive_threshold:float = 1 #the relative hp to max, for 
 
 signal repaired_fully
 
-enum STATES {ALIVE, DEAD}
+enum STATES {ALIVE, DEAD, INVINCIBLE}
 var state: int = 0
 
 

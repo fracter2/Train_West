@@ -1,19 +1,21 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Segment_1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/wagon_blocks/Wheel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Bridge.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Train/wagon_blocks/Force_Override.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Train/wagon_blocks/Engine.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Train/wagon_blocks/Engine Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Train/Facilities/scripts/Indicator.gd" type="Script" id=8]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
 [node name="Lokomotive" type="Node2D"]
 
 [node name="Background_Inside" type="Polygon2D" parent="."]
-light_mask = 257
+light_mask = 259
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
-polygon = PoolVector2Array( -680, -328, -88, -328, -88, -200, 48, -200, 48, -88, 640, -88, 640, 0, -680, 0 )
+polygon = PoolVector2Array( -680, -328, -88, -328, -88, -200, -88, -8, 48, -8, 48, -88, 640, -88, 640, 0, -680, 0 )
 
 [node name="Window" type="Polygon2D" parent="Background_Inside"]
 light_mask = 257
@@ -26,6 +28,38 @@ light_mask = 257
 position = Vector2( -256, -224 )
 color = Color( 0.592157, 0.717647, 0.701961, 1 )
 polygon = PoolVector2Array( -96, -32, -96, 32, 96, 32, 96, -32 )
+
+[node name="Heat_Indicator" type="Polygon2D" parent="Background_Inside"]
+position = Vector2( -296, -144 )
+color = Color( 0.734375, 0.734375, 0.734375, 1 )
+polygon = PoolVector2Array( -48, 16, -48, -16, 48, -16, 48, 16 )
+script = ExtResource( 8 )
+value_node_string = "/root/Train_manager"
+value_node_signal = "heat_updated"
+
+[node name="Empty" type="Polygon2D" parent="Background_Inside/Heat_Indicator"]
+color = Color( 0.367188, 0.367188, 0.367188, 1 )
+polygon = PoolVector2Array( -40, -8, 40, -8, 40, 8, -40, 8 )
+
+[node name="Indicator" type="Polygon2D" parent="Background_Inside/Heat_Indicator"]
+color = Color( 0.729412, 0.101961, 0, 1 )
+polygon = PoolVector2Array( -40, -8, 40, -8, 40, 8, -40, 8 )
+
+[node name="Fuel_Indicator" type="Polygon2D" parent="Background_Inside"]
+position = Vector2( -296, -88 )
+color = Color( 0.734375, 0.734375, 0.734375, 1 )
+polygon = PoolVector2Array( -48, -16, 48, -16, 48, 16, -48, 16 )
+script = ExtResource( 8 )
+value_node_string = "/root/Train_manager"
+value_node_signal = "fuel_updated"
+
+[node name="Empty" type="Polygon2D" parent="Background_Inside/Fuel_Indicator"]
+color = Color( 0.367188, 0.367188, 0.367188, 1 )
+polygon = PoolVector2Array( -40, -8, 40, -8, 40, 8, -40, 8 )
+
+[node name="Indicator" type="Polygon2D" parent="Background_Inside/Fuel_Indicator"]
+color = Color( 0.136719, 0.136719, 0.136719, 1 )
+polygon = PoolVector2Array( -40, -8, 40, -8, 40, 8, -40, 8 )
 
 [node name="Link" type="Polygon2D" parent="."]
 position = Vector2( -736, 42 )
@@ -74,22 +108,6 @@ position = Vector2( 364, 82 )
 [node name="Wheel7" parent="Base" instance=ExtResource( 2 )]
 position = Vector2( 492, 82 )
 
-[node name="Floor" type="Polygon2D" parent="."]
-color = Color( 0.431373, 0.431373, 0.431373, 1 )
-polygon = PoolVector2Array( -688, -16, -688, 16, 688, 16, 688, -16 )
-
-[node name="Wagon_Segment2" parent="Floor" instance=ExtResource( 1 )]
-position = Vector2( -152, 0 )
-
-[node name="Wagon_Segment4" parent="Floor" instance=ExtResource( 1 )]
-position = Vector2( -304, 0 )
-
-[node name="Wagon_Segment6" parent="Floor" instance=ExtResource( 1 )]
-position = Vector2( -456, 0 )
-
-[node name="Wagon_Segment7" parent="Floor" instance=ExtResource( 1 )]
-position = Vector2( -608, 0 )
-
 [node name="Roof" type="Polygon2D" parent="."]
 position = Vector2( 0, -320 )
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
@@ -112,6 +130,27 @@ position = Vector2( -544, -24 )
 position = Vector2( -664, -24 )
 left_corner_shadows = true
 
+[node name="Engine" parent="." instance=ExtResource( 5 )]
+
+[node name="Hatch" parent="Engine" instance=ExtResource( 6 )]
+position = Vector2( -408, 48 )
+
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -688, -16, -688, 16, -72, 16, -72, -16 )
+
+[node name="Wagon_Segment2" parent="Floor" instance=ExtResource( 1 )]
+position = Vector2( -152, 0 )
+
+[node name="Wagon_Segment4" parent="Floor" instance=ExtResource( 1 )]
+position = Vector2( -304, 0 )
+
+[node name="Wagon_Segment6" parent="Floor" instance=ExtResource( 1 )]
+position = Vector2( -456, 0 )
+
+[node name="Wagon_Segment7" parent="Floor" instance=ExtResource( 1 )]
+position = Vector2( -608, 0 )
+
 [node name="Wall_Left" type="Polygon2D" parent="."]
 material = SubResource( 1 )
 position = Vector2( -672, -160 )
@@ -131,4 +170,5 @@ visible = false
 position = Vector2( -384, -176 )
 scale = Vector2( 0.46, 1.1 )
 
-[node name="Engine" parent="." instance=ExtResource( 5 )]
+[connection signal="closed" from="Engine/Hatch" to="Engine" method="hatch_close"]
+[connection signal="opened" from="Engine/Hatch" to="Engine" method="hatch_open"]

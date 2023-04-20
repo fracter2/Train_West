@@ -41,6 +41,9 @@ auto_exposure_max_luma = 0.35
 dof_blur_near_distance = 15.42
 dof_blur_near_transition = 0.15
 dof_blur_near_quality = 2
+glow_enabled = true
+glow_intensity = 0.43
+glow_blend_mode = 0
 adjustment_enabled = true
 adjustment_color_correction = SubResource( 5 )
 
@@ -99,12 +102,15 @@ position = Vector2( -2414, 0 )
 
 [node name="Button_Runner" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
 position = Vector2( 390, -160 )
+highlight_size = 5.0
 
 [node name="Button_Flyer" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
 position = Vector2( 454, -160 )
+highlight_size = 5.0
 
 [node name="Button_Crawler" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
 position = Vector2( 326, -160 )
+highlight_size = 5.0
 
 [node name="Force_Override" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 19 )]
 
@@ -116,6 +122,7 @@ position = Vector2( 1502, -144 )
 
 [node name="Button_Heal" parent="Lokomotive/Wagon_Cafeteria" instance=ExtResource( 12 )]
 position = Vector2( -47, -123 )
+highlight_size = 5.0
 
 [node name="Wagon_Production" parent="Lokomotive" instance=ExtResource( 7 )]
 position = Vector2( -5454, 0 )
@@ -132,6 +139,7 @@ position = Vector2( -361, -142 )
 
 [node name="Button" parent="Lokomotive" instance=ExtResource( 18 )]
 position = Vector2( -312, -18 )
+highlight_size = 5.0
 
 [node name="Spawners_and_misc" type="YSort" parent="."]
 
@@ -194,7 +202,7 @@ polygon = PoolVector2Array( -10000, 0, 10000, 0, 10000, 1000, -10000, 1000 )
 visible = false
 position = Vector2( 0, -4312 )
 collision_layer = 0
-collision_mask = 126
+collision_mask = 4096
 monitorable = false
 priority = 1.0
 space_override = 1
@@ -207,5 +215,8 @@ script = ExtResource( 9 )
 shape = SubResource( 2 )
 one_way_collision_margin = 0.0
 
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Runner" to="Spawners_and_misc/Spawner_Runner" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Flyer" to="Spawners_and_misc/Spawner_Flyer" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Crawler" to="Spawners_and_misc/Spawner_Crawler" method="spawn"]
 [connection signal="interacted" from="Lokomotive/Wagon_Cafeteria/Button_Heal" to="Spawners_and_misc/MapNode_Healer" method="activate"]
 [connection signal="body_exited" from="Ground1/Play_Zone" to="Ground1/Play_Zone" method="_on_Out_of_bounds_Area_body_exited"]

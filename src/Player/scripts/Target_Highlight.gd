@@ -23,8 +23,8 @@ enum STATES { DEFAULT, FOLLOW_MOUSE, FOLLOW_MOUSE_RESIZE}
 
 var prev_setting:HighlightState = HighlightState.new()
 
-func _ready():
-	print(prev_setting.target_pos)
+#func _ready():
+#	print(prev_setting.target_pos)
 
 func _process(delta):
 	

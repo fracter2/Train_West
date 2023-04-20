@@ -20,17 +20,6 @@ extents = Vector2( 40, 60 )
 radius = 112.0
 height = 214.0
 
-[sub_resource type="Gradient" id=6]
-interpolation_mode = 2
-offsets = PoolRealArray( 0.596591, 0.676136 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture2D" id=7]
-gradient = SubResource( 6 )
-fill = 1
-fill_from = Vector2( 0.5, 0.5 )
-fill_to = Vector2( 1, 0.5 )
-
 [sub_resource type="Gradient" id=8]
 interpolation_mode = 1
 offsets = PoolRealArray( 0.801136, 0.863636 )
@@ -42,10 +31,22 @@ fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 fill_to = Vector2( 1, 0.5 )
 
+[sub_resource type="Gradient" id=6]
+interpolation_mode = 2
+offsets = PoolRealArray( 0.596591, 0.676136 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=7]
+gradient = SubResource( 6 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 1, 0.5 )
+
 [node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
+light_mask = 3
 position = Vector2( 8, 16 )
-collision_layer = 2
-collision_mask = 4225
+collision_layer = 4098
+collision_mask = 8321
 collision/safe_margin = 0.1
 script = ExtResource( 1 )
 __meta__ = {
@@ -68,6 +69,7 @@ position = Vector2( 0, 8 )
 polygon = PoolVector2Array( -16, 56, 16, 56, 27, 47, 32, 34, 32, -40, 20, -52, -20, -52, -32, -40, -32, 34, -27, 47 )
 
 [node name="TempPlayerModel" type="Polygon2D" parent="."]
+light_mask = 3
 color = Color( 0.156863, 0.772549, 0.87451, 1 )
 polygon = PoolVector2Array( 24, 64, -24, 64, -32, 56, -32, -40, -32, -48, -24, -56, 24, -56, 32, -48, 32, 8, 32, 56 )
 
@@ -129,14 +131,45 @@ smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource( 11 )
 
-[node name="Weapon" parent="." instance=ExtResource( 4 )]
-force = Vector2( -3000, 0 )
-proj_dmg = 35
+[node name="Vision_Field_shadows" type="Light2D" parent="."]
+light_mask = 256
+position = Vector2( 9.53674e-07, -32 )
+scale = Vector2( 100, 100 )
+texture = SubResource( 5 )
+mode = 3
+range_item_cull_mask = 256
+shadow_enabled = true
+shadow_color = Color( 0.2, 0.2, 0.2, 1 )
+shadow_item_cull_mask = 256
+__meta__ = {
+"_editor_description_": "Experiment with shadows, turn on or off at will"
+}
 
-[node name="Repair_Tool" parent="." instance=ExtResource( 6 )]
+[node name="Vision_Field_shadows_env" type="Light2D" parent="."]
+light_mask = 256
+position = Vector2( 9.53674e-07, -32 )
+scale = Vector2( 100, 100 )
+texture = SubResource( 5 )
+mode = 3
+range_item_cull_mask = 128
+shadow_enabled = true
+shadow_color = Color( 0.2, 0.2, 0.2, 0.537255 )
+shadow_item_cull_mask = 384
+__meta__ = {
+"_editor_description_": "This marks the envioprnment in blacky-ness (shadows) when out of view.
+Layer 8, but calculates shadows from 8 & 9"
+}
 
-[node name="Inventory" type="YSort" parent="."]
-sort_enabled = false
+[node name="Vision_Field" type="Light2D" parent="."]
+light_mask = 512
+position = Vector2( 9.53674e-07, -32 )
+scale = Vector2( 100, 100 )
+texture = SubResource( 7 )
+mode = 3
+range_item_cull_mask = 512
+shadow_enabled = true
+shadow_color = Color( 0.164706, 0.164706, 0.164706, 0 )
+shadow_item_cull_mask = 512
 
 [node name="GUI" type="Control" parent="."]
 anchor_right = 1.0
@@ -182,56 +215,28 @@ margin_bottom = 97.0
 [node name="Gauge" parent="GUI/CanvasLayer/UI/Bars/Lifebar" index="1"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Debug_Node" parent="." instance=ExtResource( 7 )]
 __meta__ = {
 "_editor_description_": "Gives a few debug tool things. Like TELEPORTATION, and eventually other things maybe"
 }
 
-[node name="Vision_Field" type="Light2D" parent="."]
-light_mask = 512
-position = Vector2( 9.53674e-07, -32 )
-scale = Vector2( 100, 100 )
-texture = SubResource( 7 )
-mode = 3
-range_item_cull_mask = 512
-shadow_enabled = true
-shadow_color = Color( 0.164706, 0.164706, 0.164706, 0 )
-shadow_item_cull_mask = 512
+[node name="Inventory" type="YSort" parent="."]
+sort_enabled = false
 
-[node name="Vision_Field_shadows" type="Light2D" parent="."]
-light_mask = 256
-position = Vector2( 9.53674e-07, -32 )
-scale = Vector2( 100, 100 )
-texture = SubResource( 5 )
-mode = 3
-range_item_cull_mask = 256
-shadow_enabled = true
-shadow_color = Color( 0.2, 0.2, 0.2, 1 )
-shadow_item_cull_mask = 256
+[node name="Repair_Tool" parent="." instance=ExtResource( 6 )]
 __meta__ = {
-"_editor_description_": "Experiment with shadows, turn on or off at will"
+"_editor_description_": "This is a repair tool :D"
 }
 
-[node name="Vision_Field_shadows_env" type="Light2D" parent="."]
-light_mask = 256
-position = Vector2( 9.53674e-07, -32 )
-scale = Vector2( 100, 100 )
-texture = SubResource( 5 )
-mode = 3
-range_item_cull_mask = 128
-shadow_enabled = true
-shadow_color = Color( 0.2, 0.2, 0.2, 0.537255 )
-shadow_item_cull_mask = 384
-__meta__ = {
-"_editor_description_": "This marks the envioprnment in blacky-ness (shadows) when out of view.
-Layer 8, but calculates shadows from 8 & 9"
-}
+[node name="Weapon" parent="." instance=ExtResource( 4 )]
+force = Vector2( -3000, 0 )
+proj_dmg = 35
 
 [connection signal="health_changed" from="." to="GUI" method="update_health"]
 [connection signal="max_health_changed" from="." to="GUI" method="update_max_health"]
@@ -239,6 +244,7 @@ Layer 8, but calculates shadows from 8 & 9"
 [connection signal="body_entered" from="Interaction Range" to="Interaction Range" method="_on_Interaction_Range_body_entered"]
 [connection signal="body_exited" from="Interaction Range" to="Interaction Range" method="_on_Interaction_Range_body_exited"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
+[connection signal="resource_changed" from="Repair_Tool" to="GUI" method="_on_Repair_Tool_resource_changed"]
 
 [editable path="GUI/CanvasLayer/UI/Bars/EnergyBar"]
 [editable path="GUI/CanvasLayer/UI/Bars/Lifebar"]

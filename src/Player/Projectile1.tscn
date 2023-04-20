@@ -32,7 +32,7 @@ color = Color( 0.756863, 0.756863, 0.756863, 0.858824 )
 
 [node name="Projectile" type="RigidBody2D"]
 rotation = 3.14159
-collision_layer = 32
+collision_layer = 4128
 mass = 0.25
 physics_material_override = SubResource( 3 )
 gravity_scale = 2.0

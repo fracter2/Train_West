@@ -35,9 +35,14 @@ _global_script_classes=[ {
 "path": "res://src/Player/scripts/Highlight_State.gd"
 }, {
 "base": "Node2D",
-"class": "Item",
+"class": "Inventory_Item",
 "language": "GDScript",
-"path": "res://src/Player/scripts/c_Item.gd"
+"path": "res://src/Items/Scripts/Inventory_Item.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Physical_Item",
+"language": "GDScript",
+"path": "res://src/Items/Scripts/Physical_Item.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Physics_Entity",
@@ -60,7 +65,8 @@ _global_script_class_icons={
 "Facility_Button": "",
 "GitAPI": "",
 "HighlightState": "",
-"Item": "",
+"Inventory_Item": "",
+"Physical_Item": "",
 "Physics_Entity": "",
 "Wagon_Entity": "",
 "Wagon_Segment": ""
@@ -87,11 +93,6 @@ Debug="*res://src/Singletons/Debug.gd"
 [debug]
 
 settings/stdout/verbose_stdout=true
-
-[display]
-
-window/stretch/mode="2d"
-window/stretch/aspect="keep"
 
 [editor]
 
@@ -196,6 +197,11 @@ left_move_down={
 
 [layer_names]
 
+2d_render/layer_1="Normal"
+2d_render/layer_2="Engine Heat"
+2d_render/layer_8="Player_Half_Shadower"
+2d_render/layer_9="Player_Full_Shadower"
+2d_render/layer_10="Player_Vison_Field"
 2d_physics/layer_1="Map - Static env"
 2d_physics/layer_2="Entity Player"
 2d_physics/layer_3="Entity Enemy"
@@ -205,6 +211,10 @@ left_move_down={
 2d_physics/layer_7="Proj Enemies"
 2d_physics/layer_8="Entity_Train"
 2d_physics/layer_9="Repairable"
+2d_physics/layer_10="Interactable"
+2d_physics/layer_11="Fuel"
+2d_physics/layer_13="Wind Pushable"
+2d_physics/layer_14="Bridges"
 2d_physics/layer_420=false
 
 [physics]

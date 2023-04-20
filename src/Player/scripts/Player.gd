@@ -39,6 +39,7 @@ var state = STATES.ALIVE
 var alive: bool = true
 var disabled: bool = false
 
+var holding := false
 var aiming := false
 var reloading := false
 var inside := false
@@ -56,7 +57,7 @@ func _ready():
 	emit_signal("health_changed", health)
 
 
-
+# print
 
 # Movement & input managing
 func _physics_process(delta):
@@ -68,10 +69,24 @@ func _physics_process(delta):
 		# Later this can be made to equip from a list
 	
 	# ---
+	
+	if Input.is_action_just_pressed("action_1"):
+		get_node(equipment_dict[String(equiped_slot)]).equip()
+		aiming = true
+	elif Input.is_action_just_released("action_1"):
+		aiming = false
+	
 	if Input.is_action_just_pressed("action_2"):
 		pass
 	elif Input.is_action_just_released("action_2"):
 		pass
+	
+	if Input.is_action_just_pressed("reload"):
+		get_node(equipment_dict[String(equiped_slot)]).reload()
+		reloading = true
+	elif Input.is_action_just_released("reload"):
+		reloading = false
+	
 	# ---
 	
 	if Input.is_action_pressed("action_2"):			# The button for aiming, right click
@@ -88,21 +103,23 @@ func _physics_process(delta):
 	# Target Highlighter
 #		if custom_state:
 #			pass
-	if aiming:
+	if holding:
+		pass
+	elif aiming:
 		if reloading:														# reload
 			if not highlight_state == HIGHLIGHT_STATES.RELOADING:
 				highlight_state = HIGHLIGHT_STATES.RELOADING
 				#check equiped reload stats
 				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE
 				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 3, 0, true)
-				print("reloading")
+				#print("reloading")
 		else: 																# aim
 			if not highlight_state == HIGHLIGHT_STATES.AIMIMG:
 				highlight_state = HIGHLIGHT_STATES.AIMIMG
 				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE_RESIZE
 				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 3, -0.25, false)
 				$Target_Highlight.dim_dist_mod = 0.001		# later this will be the accuracy of da weapon
-				print("aiming")
+				#print("aiming")
 			
 	
 	elif Engine.get_physics_frames() % 6: # check interact range
@@ -114,7 +131,7 @@ func _physics_process(delta):
 				highlight_state = HIGHLIGHT_STATES.DEFAULT
 				var s:int = $Target_Highlight.STATES.FOLLOW_MOUSE
 				$Target_Highlight.set_targets(Vector2(1,1), s, Vector2(1,1), 2, 0, false)
-				print("default")
+				#print("default")
 		
 		
 		else:
@@ -125,7 +142,7 @@ func _physics_process(delta):
 				var p:Vector2 = body.get_global_position() - body.highlight_offset 
 				var z:float = body.highlight_size
 				$Target_Highlight.set_targets(p, s, Vector2(1,1), z, 0, true)
-				print("interactable")
+				#print("interactable")
 				prev_body = body
 			
 			
@@ -235,6 +252,9 @@ func _process(delta):
 func set_equiped_slot(new_slot:int):
 	get_node(equipment_dict[String(equiped_slot)]).equiped = false
 	equiped_slot = new_slot
+	
+	if aiming: 
+		get_node(equipment_dict[String(equiped_slot)]).equiped = true
 
 
 # Health

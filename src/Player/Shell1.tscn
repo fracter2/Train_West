@@ -32,7 +32,7 @@ func _on_Despawn_Timer_timeout():
 extents = Vector2( 14, 7 )
 
 [node name="Physics_Entity" type="RigidBody2D" groups=["non-targetable", "vanity"]]
-collision_layer = 16
+collision_layer = 4112
 collision_mask = 157
 mass = 0.6
 physics_material_override = SubResource( 3 )
@@ -46,6 +46,7 @@ script = SubResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+light_mask = 3
 position = Vector2( 7, -8.9407e-08 )
 scale = Vector2( 0.875, 0.777778 )
 color = Color( 0.701961, 0.345098, 0.0862745, 1 )

@@ -13,7 +13,8 @@ signal interacted_end(player)
 
 func toggle_disabled(var value:bool):
 	#get_node("CollisionBase").set_deferred("disabled", value)
-	get_node("PolygonBase").visible = not value
+	if get_node_or_null("PolygonBase") != null:
+		get_node("PolygonBase").visible = not value
 
 
 func interact(var player):

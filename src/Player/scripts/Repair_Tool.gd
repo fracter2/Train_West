@@ -1,4 +1,4 @@
-extends Item
+extends Inventory_Item
 
 
 export var repair_ammount:int = 20
@@ -9,15 +9,18 @@ export var blowback_force:Vector2 = Vector2(100, 0)
 export var recoil_force:Vector2 = Vector2(-100, 0)
 export(float, 0, 2) var horizontal_recoil_modifyer:float = 1
 
-export(int, 0, 1000) var resource_max := 100
-var resource := 100
-export(float, 0, 1000) var resource_recharge:float = 7
+export(int, 0, 1000) var resource_max := 100.0
+var resource := 100.0
+export(float, 0, 1000) var resource_recharge_rate:float = 25.0
+export(float, 0, 1000) var resource_consumption_rate:float = 100.0
+signal resource_changed
 
 
 var default_particle_lifetime:float
 func _ready(): default_particle_lifetime = $Particles2D.lifetime
 
 var was_equiped:bool = false
+var disabled:bool = false
 
 
 func _physics_process(delta):
@@ -32,6 +35,7 @@ func _physics_process(delta):
 			$Repair_Box.space_override = Area2D.SPACE_OVERRIDE_COMBINE
 		
 		
+		
 	if Input.is_action_just_released("action_1") or (was_equiped and not equiped):													# If it was, but now IS NOT equiped
 		$Particles2D.emitting = false
 		$Repair_Box.space_override = Area2D.SPACE_OVERRIDE_DISABLED
@@ -39,7 +43,9 @@ func _physics_process(delta):
 	was_equiped = equiped
 	
 	# Make sure the physics bodies dont sleep while we are blowing them
-	if Input.is_action_pressed("action_1") and equiped:
+	if Input.is_action_pressed("action_1") and equiped and not disabled:
+		
+		resource -= resource_consumption_rate * delta
 		var bodies = $Repair_Box.get_overlapping_bodies()
 		for i in bodies:
 			if i is RigidBody2D:
@@ -55,12 +61,19 @@ func _physics_process(delta):
 			$Repair_Box.gravity_vec = -1 * blowback_force.rotated(global_rotation)
 		else:
 			$Repair_Box.gravity_vec = blowback_force.rotated(global_rotation)
+	else:
+		resource += resource_recharge_rate * delta
+		
+	
+	resource = clamp(resource, 0, resource_max)
+	emit_signal("resource_changed", resource)
 	
 	
 	
 	# Actual repair logic
-	if cooldown_frame == repair_cooldown_frames: 
-		if Input.is_action_pressed("action_1") and equiped:  
+	if cooldown_frame >= repair_cooldown_frames: 
+		if disabled: return
+		if Input.is_action_pressed("action_1") and equiped and not disabled:  
 			cooldown_frame = 0
 			var unsorted_targets = $Repair_Box.get_overlapping_areas()
 			
@@ -71,8 +84,19 @@ func _physics_process(delta):
 			# Recoil
 			var r = recoil_force.rotated(rotation)								# limit y recoil, we dont care about the recoil upwards, only down
 			get_parent().velocity_recoil += Vector2(r.x * horizontal_recoil_modifyer, clamp(r.y, -100, 7))
-	
-	
+			
+			if resource <= 4:
+				disabled == true
+				$Timer.start()
 	else:
 		cooldown_frame += 1
+	
+	# Resource Indicator Updator
+	#emit_signal("resource_changed", resource / resource_max)
+	
 
+
+
+func _on_Timer_timeout():
+	disabled == false
+	print ("timered")

@@ -7,7 +7,10 @@ export (int) var gravity = 3500
 var velocity = Vector2.ZERO
 var player = null
 
+
+
 export(int) var attack_dmg := 20
+export var attack_knockback:Vector2 = Vector2(300, 100)
 
 func _on_Area2D_body_entered(body):
 	player = body

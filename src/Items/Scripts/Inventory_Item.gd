@@ -1,15 +1,18 @@
 extends Node2D
-class_name Item
+class_name Inventory_Item
 
+export var Droppable:PackedScene = null
 
 var equiped:bool = false
 var stack_size:int = 1
-var stack_size_max:int  = 1
+export var stack_size_max:int = 1
 
 export var item_name:String = "Item"
 export var description:String = "This is a very nice and cool item"
 
 export var refire_time:float = 0.5
+
+
 
 
 # Position Offset, for the purpose of moving it, between for example the back/holding/aiming/reloading/etc
@@ -26,8 +29,9 @@ enum AIM_STATES { DEFAULT, FOLLOW_MOUSE, FOLLOW_MOUSE_RESIZE }
 func equip():
 	pass
 
-func fire():
+func action_1():
 	pass
 
 func reload():
 	pass
+

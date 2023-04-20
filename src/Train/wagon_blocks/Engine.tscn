@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/scripts/Engine.gd" type="Script" id=1]
 
@@ -40,27 +40,159 @@ scale_curve = SubResource( 7 )
 color_ramp = SubResource( 5 )
 color_initial_ramp = SubResource( 3 )
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 372, 112 )
+[sub_resource type="Gradient" id=9]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.0461538, 1 )
+colors = PoolColorArray( 4.75, 3.05, 0.2, 1, 1.85128, 1.18872, 0.0779487, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=10]
+gradient = SubResource( 9 )
+use_hdr = true
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 0, 0.516667 )
+
+[sub_resource type="OccluderPolygon2D" id=11]
+closed = false
+polygon = PoolVector2Array( -304, 0, -304, 32, -104, 32, -104, 0, 456, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=12]
+closed = false
+polygon = PoolVector2Array( 456, 0, -24, 0, -24, -32, -304, -32 )
+
+[sub_resource type="OccluderPolygon2D" id=13]
+closed = false
+cull_mode = 1
+polygon = PoolVector2Array( 8, 152, 8, -128 )
+
+[sub_resource type="OccluderPolygon2D" id=14]
+closed = false
+polygon = PoolVector2Array( 56, 144, 56, 0, -24, -104 )
+
+[sub_resource type="Gradient" id=32]
+offsets = PoolRealArray( 0.245614, 0.830409 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.587793, 0.587793, 0.587793, 1 )
+
+[sub_resource type="GradientTexture" id=33]
+gradient = SubResource( 32 )
+
+[sub_resource type="Gradient" id=15]
+offsets = PoolRealArray( 0.263158, 0.947368 )
+colors = PoolColorArray( 1, 0.890496, 0.5, 0.780392, 1, 0.817383, 0.46875, 0.431373 )
+
+[sub_resource type="GradientTexture" id=16]
+gradient = SubResource( 15 )
+
+[sub_resource type="Curve" id=22]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, 60.443 ), 0.0, 0.0, 0, 0, Vector2( 0.494845, -59.557 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=23]
+curve = SubResource( 22 )
+
+[sub_resource type="Curve" id=24]
+min_value = -0.4
+max_value = 0.4
+_data = [ Vector2( 0, 0.0802725 ), 0.0, 0.0, 0, 0, Vector2( 0.747423, -0.065182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.00754529 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=25]
+curve = SubResource( 24 )
+
+[sub_resource type="Curve" id=26]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, -200 ), 0.0, 0.0, 0, 0, Vector2( 0.721649, 200 ), 0.0, 0.0, 0, 0, Vector2( 1, -3.47745 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=27]
+curve = SubResource( 26 )
+
+[sub_resource type="Curve" id=17]
+max_value = 2.0
+_data = [ Vector2( 0, 1.26642 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.778664 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=18]
+curve = SubResource( 17 )
+
+[sub_resource type="Curve" id=28]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, -200 ), 0.0, 0.0, 0, 0, Vector2( 0.474227, 83.9089 ), 0.0, 0.0, 0, 0, Vector2( 0.809278, -200 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=29]
+curve = SubResource( 28 )
+
+[sub_resource type="ParticlesMaterial" id=19]
+lifetime_randomness = 0.25
+emission_shape = 2
+emission_box_extents = Vector3( 64, 24, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 66.47
+gravity = Vector3( -90, -98, 0 )
+initial_velocity = -62.9
+initial_velocity_random = 0.39
+orbit_velocity = 0.06
+orbit_velocity_random = 0.83
+orbit_velocity_curve = SubResource( 25 )
+linear_accel = -44.04
+linear_accel_random = 0.27
+linear_accel_curve = SubResource( 23 )
+radial_accel = -100.0
+radial_accel_random = 0.8
+radial_accel_curve = SubResource( 27 )
+tangential_accel = -100.0
+tangential_accel_random = 0.88
+tangential_accel_curve = SubResource( 29 )
+damping_random = 0.34
+scale = 12.0
+scale_random = 0.25
+scale_curve = SubResource( 18 )
+color_ramp = SubResource( 16 )
+color_initial_ramp = SubResource( 33 )
+
+[sub_resource type="Gradient" id=30]
+offsets = PoolRealArray( 0.491979 )
+colors = PoolColorArray( 4, 3, 2, 0.75 )
+
+[sub_resource type="GradientTexture2D" id=31]
+gradient = SubResource( 30 )
+width = 1
+height = 1
+use_hdr = true
+
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 128, 104 )
 
 [node name="Engine" type="StaticBody2D"]
 position = Vector2( 304, -160 )
 script = ExtResource( 1 )
 hp_max = 3000
 color_offset = 1000
+fire_time_min = 1.2
+fire_time_max = 2.4
+heat_radiance_min = 0.5
+heat_radiance_max = 1.4
 
 [node name="PolygonBase" type="Polygon2D" parent="."]
 color = Color( 0.231373, 0.231373, 0.231373, 1 )
-polygon = PoolVector2Array( -376, 152, -376, 136, -360, 128, -360, -56, -376, -64, -376, -96, 120, -96, 120, -168, 96, -208, 96, -232, 232, -232, 232, -208, 208, -168, 208, -96, 368, -96, 368, -88, 376, -88, 376, -64, 368, -64, 368, 112, 376, 112, 376, 152 )
+polygon = PoolVector2Array( -376, 152, -376, 136, -376, -64, -376, -96, 120, -96, 120, -168, 96, -208, 96, -232, 232, -232, 232, -208, 208, -168, 208, -96, 368, -96, 368, -88, 376, -88, 376, -64, 368, -64, 368, 112, 376, 112, 376, 152 )
 
-[node name="Particles2D" type="Particles2D" parent="PolygonBase"]
+[node name="Smoke_Emitter" type="Particles2D" parent="PolygonBase"]
 show_behind_parent = true
 position = Vector2( 164, -176 )
 amount = 16
 lifetime = 8.0
+speed_scale = 1.2
 randomness = 0.3
 visibility_rect = Rect2( -3000, -4000, 6000, 5000 )
 process_material = SubResource( 8 )
+
+[node name="Fuel_Background" type="Polygon2D" parent="PolygonBase"]
+light_mask = 258
+position = Vector2( -288, 56 )
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+polygon = PoolVector2Array( -104, -128, 112, -128, 192, -24, 192, 88, -104, 88 )
 
 [node name="RowBot" type="Polygon2D" parent="."]
 color = Color( 0.552941, 0.552941, 0.552941, 1 )
@@ -80,11 +212,77 @@ polygon = PoolVector2Array( -376, 144, 352, 144, 352, 160, 384, 160, 384, 176, -
 color = Color( 0.431373, 0.431373, 0.431373, 1 )
 polygon = PoolVector2Array( -376, 152, 336, 152, 336, 168, -376, 168 )
 
-[node name="Polygon2D2" type="Polygon2D" parent="RowTop"]
+[node name="Polygon2" type="Polygon2D" parent="RowTop"]
 color = Color( 0.337255, 0.337255, 0.337255, 1 )
 polygon = PoolVector2Array( 96, 168, 104, 176, 112, 176, 216, 176, 224, 176, 232, 168, 232, 144, 96, 144 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Polygon3" type="Polygon2D" parent="RowTop"]
+position = Vector2( -176, 192 )
+color = Color( 0.337255, 0.337255, 0.337255, 1 )
+polygon = PoolVector2Array( -40, 32, -24, 48, 24, 48, 40, 32, 40, -16, -40, -16 )
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 visible = false
-position = Vector2( -4, 48 )
-shape = SubResource( 1 )
+position = Vector2( 4, 36 )
+polygon = PoolVector2Array( -380, -140, 380, -140, 380, 140, -380, 140, -380, 108, -100, 108, -100, -108, -380, -108 )
+
+[node name="HeatPad" type="Polygon2D" parent="."]
+light_mask = 258
+position = Vector2( -240, 136 )
+color = Color( 1.4, 1, 0.4, 1 )
+polygon = PoolVector2Array( -64, -16, 144, -16, 144, 8, -88, 8 )
+
+[node name="HeatRadiance" type="Light2D" parent="."]
+light_mask = 2
+position = Vector2( -224, 128 )
+texture = SubResource( 10 )
+texture_scale = 8.0
+energy = 0.9
+range_item_cull_mask = 2
+shadow_enabled = true
+shadow_color = Color( 0.109804, 0.141176, 0.698039, 0 )
+shadow_item_cull_mask = 2
+
+[node name="LightOccluder2DTop" type="LightOccluder2D" parent="."]
+light_mask = 770
+position = Vector2( -72, -104 )
+occluder = SubResource( 11 )
+light_mask = 770
+
+[node name="LightOccluder2DBot" type="LightOccluder2D" parent="."]
+light_mask = 770
+position = Vector2( -72, 176 )
+occluder = SubResource( 12 )
+light_mask = 770
+
+[node name="LightOccluder2DRight" type="LightOccluder2D" parent="."]
+light_mask = 770
+position = Vector2( 376, 24 )
+occluder = SubResource( 13 )
+light_mask = 770
+
+[node name="LightOccluder2DInside" type="LightOccluder2D" parent="."]
+light_mask = 770
+position = Vector2( -152, 32 )
+occluder = SubResource( 14 )
+light_mask = 770
+
+[node name="Fire_Emitter" type="Particles2D" parent="."]
+position = Vector2( -200, 120 )
+amount = 64
+lifetime = 2.2
+speed_scale = 3.0
+randomness = 0.2
+process_material = SubResource( 19 )
+texture = SubResource( 31 )
+
+[node name="Coal_Intake" type="Area2D" parent="."]
+position = Vector2( -232, 40 )
+collision_layer = 0
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coal_Intake"]
+visible = false
+shape = SubResource( 34 )
+
+[connection signal="body_entered" from="Coal_Intake" to="." method="_on_Coal_Intake_body_entered"]
