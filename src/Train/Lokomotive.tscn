@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Train/wagon_blocks/Wagon_Segment_1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/wagon_blocks/Wheel.tscn" type="PackedScene" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://src/Train/Facilities/scripts/Indicator.gd" type="Script" id=8]
 
 [sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 800, 100 )
 
 [node name="Lokomotive" type="Node2D"]
 
@@ -166,9 +169,12 @@ scale = Vector2( 0.8, 1 )
 position = Vector2( -744, -8 )
 
 [node name="Force_Override" parent="." instance=ExtResource( 4 )]
-visible = false
 position = Vector2( -384, -176 )
 scale = Vector2( 0.46, 1.1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Force_Override"]
+position = Vector2( 1426.09, 50.9091 )
+shape = SubResource( 2 )
 
 [connection signal="closed" from="Engine/Hatch" to="Engine" method="hatch_close"]
 [connection signal="opened" from="Engine/Hatch" to="Engine" method="hatch_open"]
