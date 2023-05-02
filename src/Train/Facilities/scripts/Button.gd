@@ -3,6 +3,7 @@ extends Facility
 
 export var toggle:bool = false
 var pressed:bool = false
+export var disabled:bool = false
 
 #export var mouse_input:bool = false #Now Redundant
 export(Color) var color_DEFAULT:Color = Color.lime
@@ -20,6 +21,8 @@ func _ready():
 
 # Setup secondary interaction from playter on release / out of range
 func interact(var player): # override
+	if disabled: return
+	
 	emit_signal("interacted", player)
 	if not pressed:
 		pressed = true
@@ -35,6 +38,7 @@ func interact(var player): # override
 		#print("Button just released! ")
 
 func interact_end(var player):
+	if disabled: return
 	emit_signal("interacted_end")
 	
 	if not toggle:
@@ -49,7 +53,7 @@ func interact_end(var player):
 		#print("Button just toggled!")
 
 
-
+# Is this nessessary
 func _on_Button_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.pressed:

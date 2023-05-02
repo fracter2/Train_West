@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/Wagon_Water.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://src/Train/Facilities/Button.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Level/Map_Nodes/Entity_Spawner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/Level/Enviornment/Background_Manager.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/Entities/Enemy_Crawler.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/Entities/Enemy_Runner.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/Train/Facilities/Healer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Train/Facilities/Train_Lever_1.tscn" type="PackedScene" id=18]
@@ -100,18 +99,6 @@ position = Vector2( -1203, 0 )
 [node name="Wagon_Residance" parent="Lokomotive" instance=ExtResource( 10 )]
 position = Vector2( -2414, 0 )
 
-[node name="Button_Runner" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
-position = Vector2( 390, -160 )
-highlight_size = 5.0
-
-[node name="Button_Flyer" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
-position = Vector2( 454, -160 )
-highlight_size = 5.0
-
-[node name="Button_Crawler" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 12 )]
-position = Vector2( 326, -160 )
-highlight_size = 5.0
-
 [node name="Force_Override" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 19 )]
 
 [node name="Wagon_Cafeteria" parent="Lokomotive" instance=ExtResource( 11 )]
@@ -120,16 +107,26 @@ position = Vector2( -3934, 0 )
 [node name="Healer" parent="Lokomotive/Wagon_Cafeteria" instance=ExtResource( 17 )]
 position = Vector2( 1502, -144 )
 
-[node name="Button_Heal" parent="Lokomotive/Wagon_Cafeteria" instance=ExtResource( 12 )]
-position = Vector2( -47, -123 )
-highlight_size = 5.0
-
 [node name="Wagon_Production" parent="Lokomotive" instance=ExtResource( 7 )]
 position = Vector2( -5454, 0 )
 
 [node name="Workbox" parent="Lokomotive/Wagon_Production" instance=ExtResource( 20 )]
+visible = false
 position = Vector2( -175, -115 )
 scale = Vector2( 80, 50 )
+
+[node name="Button_Crawler" parent="Lokomotive/Wagon_Production" instance=ExtResource( 12 )]
+position = Vector2( 299, -136 )
+highlight_size = 5.0
+disabled = true
+
+[node name="Button_Flyer" parent="Lokomotive/Wagon_Production" instance=ExtResource( 12 )]
+position = Vector2( 171, -136 )
+highlight_size = 5.0
+
+[node name="Button_Runner" parent="Lokomotive/Wagon_Production" instance=ExtResource( 12 )]
+position = Vector2( 51, -136 )
+highlight_size = 5.0
 
 [node name="Wagon_Water" parent="Lokomotive" instance=ExtResource( 2 )]
 position = Vector2( -6974, 0 )
@@ -158,9 +155,6 @@ entity_path = "res://src/Entities/Enemy_Crawler.tscn"
 
 [node name="Entities" type="YSort" parent="."]
 position = Vector2( -24, -123 )
-
-[node name="Enemy_Crawler" parent="Entities" instance=ExtResource( 15 )]
-position = Vector2( -2503, -293 )
 
 [node name="Enemy_Runner" parent="Entities" instance=ExtResource( 16 )]
 position = Vector2( -4703, -69 )
@@ -215,8 +209,7 @@ script = ExtResource( 9 )
 shape = SubResource( 2 )
 one_way_collision_margin = 0.0
 
-[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Runner" to="Spawners_and_misc/Spawner_Runner" method="spawn"]
-[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Flyer" to="Spawners_and_misc/Spawner_Flyer" method="spawn"]
-[connection signal="button_just_pressed" from="Lokomotive/Wagon_Residance/Button_Crawler" to="Spawners_and_misc/Spawner_Crawler" method="spawn"]
-[connection signal="interacted" from="Lokomotive/Wagon_Cafeteria/Button_Heal" to="Spawners_and_misc/MapNode_Healer" method="activate"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Production/Button_Crawler" to="Spawners_and_misc/Spawner_Crawler" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Production/Button_Flyer" to="Spawners_and_misc/Spawner_Flyer" method="spawn"]
+[connection signal="button_just_pressed" from="Lokomotive/Wagon_Production/Button_Runner" to="Spawners_and_misc/Spawner_Runner" method="spawn"]
 [connection signal="body_exited" from="Ground1/Play_Zone" to="Ground1/Play_Zone" method="_on_Out_of_bounds_Area_body_exited"]
