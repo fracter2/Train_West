@@ -101,11 +101,14 @@ position = Vector2( -2414, 0 )
 
 [node name="Force_Override" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 19 )]
 
+[node name="Spawner_Player" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 8 )]
+position = Vector2( -293, -143 )
+
 [node name="Wagon_Cafeteria" parent="Lokomotive" instance=ExtResource( 11 )]
 position = Vector2( -3934, 0 )
 
 [node name="Healer" parent="Lokomotive/Wagon_Cafeteria" instance=ExtResource( 17 )]
-position = Vector2( 1502, -144 )
+position = Vector2( -325, -128 )
 
 [node name="Wagon_Production" parent="Lokomotive" instance=ExtResource( 7 )]
 position = Vector2( -5454, 0 )
@@ -131,24 +134,21 @@ highlight_size = 5.0
 [node name="Wagon_Water" parent="Lokomotive" instance=ExtResource( 2 )]
 position = Vector2( -6974, 0 )
 
-[node name="Spawner_Player" parent="Lokomotive" instance=ExtResource( 8 )]
-position = Vector2( -361, -142 )
-
 [node name="Button" parent="Lokomotive" instance=ExtResource( 18 )]
-position = Vector2( -312, -18 )
+position = Vector2( -443, -18 )
 highlight_size = 5.0
 
 [node name="Spawners_and_misc" type="YSort" parent="."]
 
 [node name="Spawner_Runner" parent="Spawners_and_misc" instance=ExtResource( 13 )]
-position = Vector2( -2117, -644 )
+position = Vector2( -8288, -259 )
 
 [node name="Spawner_Flyer" parent="Spawners_and_misc" instance=ExtResource( 13 )]
-position = Vector2( -1424, -1056 )
+position = Vector2( -4819, -1528 )
 entity_path = "res://src/Entities/Enemy_Flying.tscn"
 
 [node name="Spawner_Crawler" parent="Spawners_and_misc" instance=ExtResource( 13 )]
-position = Vector2( -1704, -408 )
+position = Vector2( -4552, -381 )
 entity_path = "res://src/Entities/Enemy_Crawler.tscn"
 
 [node name="MapNode_Healer" parent="Spawners_and_misc" instance=ExtResource( 5 )]
@@ -166,7 +166,7 @@ scale = Vector2( 0.92261, 0.989712 )
 [node name="Players" type="YSort" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource( 1 )]
-position = Vector2( 717, -238 )
+position = Vector2( -1392, -266 )
 
 [node name="Projectiles" type="YSort" parent="."]
 

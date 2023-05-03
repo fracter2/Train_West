@@ -54,6 +54,7 @@ func fire():
 	proj.apply_central_impulse(force.rotated(proj.rotation))
 	$"/root/World/Projectiles".add_child(proj)
 	
+	
 	# Rechamber
 	state = STATES.RECHAMBERING
 	$Rechamber_Timer.start(refire_time)
