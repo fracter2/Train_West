@@ -154,7 +154,7 @@ func _physics_process(delta):
 		movement(delta)
 		if not disabled:
 			input_dir.x = Input.get_axis("move_left", "move_right")
-			input_dir.y = Input.get_axis("move_down","move_up")
+			input_dir.y = -Input.get_action_strength("move_down")	#Input.get_axis("move_down","move_up")
 			input_dir.z = Input.get_action_strength("move_jump")
 			
 			input_dir_JP = Vector3.ZERO
@@ -252,6 +252,7 @@ func _process(delta):
 func set_equiped_slot(new_slot:int):
 	get_node(equipment_dict[String(equiped_slot)]).equiped = false
 	equiped_slot = new_slot
+	$GUI/CanvasLayer/UI/Bars/EnergyBar/MarginContainer/Indicator_Gun_Tool.toggle()
 	
 	if aiming: 
 		get_node(equipment_dict[String(equiped_slot)]).equiped = true

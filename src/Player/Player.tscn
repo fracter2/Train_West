@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/Player/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/scripts/Push Area.gd" type="Script" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://src/Player/Weapon_1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Player/scripts/Interaction_handler.gd" type="Script" id=5]
 [ext_resource path="res://src/Player/Repair_Tool.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/Player/Player_Debug.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Icons/Fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://src/UI/UI components/Lifebar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/UI components/EnergyBar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/UI/Scripts/GUI.gd" type="Script" id=10]
@@ -41,6 +41,35 @@ gradient = SubResource( 6 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 fill_to = Vector2( 1, 0.5 )
+
+[sub_resource type="GDScript" id=9]
+resource_name = "Indicator_Gun_Tool"
+script/source = "extends ColorRect
+
+var color_gun:Color = Color(0.929412, 0.411765, 0.066667)
+var color_tool:Color = Color(0.168627, 0.909804, 0.839216)
+var state:bool = false
+
+func _ready():
+	color = Color(0.929412, 0.411765, 0.066667)
+
+
+func toggle():
+	state = not state
+	
+	if state == false:
+		$Label_Gun.visible = true
+		$Label_Tool.visible = false
+		color = color_gun
+	else:
+		$Label_Gun.visible = false
+		$Label_Tool.visible = true
+		color = color_tool
+"
+
+[sub_resource type="DynamicFont" id=10]
+size = 18
+font_data = ExtResource( 7 )
 
 [node name="Player" type="KinematicBody2D" groups=["Entity", "Player"]]
 light_mask = 3
@@ -183,7 +212,6 @@ __meta__ = {
 layer = 20
 
 [node name="UI" type="MarginContainer" parent="GUI/CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
@@ -200,13 +228,55 @@ size_flags_vertical = 8
 [node name="EnergyBar" parent="GUI/CanvasLayer/UI/Bars" instance=ExtResource( 9 )]
 self_modulate = Color( 1, 1, 1, 0.729412 )
 margin_bottom = 40.0
+custom_constants/separation = 5
 
 [node name="Backround" parent="GUI/CanvasLayer/UI/Bars/EnergyBar" index="0"]
 margin_bottom = 40.0
 
 [node name="Gauge" parent="GUI/CanvasLayer/UI/Bars/EnergyBar" index="1"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
+margin_left = 85.0
+margin_right = 333.0
 margin_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/CanvasLayer/UI/Bars/EnergyBar"]
+margin_left = 338.0
+margin_right = 438.0
+margin_bottom = 40.0
+
+[node name="Indicator_Gun_Tool" type="ColorRect" parent="GUI/CanvasLayer/UI/Bars/EnergyBar/MarginContainer"]
+margin_right = 100.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 100, 24 )
+color = Color( 0.909804, 0.550797, 0.168627, 1 )
+script = SubResource( 9 )
+
+[node name="Label_Gun" type="Label" parent="GUI/CanvasLayer/UI/Bars/EnergyBar/MarginContainer/Indicator_Gun_Tool"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -10.5
+margin_right = 20.0
+margin_bottom = 10.5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "Gun"
+
+[node name="Label_Tool" type="Label" parent="GUI/CanvasLayer/UI/Bars/EnergyBar/MarginContainer/Indicator_Gun_Tool"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -10.5
+margin_right = 20.0
+margin_bottom = 10.5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "Tool"
 
 [node name="Lifebar" parent="GUI/CanvasLayer/UI/Bars" instance=ExtResource( 8 )]
 margin_top = 44.0
@@ -220,11 +290,6 @@ self_modulate = Color( 1, 1, 1, 0.862745 )
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
-
-[node name="Debug_Node" parent="." instance=ExtResource( 7 )]
-__meta__ = {
-"_editor_description_": "Gives a few debug tool things. Like TELEPORTATION, and eventually other things maybe"
-}
 
 [node name="Inventory" type="YSort" parent="."]
 sort_enabled = false

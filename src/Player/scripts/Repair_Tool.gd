@@ -11,8 +11,8 @@ export(float, 0, 2) var horizontal_recoil_modifyer:float = 1
 
 export(int, 0, 1000) var resource_max := 100.0
 var resource := 100.0
-export(float, 0, 1000) var resource_recharge_rate:float = 25.0
-export(float, 0, 1000) var resource_consumption_rate:float = 100.0
+export(float, 0, 1000) var resource_recharge_rate:float = 20.0
+export(float, 0, 1000) var resource_consumption_rate:float = 25.0
 signal resource_changed
 
 
@@ -46,6 +46,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("action_1") and equiped and not disabled:
 		
 		resource -= resource_consumption_rate * delta
+		if resource < 0: 
+			disabled = true
+			$Particles2D.emitting = false
 		var bodies = $Repair_Box.get_overlapping_bodies()
 		for i in bodies:
 			if i is RigidBody2D:
@@ -63,6 +66,9 @@ func _physics_process(delta):
 			$Repair_Box.gravity_vec = blowback_force.rotated(global_rotation)
 	else:
 		resource += resource_recharge_rate * delta
+		if disabled and resource > 20: 
+			disabled = false
+			if Input.is_action_pressed("action_1"): $Particles2D.emitting = true
 		
 	
 	resource = clamp(resource, 0, resource_max)
