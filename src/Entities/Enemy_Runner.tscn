@@ -41,13 +41,27 @@ shape = SubResource( 2 )
 [node name="AttackBox" type="Area2D" parent="."]
 position = Vector2( 24, 0 )
 collision_layer = 0
-collision_mask = 130
+collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
 position = Vector2( -24, 0 )
 shape = SubResource( 4 )
 
+[node name="Destroy_Box" type="Area2D" parent="."]
+position = Vector2( 0, -8 )
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Destroy_Box"]
+polygon = PoolVector2Array( -32, -16, -16, -40, 16, -40, 32, -16, 32, 32, -32, 32 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="body_entered" from="VisionBox" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="VisionBox" to="." method="_on_Area2D_body_exited"]
 [connection signal="area_entered" from="AttackBox" to="." method="_on_AttackBox_area_entered"]
+[connection signal="body_entered" from="Destroy_Box" to="." method="_on_Destroy_Box_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -3,7 +3,7 @@
 [ext_resource path="res://src/Entities/Scripts/Enemy_Flying.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 2000, 2000 )
+extents = Vector2( 4000, 3000 )
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 21.0
@@ -16,7 +16,7 @@ light_mask = 512
 collision_layer = 4100
 collision_mask = 133
 script = ExtResource( 1 )
-hp_max = 20
+hp_max = 40
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -53,7 +53,7 @@ position = Vector2( -24, 0 )
 shape = SubResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 7.0
 one_shot = true
 
 [node name="DestroyBox" type="Area2D" parent="."]
@@ -64,6 +64,10 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyBox"]
 scale = Vector2( 3, 3 )
 shape = SubResource( 5 )
+
+[node name="Timer_Jump" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
 [connection signal="body_entered" from="VisionBox" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="VisionBox" to="." method="_on_Area2D_body_exited"]

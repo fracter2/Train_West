@@ -9,8 +9,8 @@ var state = 0
 var old_state = 0
 var targetPos:Vector2
 
-export(int) var attack_dmg := 20
-export(int) var attack_Wagon := 100
+export(int) var attack_dmg := 15
+export(int) var attack_Wagon := 35
 
 func _on_Area2D_body_entered(body):
 	player = body
@@ -22,22 +22,27 @@ func _on_Area2D_body_exited(body):
 # Movement, and misc
 func _physics_process(delta):
 	# Knockback
-	velocity += queued_knockback
-	queued_knockback = Vector2.ZERO
+	#if queued_knockback.y > 0:  queued_knockback *= -1
+	velocity += queued_knockback 
+	queued_knockback *= 0.3
 	# Rest of movement
 	if old_state == state:
 		targetPos = position + Vector2(1000,-1000)
 		old_state == state
 	if state == 0:
-		if player != null:
-			var tops:Vector2 = position.direction_to(player.position - Vector2(0,-50))
-			if tops.x < 0: tops.x = -1
-			else: tops.x = 1
-			if tops.y < 0: tops.y = -1
-			else: tops.y = 1
-			velocity.x += tops.x * run_speed * delta * 3
-			velocity.y += tops.y * run_speed * delta * 3
-			get_target()
+		var tops:Vector2
+		if player != null: tops = position.direction_to(player.position - Vector2(0,-50))
+		else: tops = position.direction_to(Vector2(0, -2500))
+		
+		if tops.x < 0: tops.x = -1
+		else: tops.x = 1
+		if tops.y < 0: tops.y = -1
+		else: tops.y = 1
+		velocity.x += tops.x * run_speed * delta * 3
+		velocity.y += tops.y * run_speed * delta * 3
+		get_target()
+		
+			
 	if state == 1:
 		var targetPosangel:Vector2 = position.direction_to(targetPos)
 		if targetPosangel.x < 0: targetPosangel.x = -1
@@ -89,6 +94,8 @@ func attack(var body):
 	if body.is_in_group("Player"):
 		return
 	body.take_damage(attack_Wagon, self)
+	state = 1
+	$Timer.start(3)
 
 
 #The area for destorying walls
