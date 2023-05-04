@@ -1,8 +1,8 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Train/Wagon_Water.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Entities/Enemy_Flying.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Level/EnemySpawner.gd" type="Script" id=3]
 [ext_resource path="res://src/Train/Wagon_Fuel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Level/Map_Nodes/Map_Healer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Train/Lokomotive.tscn" type="PackedScene" id=6]
@@ -14,7 +14,6 @@
 [ext_resource path="res://src/Train/Facilities/Button.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Level/Map_Nodes/Entity_Spawner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/Level/Enviornment/Background_Manager.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/Entities/Enemy_Runner.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/Train/Facilities/Healer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Train/Facilities/Train_Lever_1.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Train/wagon_blocks/Force_Override.tscn" type="PackedScene" id=19]
@@ -150,13 +149,6 @@ entity_path = "res://src/Entities/Enemy_Crawler.tscn"
 [node name="Entities" type="YSort" parent="."]
 position = Vector2( -24, -123 )
 
-[node name="Enemy_Runner" parent="Entities" instance=ExtResource( 16 )]
-position = Vector2( -4703, -69 )
-
-[node name="Enemy_Flying" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( -3322, -778 )
-scale = Vector2( 0.92261, 0.989712 )
-
 [node name="Players" type="YSort" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource( 1 )]
@@ -203,7 +195,37 @@ script = ExtResource( 9 )
 shape = SubResource( 2 )
 one_way_collision_margin = 0.0
 
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="SpawnTimer" type="Timer" parent="EnemySpawner"]
+wait_time = 30.0
+autostart = true
+
+[node name="SpawnTimer2" type="Timer" parent="EnemySpawner"]
+wait_time = 0.5
+autostart = true
+
+[node name="Spawners" type="Node" parent="EnemySpawner"]
+
+[node name="Spawner" parent="EnemySpawner/Spawners" instance=ExtResource( 13 )]
+position = Vector2( -10192, -216 )
+
+[node name="Spawner2" parent="EnemySpawner/Spawners" instance=ExtResource( 13 )]
+position = Vector2( -6152, -704 )
+
+[node name="Spawner3" parent="EnemySpawner/Spawners" instance=ExtResource( 13 )]
+position = Vector2( -4184, -1600 )
+entity_path = "res://src/Entities/Enemy_Flying.tscn"
+
+[node name="Spawner4" parent="EnemySpawner/Spawners" instance=ExtResource( 13 )]
+position = Vector2( -2704, -1616 )
+entity_path = "res://src/Entities/Enemy_Flying.tscn"
+
 [connection signal="button_just_pressed" from="Lokomotive/Wagon_Production/Button_Crawler" to="Spawners_and_misc/Spawner_Crawler" method="spawn"]
 [connection signal="button_just_pressed" from="Lokomotive/Wagon_Production/Button_Flyer" to="Spawners_and_misc/Spawner_Flyer" method="spawn"]
 [connection signal="button_just_pressed" from="Lokomotive/Wagon_Production/Button_Runner" to="Spawners_and_misc/Spawner_Runner" method="spawn"]
+[connection signal="interacted" from="Lokomotive/Button" to="EnemySpawner" method="_on_Button_interacted"]
 [connection signal="body_exited" from="Ground1/Play_Zone" to="Ground1/Play_Zone" method="_on_Out_of_bounds_Area_body_exited"]
+[connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="EnemySpawner/SpawnTimer2" to="EnemySpawner" method="_on_SpawnTimer2_timeout"]

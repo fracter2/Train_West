@@ -13,7 +13,7 @@ var velocity: float = 0
 var velocity_drag_scalable:float = 0.2
 var velocity_drag_static:float = 3
 var velocity_accelleration:float = 2											# Currently does nothing
-
+var distance_traveled:float = 0
 
 # Wagons
 var wagons:Array = []
@@ -26,9 +26,9 @@ var resource_fuel_max := 2000
 # Engine
 var engine_heat: float = 200													# Heat goes from 0 to 200
 var engine_heat_max := 200
-var engine_heat_loss_scalable := 1									# Multiplied by ( heat/heat_max )
+var engine_heat_loss_scalable := 1										# Multiplied by ( heat/heat_max )
 var engine_heat_loss_static := 2										# Doesn't scale with heat
-var engine_heat_loss_ko :float = 1										# Heat-loss koefficient, to easily increase/decrease loss from...
+var engine_heat_loss_ko :float = 0.7										# Heat-loss koefficient, to easily increase/decrease loss from...
 var engine_heat_per_accel:float = 0.1										# ...other factors. Like the engine door being open
 
 var engine_fuel:float = 100
@@ -65,7 +65,8 @@ func _physics_process(delta):
 	f -= (engine_fuel/engine_fuel_max) * engine_fuel_loss_scalable 
 	
 	# This actually applies the logic
-	engine_fuel = clamp(engine_fuel + f * delta, 0, engine_fuel_max)
+	#engine_fuel = clamp(engine_fuel + f * delta, 0, engine_fuel_max)
+	engine_fuel =  clamp(engine_fuel + f * delta, 0, 1000)
 	engine_heat = clamp(engine_heat + h * delta, 0, engine_heat_max)
 	
 	
@@ -85,9 +86,9 @@ func _physics_process(delta):
 	
 	velocity += a * delta 
 	velocity = clamp(velocity, 0, 1000)
+	distance_traveled += velocity * delta
 	
-	
-	if simple_frame_count >= 10:
+	if simple_frame_count >= 60:
 		print("Heat: " + String(engine_heat) + "  Fuel: " + String(engine_fuel) + "  accell: " + String(a), "  Vel: " + String(velocity))
 		simple_frame_count = 0
 	else:

@@ -89,6 +89,7 @@ Train_manager="*res://src/Singletons/train_manager.gd"
 Player_manager="*res://src/Singletons/Player_manager.gd"
 Utility="*res://src/Singletons/Utility.gd"
 Debug="*res://src/Singletons/Debug.gd"
+EnemyManager="*res://src/Singletons/enemy_manager.gd"
 
 [debug]
 
@@ -192,6 +193,11 @@ left_move_up={
 left_move_down={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777234,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fullscreen={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":80,"unicode":0,"echo":false,"script":null)
  ]
 }
 

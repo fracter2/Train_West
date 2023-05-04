@@ -6,11 +6,15 @@ export(float, -10, 10) var rotation_inactive: float = 0
 
 func _ready():
 	toggle = true
-
+	if pressed == true:
+		$ButtonBase/Lever.rotation_degrees = rotation_active
+	else:
+		$ButtonBase/Lever.rotation_degrees = rotation_inactive
 
 func toggle_lever_pos(var _player):
 	if pressed == true:
 		$ButtonBase/Lever.rotation_degrees = rotation_active
+		#$"../../EnemySpawner".active = not $"../../EnemySpawner".active
 	else:
 		$ButtonBase/Lever.rotation_degrees = rotation_inactive
 	
