@@ -18,6 +18,7 @@ signal button_just_released()
 
 func _ready():
 	$ButtonBase/ButtonRect.color = color_DEFAULT
+	if disabled: $ButtonBase/ButtonRect.color = color_DISABLED
 
 # Setup secondary interaction from playter on release / out of range
 func interact(var player): # override

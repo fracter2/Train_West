@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Entities/Scripts/Runner.gd" type="Script" id=1]
 
@@ -9,11 +9,18 @@ extents = Vector2( 2000, 500 )
 radius = 21.0
 height = 30.0
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 30, 30 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 20, 10 )
+
 [node name="Enemy_Runner" type="KinematicBody2D" groups=["Entity"]]
 light_mask = 512
 collision_layer = 4100
 collision_mask = 133
 script = ExtResource( 1 )
+run_speed = 800
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, 4 )
@@ -53,8 +60,17 @@ position = Vector2( 0, -8 )
 collision_layer = 0
 collision_mask = 128
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Destroy_Box"]
-polygon = PoolVector2Array( -32, -16, -16, -40, 16, -40, 32, -16, 32, 32, -32, 32 )
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="Destroy_Box"]
+position = Vector2( 0, 8 )
+shape = SubResource( 5 )
+
+[node name="Destroy_Box_Top" type="Area2D" parent="."]
+position = Vector2( 0, -40 )
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="Destroy_Box_Top"]
+shape = SubResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
@@ -64,4 +80,5 @@ one_shot = true
 [connection signal="body_exited" from="VisionBox" to="." method="_on_Area2D_body_exited"]
 [connection signal="area_entered" from="AttackBox" to="." method="_on_AttackBox_area_entered"]
 [connection signal="body_entered" from="Destroy_Box" to="." method="_on_Destroy_Box_body_entered"]
+[connection signal="body_entered" from="Destroy_Box_Top" to="." method="_on_Destroy_Box_Top_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
