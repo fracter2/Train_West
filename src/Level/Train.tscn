@@ -102,6 +102,29 @@ position = Vector2( -2414, 0 )
 [node name="Spawner_Player" parent="Lokomotive/Wagon_Residance" instance=ExtResource( 8 )]
 position = Vector2( -293, -143 )
 
+[node name="TextEdit" type="Label" parent="Lokomotive/Wagon_Residance"]
+margin_left = -565.0
+margin_top = -168.0
+margin_right = -425.0
+margin_bottom = -128.0
+text = "  WASD - Movement
+  Q - Weapon / Tool
+  
+ "
+
+[node name="TextEdit2" type="Label" parent="Lokomotive/Wagon_Residance"]
+margin_left = 99.0
+margin_top = -176.0
+margin_right = 239.0
+margin_bottom = -111.0
+text = " INTERACT - Left Mouse Btn
+
+  AIM -  Hold Right Mouse RMB
+
+  FIRE - AIM + INTERACT
+  
+ "
+
 [node name="Wagon_Cafeteria" parent="Lokomotive" instance=ExtResource( 11 )]
 position = Vector2( -3934, 0 )
 
@@ -130,6 +153,20 @@ position = Vector2( -6974, 0 )
 [node name="Button" parent="Lokomotive" instance=ExtResource( 18 )]
 position = Vector2( -443, -18 )
 highlight_size = 5.0
+
+[node name="TextEdit" type="Label" parent="Lokomotive"]
+margin_left = -627.0
+margin_top = -192.0
+margin_right = -408.0
+margin_bottom = -76.0
+text = " <-- INTERACT to GRAB coal
+      INTERACT to THROW -->
+	
+	
+	  INTERACT with Lever start level :)
+	        (make sure it stays up)
+  
+ "
 
 [node name="Spawners_and_misc" type="YSort" parent="."]
 
