@@ -4,7 +4,7 @@ var chunk = preload("res://src/Items/Coal_Chunk.tscn")
 export var throw_force:int = 100
 
 func _input(event):
-	if event.is_action_pressed("action_2"):
+	if event.is_action_pressed("action_2") or event.is_action_pressed("action_1"): 
 		var dir:Vector2 = get_global_mouse_position() - global_position
 		dir = dir.normalized() * throw_force + get_parent().velocity * 0.35
 		

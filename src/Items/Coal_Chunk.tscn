@@ -5,7 +5,9 @@
 [node name="CoalChunk" type="RigidBody2D" groups=["non-targetable"]]
 collision_layer = 5136
 collision_mask = 8349
-gravity_scale = 4.0
+gravity_scale = 6.0
+linear_velocity = Vector2( 0, 60 )
+linear_damp = 0.4
 script = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

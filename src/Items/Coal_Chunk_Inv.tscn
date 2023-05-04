@@ -4,7 +4,7 @@
 
 [node name="Coal_Chunk_Inv" type="Node2D"]
 script = ExtResource( 1 )
-throw_force = 500
+throw_force = 700
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 0.152344, 0.152344, 0.152344, 1 )
