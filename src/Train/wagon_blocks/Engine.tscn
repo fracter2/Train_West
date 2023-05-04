@@ -268,8 +268,8 @@ occluder = SubResource( 14 )
 light_mask = 770
 
 [node name="Fire_Emitter" type="Particles2D" parent="."]
-visible = false
 position = Vector2( -200, 120 )
+emitting = false
 amount = 64
 lifetime = 2.2
 speed_scale = 3.0
